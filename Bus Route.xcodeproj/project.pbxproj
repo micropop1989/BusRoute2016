@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4646C659662FA449B2F047F6 /* Pods_Bus_Route.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C30CC7D898EF44B4D01BCBF /* Pods_Bus_Route.framework */; };
+		50C549351DEBFE6D005418E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C549341DEBFE6D005418E1 /* AppDelegate.swift */; };
+		50C5493A1DEBFE6D005418E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C549381DEBFE6D005418E1 /* Main.storyboard */; };
+		50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50C5493B1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld */; };
+		50C5493F1DEBFE6D005418E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C5493E1DEBFE6D005418E1 /* Assets.xcassets */; };
+		50C549421DEBFE6D005418E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C549401DEBFE6D005418E1 /* LaunchScreen.storyboard */; };
+		50C5494A1DEBFF3B005418E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50C549491DEBFF3B005418E1 /* GoogleService-Info.plist */; };
+		50D257CA1DEC0CD9009BDBC3 /* BusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */; };
+		50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */; };
+		50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */; };
+		50D257D01DEC0D13009BDBC3 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */; };
+		50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D11DEC224D009BDBC3 /* Bus.swift */; };
+		50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C30CC7D898EF44B4D01BCBF /* Pods_Bus_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bus_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C549311DEBFE6D005418E1 /* Bus Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bus Route.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C549341DEBFE6D005418E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50C549391DEBFE6D005418E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50C5493C1DEBFE6D005418E1 /* Bus_Route.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bus_Route.xcdatamodel; sourceTree = "<group>"; };
+		50C5493E1DEBFE6D005418E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50C549411DEBFE6D005418E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50C549431DEBFE6D005418E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50C549491DEBFF3B005418E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusTableViewCell.swift; path = "../../../Xcode/final Project/BusRoute/BusTableViewCell.swift"; sourceTree = "<group>"; };
+		50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusViewController.swift"; sourceTree = "<group>"; };
+		50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectionViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusRoute/DirectionViewController.swift"; sourceTree = "<group>"; };
+		50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusRoute/StationViewController.swift"; sourceTree = "<group>"; };
+		50D257D11DEC224D009BDBC3 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
+		50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusRouteViewController.swift; sourceTree = "<group>"; };
+		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
+		F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50C5492E1DEBFE6D005418E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4646C659662FA449B2F047F6 /* Pods_Bus_Route.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2BF4707AF6E7C60FDAD28017 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C30CC7D898EF44B4D01BCBF /* Pods_Bus_Route.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50C549281DEBFE6D005418E1 = {
+			isa = PBXGroup;
+			children = (
+				50C549331DEBFE6D005418E1 /* Bus Route */,
+				50C549321DEBFE6D005418E1 /* Products */,
+				BCB68F9C8C633C4E61AF6DD6 /* Pods */,
+				2BF4707AF6E7C60FDAD28017 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		50C549321DEBFE6D005418E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50C549311DEBFE6D005418E1 /* Bus Route.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50C549331DEBFE6D005418E1 /* Bus Route */ = {
+			isa = PBXGroup;
+			children = (
+				50D257C81DEC0C99009BDBC3 /* View */,
+				50D257C71DEC0C90009BDBC3 /* Controller */,
+				50D257C51DEC0C60009BDBC3 /* Model */,
+				50C549341DEBFE6D005418E1 /* AppDelegate.swift */,
+				50C5493E1DEBFE6D005418E1 /* Assets.xcassets */,
+				50C549401DEBFE6D005418E1 /* LaunchScreen.storyboard */,
+				50C549431DEBFE6D005418E1 /* Info.plist */,
+				50C549491DEBFF3B005418E1 /* GoogleService-Info.plist */,
+				50C5493B1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld */,
+			);
+			path = "Bus Route";
+			sourceTree = "<group>";
+		};
+		50D257C51DEC0C60009BDBC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50D257D11DEC224D009BDBC3 /* Bus.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		50D257C71DEC0C90009BDBC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */,
+				50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */,
+				50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */,
+				50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		50D257C81DEC0C99009BDBC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */,
+				50C549381DEBFE6D005418E1 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BCB68F9C8C633C4E61AF6DD6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */,
+				937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50C549301DEBFE6D005418E1 /* Bus Route */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50C549461DEBFE6D005418E1 /* Build configuration list for PBXNativeTarget "Bus Route" */;
+			buildPhases = (
+				A1555837FAD7054FE6A6BC17 /* [CP] Check Pods Manifest.lock */,
+				50C5492D1DEBFE6D005418E1 /* Sources */,
+				50C5492E1DEBFE6D005418E1 /* Frameworks */,
+				50C5492F1DEBFE6D005418E1 /* Resources */,
+				4D83E08F07675054FB2D8D24 /* [CP] Embed Pods Frameworks */,
+				D7FCDE9E212AF66F3BF45B1D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bus Route";
+			productName = "Bus Route";
+			productReference = 50C549311DEBFE6D005418E1 /* Bus Route.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50C549291DEBFE6D005418E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Wherevership;
+				TargetAttributes = {
+					50C549301DEBFE6D005418E1 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 50C5492C1DEBFE6D005418E1 /* Build configuration list for PBXProject "Bus Route" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50C549281DEBFE6D005418E1;
+			productRefGroup = 50C549321DEBFE6D005418E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50C549301DEBFE6D005418E1 /* Bus Route */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50C5492F1DEBFE6D005418E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50C549421DEBFE6D005418E1 /* LaunchScreen.storyboard in Resources */,
+				50C5494A1DEBFF3B005418E1 /* GoogleService-Info.plist in Resources */,
+				50C5493F1DEBFE6D005418E1 /* Assets.xcassets in Resources */,
+				50C5493A1DEBFE6D005418E1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D83E08F07675054FB2D8D24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1555837FAD7054FE6A6BC17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D7FCDE9E212AF66F3BF45B1D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50C5492D1DEBFE6D005418E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */,
+				50C549351DEBFE6D005418E1 /* AppDelegate.swift in Sources */,
+				50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */,
+				50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */,
+				50D257D01DEC0D13009BDBC3 /* StationViewController.swift in Sources */,
+				50D257CA1DEC0CD9009BDBC3 /* BusTableViewCell.swift in Sources */,
+				50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */,
+				50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		50C549381DEBFE6D005418E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50C549391DEBFE6D005418E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		50C549401DEBFE6D005418E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50C549411DEBFE6D005418E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50C549441DEBFE6D005418E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50C549451DEBFE6D005418E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		50C549471DEBFE6D005418E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Bus Route/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		50C549481DEBFE6D005418E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Bus Route/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50C5492C1DEBFE6D005418E1 /* Build configuration list for PBXProject "Bus Route" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50C549441DEBFE6D005418E1 /* Debug */,
+				50C549451DEBFE6D005418E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50C549461DEBFE6D005418E1 /* Build configuration list for PBXNativeTarget "Bus Route" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50C549471DEBFE6D005418E1 /* Debug */,
+				50C549481DEBFE6D005418E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50C5493B1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50C5493C1DEBFE6D005418E1 /* Bus_Route.xcdatamodel */,
+			);
+			currentVersion = 50C5493C1DEBFE6D005418E1 /* Bus_Route.xcdatamodel */;
+			path = Bus_Route.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 50C549291DEBFE6D005418E1 /* Project object */;
+}
