@@ -20,6 +20,12 @@
 		50D257D01DEC0D13009BDBC3 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */; };
 		50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D11DEC224D009BDBC3 /* Bus.swift */; };
 		50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */; };
+		50D257D61DED444E009BDBC3 /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */; };
+		50D257D81DED61B6009BDBC3 /* RouteTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */; };
+		50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */; };
+		50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */; };
+		50D258011DEE61F2009BDBC3 /* StationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258001DEE61F2009BDBC3 /* StationTableViewController.swift */; };
+		50D258031DEE68A4009BDBC3 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258021DEE68A4009BDBC3 /* Station.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +44,12 @@
 		50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusRoute/StationViewController.swift"; sourceTree = "<group>"; };
 		50D257D11DEC224D009BDBC3 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusRouteViewController.swift; sourceTree = "<group>"; };
+		50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
+		50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTitleCell.swift; sourceTree = "<group>"; };
+		50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
+		50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
+		50D258001DEE61F2009BDBC3 /* StationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationTableViewController.swift; path = ../StationTableViewController.swift; sourceTree = "<group>"; };
+		50D258021DEE68A4009BDBC3 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
 		F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				50D257D11DEC224D009BDBC3 /* Bus.swift */,
+				50D258021DEE68A4009BDBC3 /* Station.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -107,10 +120,12 @@
 		50D257C71DEC0C90009BDBC3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				50D258001DEE61F2009BDBC3 /* StationTableViewController.swift */,
 				50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */,
 				50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */,
 				50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */,
 				50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */,
+				50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -120,6 +135,9 @@
 			children = (
 				50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */,
 				50C549381DEBFE6D005418E1 /* Main.storyboard */,
+				50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */,
+				50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */,
+				50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -257,11 +275,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */,
+				50D257D81DED61B6009BDBC3 /* RouteTitleCell.swift in Sources */,
+				50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */,
 				50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */,
 				50C549351DEBFE6D005418E1 /* AppDelegate.swift in Sources */,
 				50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */,
+				50D258031DEE68A4009BDBC3 /* Station.swift in Sources */,
 				50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */,
+				50D257D61DED444E009BDBC3 /* RouteDetailViewController.swift in Sources */,
 				50D257D01DEC0D13009BDBC3 /* StationViewController.swift in Sources */,
+				50D258011DEE61F2009BDBC3 /* StationTableViewController.swift in Sources */,
 				50D257CA1DEC0CD9009BDBC3 /* BusTableViewCell.swift in Sources */,
 				50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */,
 				50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */,

@@ -11,4 +11,5 @@ import Foundation
 class Bus {
     var busNumber : String? = ""
     var busTitle : String? = ""
+    var routeID : String? = ""
 }
