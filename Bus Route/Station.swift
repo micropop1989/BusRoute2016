@@ -13,4 +13,5 @@ class Station {
     var address : String? = ""
     var lat : Double? = 0.00
     var long : Double? = 0.00
+    var route : [String : AnyObject] = ["" : "" as AnyObject]
 }

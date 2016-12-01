@@ -72,10 +72,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="busCell" rowHeight="72" id="9FI-Ww-Syw" customClass="BusTableViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9FI-Ww-Syw" id="t94-uo-c8v">
-                                            <frame key="frameInset" width="343" height="72"/>
+                                            <frame key="frameInset" width="1000" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="777" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ba-nq-KZQ">
@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="3994" y="166"/>
         </scene>
-        <!--Station Table View Controller-->
+        <!--Station Detail View Controller-->
         <scene sceneID="JYz-gj-w0W">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9Qd-Fa-tgk" customClass="StationTableViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9Qd-Fa-tgk" customClass="StationDetailViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TC2-mg-AIy"/>
                         <viewControllerLayoutGuide type="bottom" id="gPs-6V-c7o"/>
@@ -228,8 +228,8 @@
                                             <frame key="frameInset" width="343" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBp-z3-em3">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBp-z3-em3">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -245,6 +245,54 @@
                                             <outlet property="stationLabel" destination="GBp-z3-em3" id="ygT-4R-xp4"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="busCell" rowHeight="58" id="AZ5-Wy-58e" customClass="StationDetailTableViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="94" width="343" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AZ5-Wy-58e" id="1ym-zz-ypA">
+                                            <frame key="frameInset" width="343" height="58"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-xd-JCR">
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-L8-S4f">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="86" id="MdC-zy-lMa"/>
+                                                                <constraint firstAttribute="height" constant="30" id="Vsn-2L-iO2"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-jq-BgK">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yQO-jq-BgK" secondAttribute="bottom" constant="8" id="Djs-9C-HQZ"/>
+                                                        <constraint firstItem="N1A-L8-S4f" firstAttribute="top" secondItem="xwT-xd-JCR" secondAttribute="top" constant="8" id="LRv-B0-0hN"/>
+                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="leading" secondItem="N1A-L8-S4f" secondAttribute="trailing" constant="8" id="NcX-Ju-B2Q"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="N1A-L8-S4f" secondAttribute="bottom" constant="8" id="ObT-c5-Fll"/>
+                                                        <constraint firstItem="N1A-L8-S4f" firstAttribute="leading" secondItem="xwT-xd-JCR" secondAttribute="leading" constant="8" id="cZa-Dc-B6U"/>
+                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="top" secondItem="N1A-L8-S4f" secondAttribute="top" id="dkM-WO-IPF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="yQO-jq-BgK" secondAttribute="trailing" constant="8" id="me2-8K-fmI"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xwT-xd-JCR" firstAttribute="leading" secondItem="1ym-zz-ypA" secondAttribute="leading" constant="4" id="Cvv-Oa-NeO"/>
+                                                <constraint firstItem="xwT-xd-JCR" firstAttribute="top" secondItem="1ym-zz-ypA" secondAttribute="top" constant="4" id="bIB-j7-geU"/>
+                                                <constraint firstAttribute="bottom" secondItem="xwT-xd-JCR" secondAttribute="bottom" constant="4" id="lii-qE-nGQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="xwT-xd-JCR" secondAttribute="trailing" constant="4" id="sTf-wb-nAP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="busNumberLabel" destination="N1A-L8-S4f" id="pnI-yy-XVI"/>
+                                            <outlet property="busTitleLabel" destination="yQO-jq-BgK" id="9z8-Ta-zZf"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -257,14 +305,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="stationTable" destination="vjX-Dp-W2u" id="vcx-PE-Xja"/>
+                        <outlet property="stationDetailTable" destination="vjX-Dp-W2u" id="NX7-oC-0FA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njt-1q-K6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3114" y="940"/>
+            <point key="canvasLocation" x="3112.8000000000002" y="900.89955022488766"/>
         </scene>
-        <!--Route Detail View Controller-->
+        <!--Title-->
         <scene sceneID="iZh-hQ-k9k">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="1OG-24-X59" customClass="RouteDetailViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
@@ -276,48 +324,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzM-4p-AqJ">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsw-Jf-9v8">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bandar Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7S7-sX-9sI">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dsw-Jf-9v8" firstAttribute="top" secondItem="gzM-4p-AqJ" secondAttribute="top" constant="8" id="2U3-Az-eoV"/>
+                                    <constraint firstAttribute="trailing" secondItem="dsw-Jf-9v8" secondAttribute="trailing" constant="4" id="8h9-RZ-f3L"/>
+                                    <constraint firstItem="dsw-Jf-9v8" firstAttribute="leading" secondItem="gzM-4p-AqJ" secondAttribute="leading" constant="4" id="Uiq-t0-IHQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="7S7-sX-9sI" secondAttribute="bottom" constant="4" id="Xux-m1-WMT"/>
+                                    <constraint firstItem="7S7-sX-9sI" firstAttribute="top" secondItem="dsw-Jf-9v8" secondAttribute="bottom" constant="8" id="gbz-eZ-Vyc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7S7-sX-9sI" secondAttribute="trailing" constant="4" id="rig-Qi-Ltl"/>
+                                    <constraint firstItem="7S7-sX-9sI" firstAttribute="leading" secondItem="gzM-4p-AqJ" secondAttribute="leading" constant="4" id="rnb-hD-Pzx"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-rA-D7z">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteDetailTitleCell" rowHeight="86" id="9Tt-Fw-hr8" customClass="RouteTitleCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="86"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Tt-Fw-hr8" id="wTo-A4-0Im">
-                                            <frame key="frameInset" width="343" height="86"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T96-7x-fot">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Bandar Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQC-oc-veM">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="RQC-oc-veM" firstAttribute="trailing" secondItem="wTo-A4-0Im" secondAttribute="trailingMargin" id="9S8-lI-6TH"/>
-                                                <constraint firstItem="RQC-oc-veM" firstAttribute="leading" secondItem="T96-7x-fot" secondAttribute="leading" id="Aqt-LF-Xcr"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="RQC-oc-veM" secondAttribute="bottom" constant="8" id="FaO-EP-m0k"/>
-                                                <constraint firstItem="RQC-oc-veM" firstAttribute="top" secondItem="T96-7x-fot" secondAttribute="bottom" constant="8" id="FqT-Vr-1Lr"/>
-                                                <constraint firstItem="T96-7x-fot" firstAttribute="top" secondItem="wTo-A4-0Im" secondAttribute="topMargin" constant="8" id="IN1-IY-GRd"/>
-                                                <constraint firstItem="RQC-oc-veM" firstAttribute="leading" secondItem="wTo-A4-0Im" secondAttribute="leadingMargin" id="Q8l-GY-Tmc"/>
-                                                <constraint firstItem="RQC-oc-veM" firstAttribute="trailing" secondItem="T96-7x-fot" secondAttribute="trailing" id="Ram-74-asU"/>
-                                                <constraint firstItem="T96-7x-fot" firstAttribute="trailing" secondItem="wTo-A4-0Im" secondAttribute="trailingMargin" id="qii-PK-ibP"/>
-                                                <constraint firstItem="T96-7x-fot" firstAttribute="leading" secondItem="wTo-A4-0Im" secondAttribute="leadingMargin" id="umK-A4-vL3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="busTitleLabel" destination="RQC-oc-veM" id="1lQ-cl-tC8"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="89" id="sXA-OJ-fSa" customClass="RouteTableViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="114" width="343" height="89"/>
+                                        <rect key="frame" x="0.0" y="28" width="343" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sXA-OJ-fSa" id="Sq1-du-veS">
-                                            <frame key="frameInset" width="343" height="88"/>
+                                            <frame key="frameInset" width="343" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYZ-uB-eAy">
@@ -351,13 +389,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0HW-rA-D7z" firstAttribute="leading" secondItem="uHQ-KZ-5MS" secondAttribute="leadingMargin" id="HO0-Rw-jeQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0HW-rA-D7z" secondAttribute="trailing" id="Ygd-le-DKP"/>
-                            <constraint firstItem="0HW-rA-D7z" firstAttribute="top" secondItem="X0y-n7-hXN" secondAttribute="bottom" id="cMb-rv-jHj"/>
-                            <constraint firstItem="XCR-Qz-UVk" firstAttribute="top" secondItem="0HW-rA-D7z" secondAttribute="bottom" id="vgv-eJ-ayx"/>
+                            <constraint firstItem="gzM-4p-AqJ" firstAttribute="leading" secondItem="uHQ-KZ-5MS" secondAttribute="leadingMargin" id="5co-Ky-dV9"/>
+                            <constraint firstItem="gzM-4p-AqJ" firstAttribute="top" secondItem="X0y-n7-hXN" secondAttribute="bottom" id="ELY-Zv-YOY"/>
+                            <constraint firstItem="0HW-rA-D7z" firstAttribute="leading" secondItem="uHQ-KZ-5MS" secondAttribute="leadingMargin" id="EWS-1B-Mhe"/>
+                            <constraint firstItem="0HW-rA-D7z" firstAttribute="trailing" secondItem="uHQ-KZ-5MS" secondAttribute="trailingMargin" id="Hrk-qE-QK1"/>
+                            <constraint firstItem="0HW-rA-D7z" firstAttribute="top" secondItem="gzM-4p-AqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="RER-Cc-dIl"/>
+                            <constraint firstItem="XCR-Qz-UVk" firstAttribute="top" secondItem="0HW-rA-D7z" secondAttribute="bottom" id="fHV-B8-62X"/>
+                            <constraint firstItem="gzM-4p-AqJ" firstAttribute="trailing" secondItem="uHQ-KZ-5MS" secondAttribute="trailingMargin" id="jii-7d-iiC"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="keU-Tz-etT">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="uf2-yc-Ozi">
+                            <connections>
+                                <action selector="editButton:" destination="1OG-24-X59" id="Xtb-qC-f7T"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="destinationLabel" destination="7S7-sX-9sI" id="t02-mS-QAn"/>
                         <outlet property="routeTableView" destination="0HW-rA-D7z" id="UtE-kG-6xX"/>
                     </connections>
                 </viewController>

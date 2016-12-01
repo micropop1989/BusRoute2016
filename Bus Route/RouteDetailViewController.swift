@@ -15,13 +15,20 @@ class RouteDetailViewController: UIViewController {
     var stations : [Station] = []
     var frDBref : FIRDatabaseReference!
     
+    
+    var routeID : String?
+    
+
+    
+    @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var routeTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "\((bus?.busNumber)!)"
-       routeTableView.delegate = self
+        destinationLabel.text = "\((bus?.busTitle)!)"
+        routeTableView.delegate = self
         routeTableView.dataSource = self
         
         frDBref = FIRDatabase.database().reference()
@@ -35,23 +42,74 @@ class RouteDetailViewController: UIViewController {
         fetchRoute()
     }
     
+   
+    @IBAction func editButton(_ sender: UIBarButtonItem) {
+        if sender.title == "Edit" {
+            sender.title = "Save"
+            routeTableView.setEditing(true, animated: true)
+            
+        } else if sender.title == "Save" {
+            
+            let message: String = "Are you sure you want save route?"
+             let alertController = UIAlertController(title: "Save Comfirmation", message: message, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                action in
+                self.stations = []
+                self.fetchRoute()
+            })
+            let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
+                action in
+                var stationDictionary : [String] = []
+                for station in self.stations {
+                    
+                    stationDictionary.append(station.stationID!)
+                    
+                }
+                
+                self.frDBref.child("routes").child(self.routeID!).child("orderedStations").setValue(stationDictionary)
+                
+                print(stationDictionary)
+                self.routeTableView.setEditing(false, animated: true)
+                sender.title = "Edit"
+                //stationDictionary = []
+                })
+            alertController.addAction(cancelAction)
+            alertController.addAction(saveAction)
+            present(alertController, animated: true, completion: nil)
+            
+            
+            
+            
+        }
+    
+    
+    }
+    
+    
+    
+    
     func fetchRoute() {
         
         
         guard let routeID = bus?.routeID
             else{ return}
+        self.routeID = routeID
+    
        // let routeID = "route0232"
-    frDBref.child("routes").child(routeID).child("orderedStations").observe(.value, with: { (routeSnapshot) in
+        frDBref.child("routes").child(routeID).child("orderedStations").observeSingleEvent(of: .value, with: { (routeSnapshot) in
             
             guard let routeDictionary = routeSnapshot.value as? [String]
                 else {
                     
                     return
             }
-            
+        
+        
+        
             for station in routeDictionary {
                 
-                self.frDBref.child("stations").child(station).observe(.value, with: { (stationSnapshot) in
+                self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
+                    
                     let newStation = Station()
                     guard let stationDictionary = stationSnapshot.value as? [String : AnyObject]
                         else {
@@ -72,30 +130,45 @@ class RouteDetailViewController: UIViewController {
 }
 
 extension RouteDetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
 }
 
 extension RouteDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stations.count+1
+        return stations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        if indexPath.row == 0 {
-            let titleCell = tableView.dequeueReusableCell(withIdentifier: "RouteDetailTitleCell",
-                                                     for: indexPath) as! RouteTitleCell
-              titleCell.busTitleLabel.text = bus?.busTitle
-            return titleCell
-            } else  {
+        
             
             let routeCell = tableView.dequeueReusableCell(withIdentifier: "RouteCell",
                                                           for: indexPath) as! RouteTableViewCell
-            let station = stations[indexPath.row-1]
+            let station = stations[indexPath.row]
             routeCell.IDLabel.text = station.stationID
             routeCell.routeLabel.text = station.address
             return routeCell
             
-        }
+        
     }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+        
+
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let station : Station = stations[sourceIndexPath.row]
+        stations.remove(at: sourceIndexPath.row)
+        stations.insert(station, at: destinationIndexPath.row)
+        
+        
+    }
+    
+    
+    
+    
 }
