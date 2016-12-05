@@ -110,14 +110,15 @@ class RouteDetailViewController: UIViewController {
                 
                 self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
                     
-                    let newStation = Station()
+                    
                     guard let stationDictionary = stationSnapshot.value as? [String : AnyObject]
                         else {
                             return
                     }
-                    newStation.stationID = station
                     
-                    newStation.address = stationDictionary["address"] as? String
+                    let newStation = Station(dict: stationDictionary)
+                    newStation.stationID = station
+                    //newStation.address = stationDictionary["address"] as? String
                     self.stations.append(newStation)
                     self.routeTableView.reloadData()
                     

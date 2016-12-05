@@ -6,9 +6,12 @@ target 'Bus Route' do
   use_frameworks!
 
   # Pods for Bus Route
-pod “Firebase/Core”
-pod "Firebase/Database"
-pod "Firebase/Auth"
-pod "Firebase/Storage"
+  pod “Firebase/Core”
+  pod "Firebase/Database"
+  pod "Firebase/Auth"
+  pod "Firebase/Storage"
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'SwiftyJSON'
 
 end

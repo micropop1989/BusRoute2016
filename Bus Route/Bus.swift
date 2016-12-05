@@ -12,4 +12,16 @@ class Bus {
     var busNumber : String? = ""
     var busTitle : String? = ""
     var routeID : String? = ""
+    
+    
+    init(){
+        
+    }
+    
+    init(id : String, number: String, title: String){
+        routeID = id
+        busNumber = number
+        busTitle = title
+        
+    }
 }

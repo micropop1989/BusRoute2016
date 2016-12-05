@@ -27,6 +27,8 @@
 		50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */; };
 		50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */; };
 		50D258031DEE68A4009BDBC3 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258021DEE68A4009BDBC3 /* Station.swift */; };
+		A1D6FB181DF128600077E90B /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6FB171DF1285F0077E90B /* Direction.swift */; };
+		A1D6FB1A1DF128C00077E90B /* Miscelaneas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6FB191DF128C00077E90B /* Miscelaneas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,11 +42,11 @@
 		50C5493E1DEBFE6D005418E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50C549411DEBFE6D005418E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50C549431DEBFE6D005418E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50C549491DEBFF3B005418E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusTableViewCell.swift; path = "../../../Xcode/final Project/BusRoute/BusTableViewCell.swift"; sourceTree = "<group>"; };
-		50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BusViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusViewController.swift"; sourceTree = "<group>"; };
-		50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectionViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusRoute/DirectionViewController.swift"; sourceTree = "<group>"; };
-		50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationViewController.swift; path = "../../../Xcode/final Project/BusRoute/BusRoute/StationViewController.swift"; sourceTree = "<group>"; };
+		50C549491DEBFF3B005418E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewCell.swift; sourceTree = "<group>"; };
+		50D257CB1DEC0CE9009BDBC3 /* BusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusViewController.swift; sourceTree = "<group>"; };
+		50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
+		50D257CF1DEC0D13009BDBC3 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		50D257D11DEC224D009BDBC3 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusRouteViewController.swift; sourceTree = "<group>"; };
 		50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		50D258021DEE68A4009BDBC3 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
+		A1D6FB171DF1285F0077E90B /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		A1D6FB191DF128C00077E90B /* Miscelaneas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Miscelaneas.swift; sourceTree = "<group>"; };
 		F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,7 @@
 				50D257C81DEC0C99009BDBC3 /* View */,
 				50D257C71DEC0C90009BDBC3 /* Controller */,
 				50D257C51DEC0C60009BDBC3 /* Model */,
+				50C549381DEBFE6D005418E1 /* Main.storyboard */,
 				50C549341DEBFE6D005418E1 /* AppDelegate.swift */,
 				50C5493E1DEBFE6D005418E1 /* Assets.xcassets */,
 				50C549401DEBFE6D005418E1 /* LaunchScreen.storyboard */,
@@ -115,6 +120,8 @@
 			children = (
 				50D257D11DEC224D009BDBC3 /* Bus.swift */,
 				50D258021DEE68A4009BDBC3 /* Station.swift */,
+				A1D6FB171DF1285F0077E90B /* Direction.swift */,
+				A1D6FB191DF128C00077E90B /* Miscelaneas.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -136,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */,
-				50C549381DEBFE6D005418E1 /* Main.storyboard */,
 				50C081A21DEEC7C80066C355 /* StationDetailTableViewCell.swift */,
 				50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */,
 				50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */,
@@ -280,6 +286,7 @@
 			files = (
 				50C081A31DEEC7C80066C355 /* StationDetailTableViewCell.swift in Sources */,
 				50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */,
+				A1D6FB181DF128600077E90B /* Direction.swift in Sources */,
 				50D257D81DED61B6009BDBC3 /* RouteTitleCell.swift in Sources */,
 				50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */,
 				50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */,
@@ -290,6 +297,7 @@
 				50D257D61DED444E009BDBC3 /* RouteDetailViewController.swift in Sources */,
 				50D257D01DEC0D13009BDBC3 /* StationViewController.swift in Sources */,
 				50C081A11DEEC4DE0066C355 /* StationDetailViewController.swift in Sources */,
+				A1D6FB1A1DF128C00077E90B /* Miscelaneas.swift in Sources */,
 				50D257CA1DEC0CD9009BDBC3 /* BusTableViewCell.swift in Sources */,
 				50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */,
 				50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */,
@@ -336,6 +344,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -386,6 +395,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -415,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -428,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

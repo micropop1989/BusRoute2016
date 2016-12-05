@@ -16,6 +16,7 @@ class StationDetailViewController: UIViewController {
     @IBOutlet weak var stationDetailTable: UITableView!
     var frDBref : FIRDatabaseReference!
     var buses : [Bus] = []
+    let stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class StationDetailViewController: UIViewController {
     }
 
     func fetchRoute() {
-        let stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
+
         frDBref.child("stations").child(stationID).child("route").observeSingleEvent(of: .value, with: { (routeSnapshot) in
             
             guard let routeDictionary = routeSnapshot.value as? [String: AnyObject]
@@ -44,8 +45,11 @@ class StationDetailViewController: UIViewController {
                     return
             }
             
+            
+
             for (routeKey, routeValue) in routeDictionary {
                 
+                //go to route and fetch line:station
                 self.frDBref.child("routes").child(routeKey).observeSingleEvent(of:.value, with: {
                     (busSnapshot) in
                     let newBus = Bus()
@@ -61,8 +65,14 @@ class StationDetailViewController: UIViewController {
                     
                 })
                 
+                //read from station -> route -> line:direction
+                
+                
             }
           
+            
+            
+            
         })
         
     }

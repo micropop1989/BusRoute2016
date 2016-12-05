@@ -22,6 +22,9 @@ class StationViewController: UIViewController {
             stationMapView.delegate = self
         }
     }
+    
+    var allStation : [Station] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,54 +39,33 @@ class StationViewController: UIViewController {
     }
     
     func fetchStations(){
-        //        frDBref.child("routes").observe(.childAdded, with: {(snapshot) in
-        //            let newBus = Bus()
-        //            guard let busId = snapshot.key as? String
-        //                else {
-        //                    return
-        //            }
-        //            guard let busDictionary = snapshot.value as? [String : AnyObject]
-        //                else
-        //            {
-        //                return
-        //            }
-        //
-        //            let busUid = busId
-        //            newBus.routeID = busUid
-        //            newBus.busNumber = busDictionary["line"] as? String
-        //            newBus.busTitle = busDictionary["direction"] as? String
-        //
-        //            self.buses.append(newBus)
-        //
-        //            self.busTableView.reloadData()
-        //
-        //        })
-        //
-        
-//        frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
-//            
-//            //            guard let stationsId = stationSnapshot.key
-//            //                else {
-//            //                    return
-//            //            }
-//            guard let stationsDictionary = stationSnapshot.value as? [String : JSON]
-//                else
-//            {
-//                return
-//            }
-//            
-//            let stationsId = stationSnapshot.key
-//            let newStation = Station()
-//            
-//            newStation.stationID = stationsId
-        
-            //newStation.address = stationDictionary["address"] as? String
-            //self.stations.append(newStation)
-            //self.routeTableView.reloadData()
+         frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
             
             
-//        })
+            let enumerator = stationSnapshot.children
+            while let singleStationSnapshot = enumerator.nextObject() as? FIRDataSnapshot {
+                let stationsId = singleStationSnapshot.key
+                let info = singleStationSnapshot.value as! [String:AnyObject]
+                
+                
+                
+                let newStation = Station(dict: info)
+                newStation.stationID = stationsId
+                self.allStation.append(newStation)
+                
+            }
+            
+            //main tread , sort
+            DispatchQueue.main.async {
+                
+            }
+        })
         
+    }
+    
+    
+    func sortBusStation(){
+        allStation.sort(by: {$0.lat < $1.lat})
     }
 }
 
