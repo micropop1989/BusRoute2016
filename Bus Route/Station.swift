@@ -18,8 +18,13 @@ class Station {
     
     init(dict: [String:AnyObject]){
         address = dict["address"] as? String
-        lat = dict["lat"] as? Double
-        long = dict["lng"] as? Double
+        lat = dict["lat"]?.doubleValue
+        long = dict["lng"]?.doubleValue
+        /*
+         address = dict["address"] as! String
+         lat = dict["lat"]!.doubleValue!
+         long = dict["lat"]!.doubleValue!
+         */
         guard let routes = dict["route"] as? [String:String]
             else { return }
         for (routeKey, routeValue) in routes{
