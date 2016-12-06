@@ -19,6 +19,7 @@ class RouteDetailViewController: UIViewController {
     var routeID : String?
     
 
+    @IBOutlet weak var destinationTitleLabel: UILabel!
     
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var routeTableView: UITableView!
@@ -40,6 +41,13 @@ class RouteDetailViewController: UIViewController {
         
         
         fetchRoute()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        customUI().customLabel(label: destinationLabel)
+        customUI().customLabel(label: destinationTitleLabel)
+        
     }
     
    
@@ -134,6 +142,19 @@ extension RouteDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let busCell : RouteTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "RouteCell", for: indexPath) as? RouteTableViewCell)!
+        
+        let busCell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
+        let image : UIImage = UIImage(named: "dot")!
+        busCell.dotImage.image = image
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+
 }
 
 extension RouteDetailViewController: UITableViewDataSource {
@@ -148,8 +169,22 @@ extension RouteDetailViewController: UITableViewDataSource {
             let routeCell = tableView.dequeueReusableCell(withIdentifier: "RouteCell",
                                                           for: indexPath) as! RouteTableViewCell
             let station = stations[indexPath.row]
-            routeCell.IDLabel.text = station.stationID
+           // routeCell.IDLabel.text = station.stationID
             routeCell.routeLabel.text = station.address
+        
+        
+        if indexPath.row == 0 {
+            routeCell.upperRouteImage.isHidden = true
+            
+        } else if indexPath.row == self.stations.count-1 {
+            routeCell.lowerRouteImage.isHidden = true
+            
+        } else {
+            routeCell.upperRouteImage.isHidden = false
+            routeCell.lowerRouteImage.isHidden = false
+        }
+        
+        
             return routeCell
             
         

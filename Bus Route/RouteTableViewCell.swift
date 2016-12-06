@@ -11,7 +11,10 @@ import UIKit
 class RouteTableViewCell: UITableViewCell {
     @IBOutlet weak var routeLabel: UILabel!
 
-    @IBOutlet weak var IDLabel: UILabel!
+    @IBOutlet weak var upperRouteImage: UIImageView!
+   
+    @IBOutlet weak var lowerRouteImage: UIImageView!
+    @IBOutlet weak var dotImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
