@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoogleMaps
 
 class Station {
     var stationID : String? = ""
@@ -15,6 +16,7 @@ class Station {
     var long : Double? = 0.00
     var route : [String : AnyObject] = ["" : "" as AnyObject]
     var buses : [Bus] = []
+    var mapMarker = GMSMarker()
     
     init(dict: [String:AnyObject]){
         address = dict["address"] as? String
@@ -32,5 +34,20 @@ class Station {
             let newBus = Bus(id: routeKey, number: lineDirection[0], title: lineDirection[1])
             buses.append(newBus)
         }
+        
+        
+        
+        if let latitude = lat,
+            let longtitude = long {
+        let location = CLLocationCoordinate2DMake(latitude, longtitude)
+        mapMarker.position = location
+        mapMarker.title = address
+        mapMarker.icon = GMSMarker.markerImage(with: UIColor.red)
+        mapMarker.snippet = stationID
+        mapMarker.tracksInfoWindowChanges = true
+        }
+        
+
+        
     }
 }
