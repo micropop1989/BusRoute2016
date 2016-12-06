@@ -10,6 +10,7 @@ import UIKit
 
 class BusRouteViewController: UIViewController {
 
+    @IBOutlet weak var destinationTilteLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     var bus : Bus?
     
@@ -19,6 +20,14 @@ class BusRouteViewController: UIViewController {
         self.title = "\((bus?.busNumber)!)"
         destinationLabel.text = bus?.busTitle
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        customUI().customLabel(label: destinationLabel)
+        customUI().customLabel(label: destinationTilteLabel)
+        customUI().customButton(button: seeRouteDetailButton)
+        customUI().customButton(button: changeRouteButton)
     }
 
     @IBOutlet weak var seeRouteDetailButton: UIButton!

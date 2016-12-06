@@ -62,7 +62,7 @@
                             <constraint firstItem="2MO-Kk-OHk" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leadingMargin" id="sVH-lH-pAB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Station" id="Gnk-dN-70d"/>
+                    <tabBarItem key="tabBarItem" title="Station" image="busstn" id="Gnk-dN-70d"/>
                     <connections>
                         <outlet property="stationMapView" destination="2MO-Kk-OHk" id="yY8-iD-8Kc"/>
                         <outlet property="stationTableView" destination="TaX-vz-Cbr" id="RwI-rE-M3Q"/>
@@ -202,18 +202,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="s4K-4I-vVR" firstAttribute="top" secondItem="b0f-zz-QzH" secondAttribute="bottom" id="4B2-3F-XLC"/>
                             <constraint firstItem="b0f-zz-QzH" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leading" id="8wl-oi-koy"/>
-                            <constraint firstItem="s4K-4I-vVR" firstAttribute="trailing" secondItem="1Um-jf-pXh" secondAttribute="trailingMargin" id="Bak-T9-5vE"/>
-                            <constraint firstItem="s4K-4I-vVR" firstAttribute="top" secondItem="b0f-zz-QzH" secondAttribute="bottom" id="Nze-mc-qWO"/>
                             <constraint firstItem="b0f-zz-QzH" firstAttribute="top" secondItem="c6W-MR-ige" secondAttribute="bottom" id="TWe-Xo-yDW"/>
-                            <constraint firstItem="s4K-4I-vVR" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leadingMargin" id="ddO-vi-DeM"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="s4K-4I-vVR" secondAttribute="bottom" id="kgJ-Xz-FET"/>
+                            <constraint firstAttribute="bottom" secondItem="s4K-4I-vVR" secondAttribute="bottom" id="XdM-IQ-rPn"/>
+                            <constraint firstItem="s4K-4I-vVR" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leading" id="pcM-L6-jDq"/>
+                            <constraint firstAttribute="trailing" secondItem="s4K-4I-vVR" secondAttribute="trailing" id="zj6-aV-1EI"/>
                             <constraint firstAttribute="trailing" secondItem="b0f-zz-QzH" secondAttribute="trailing" id="zkf-7U-0Bz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="changeRouteButton" destination="x8m-0J-72L" id="6MR-3h-FLy"/>
                         <outlet property="destinationLabel" destination="Tod-t3-OKd" id="UMv-L6-mPJ"/>
+                        <outlet property="destinationTilteLabel" destination="MYx-3d-30q" id="OKI-ZT-0yV"/>
                         <outlet property="seeRouteDetailButton" destination="Qdr-Bi-z5e" id="wwr-mp-Sgp"/>
                         <segue destination="1OG-24-X59" kind="show" identifier="seeRouteDetailSegue" id="bHL-lP-0Av"/>
                     </connections>
@@ -432,10 +433,10 @@
             </objects>
             <point key="canvasLocation" x="4733.6000000000004" y="165.06746626686657"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom View Controller-->
         <scene sceneID="OT6-cH-qFw">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="C2T-Nk-kus" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="C2T-Nk-kus" customClass="CustomViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="FhX-hM-bea">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -456,7 +457,7 @@
         <scene sceneID="kr2-ZI-n4q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jb8-Oq-TdN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bus" id="03N-Oq-Grk"/>
+                    <tabBarItem key="tabBarItem" title="Bus" image="bus" id="03N-Oq-Grk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Mcz-X7-oe7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -536,7 +537,7 @@
         <scene sceneID="bq5-gX-QLh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pl6-Re-JKB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Direction" id="nuD-lj-cLA"/>
+                    <tabBarItem key="tabBarItem" title="Direction" image="direaction" id="nuD-lj-cLA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0mc-ZK-HfO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -552,4 +553,9 @@
             <point key="canvasLocation" x="638" y="233"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bus" width="30" height="30"/>
+        <image name="busstn" width="30" height="30"/>
+        <image name="direaction" width="30" height="30"/>
+    </resources>
 </document>
