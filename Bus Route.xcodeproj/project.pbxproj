@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		4C30CC7D898EF44B4D01BCBF /* Pods_Bus_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bus_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50ADE4551DF655450081BFD2 /* customUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = customUI.swift; path = "../../../Bus Route/BusRoute2016-master/Bus Route/customUI.swift"; sourceTree = "<group>"; };
+		50ADE4551DF655450081BFD2 /* customUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customUI.swift; sourceTree = "<group>"; };
 		50ADE4571DF6559A0081BFD2 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomViewController.swift; path = "../../../Bus Route/BusRoute2016-master/Bus Route/CustomViewController.swift"; sourceTree = "<group>"; };
 		50C081A01DEEC4DE0066C355 /* StationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
 		50C081A21DEEC7C80066C355 /* StationDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailTableViewCell.swift; sourceTree = "<group>"; };
