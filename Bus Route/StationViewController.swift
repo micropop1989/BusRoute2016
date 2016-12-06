@@ -23,6 +23,8 @@ class StationViewController: UIViewController {
     
     var searchNearby = false
     
+    var tappedMarker = GMSMarker()
+    
     var frDBref2 : FIRDatabaseReference!
     
     @IBOutlet weak var stationMapView: GMSMapView!{
@@ -34,6 +36,7 @@ class StationViewController: UIViewController {
         didSet{
             stationTableView.dataSource = self
             stationTableView.delegate = self
+            stationTableView.allowsMultipleSelection = false
         }
     }
     
@@ -70,6 +73,8 @@ class StationViewController: UIViewController {
         }else{
             markerView = loadedView?.first as? CustomeStationMarkerView
             markerView?.alpha = 0.9
+            
+            markerView?.delegate = self
         }
         
     }
@@ -125,22 +130,10 @@ class StationViewController: UIViewController {
         
         stationMapView.clear()
         //display marker
-        for temp in filteredStation{
-            guard let lat = temp.lat,
-                let lng = temp.long
-                else{continue}
-            
-            let marker = GMSMarker()
-            let location = CLLocationCoordinate2DMake(lat, lng)
-            marker.position = location
-            marker.title = temp.address
-            marker.icon = GMSMarker.markerImage(with: UIColor.red)
-            marker.snippet = temp.stationID
-            
-            marker.tracksInfoWindowChanges = true
-            
-            marker.map = stationMapView
-            
+        for i in 0..<(filteredStation.count) {
+            let temp = filteredStation[i]
+            temp.mapMarker.userData = i
+            temp.mapMarker.map = stationMapView
             
         }
         
@@ -161,7 +154,7 @@ extension StationViewController : GMSMapViewDelegate{
         print("Idle")
         print(position.target)
         mapViewCoordinate = position.target
-
+        
         if searchNearby {
             showNearbyBusStation(coordinate: mapViewCoordinate)
         }
@@ -173,29 +166,81 @@ extension StationViewController : GMSMapViewDelegate{
         centermarker.position = position.target
         //centermarker.map = stationMapView
         
+        //custome info window (move with map)
+        markerView?.center = mapView.projection.point(for: tappedMarker.position)
+        markerView?.center.y -= 120
+        
     }
-    
+
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //custome info window
+        markerView?.removeFromSuperview()
+    }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         stationMapView.selectedMarker = marker
-        return true
+        
+        if let data = marker.userData,
+            let index = data as? Int,
+            let markerView = markerView {
+            let indexPath = IndexPath(row: index, section: 0)
+            stationTableView.selectRow(at: indexPath , animated: true, scrollPosition: .middle)
+            
+            
+            //custume marker infowindow
+            //superimpose on top
+            
+            markerView.station = filteredStation[index]
+            
+            markerView.nameLabel.text = marker.title
+            markerView.distanceLabel.text = marker.snippet
+            markerView.paraView.moveNearCoordinate(marker.position)
+            markerView.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0)
+            //marker.infoWindowAnchor.y = 0.3
+
+            
+            let location = marker.position
+            
+            tappedMarker = marker
+            markerView.removeFromSuperview()
+           // markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+            
+            markerView.center = stationMapView.projection.point(for: location)
+            markerView.center.y -= 120
+
+            stationMapView.addSubview(markerView)
+        }
+        
+        //
+        
+        return false
     }
     
     
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         
-        //return UII
         
-        markerView?.nameLabel.text = marker.title
-        markerView?.distanceLabel.text = marker.snippet
-        markerView?.paraView.moveNearCoordinate(marker.position)
-        markerView?.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0.2)
-        marker.infoWindowAnchor.y = 0.3
-        return markerView
+        //        if let data = marker.userData,
+        //            let index = data as? Int {
+        //            markerView?.station = filteredStation[index]
+        //        }
+        //
+        //        //return UII
+        //
+        //        markerView?.nameLabel.text = marker.title
+        //        markerView?.distanceLabel.text = marker.snippet
+        //        markerView?.paraView.moveNearCoordinate(marker.position)
+        //        markerView?.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0.2)
+        //        marker.infoWindowAnchor.y = 0.3
+        //        return markerView
+        
+        return UIView()
     }
     
-    
+    //    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+    //
+    //    }
 }
 
 extension StationViewController : UITableViewDelegate , UITableViewDataSource{
@@ -231,6 +276,18 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         cell.detailTextLabel?.text = subtitleStr
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedStation = filteredStation[indexPath.row]
+        stationMapView.selectedMarker = selectedStation.mapMarker
+        stationMapView.animate(toLocation: selectedStation.mapMarker.position)
+    }
+}
+
+extension StationViewController : StationMarkerDelegate{
+    func showStationDetails() {
+        //markerView?.station
     }
     
 }

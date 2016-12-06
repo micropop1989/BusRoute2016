@@ -11,11 +11,16 @@ import GoogleMaps
 
 class CustomeStationMarkerView: UIView {
 
+    
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var buslineLabel: UILabel!
     @IBOutlet weak var paraView: GMSPanoramaView!
+    
+    var station : Station?
+    
+    var delegate: StationMarkerDelegate?
     
     
     override func draw(_ rect: CGRect) {
@@ -23,5 +28,13 @@ class CustomeStationMarkerView: UIView {
         paraView.layer.borderWidth = 1.0
         paraView.layer.borderColor = UIColor.orange.cgColor
     }
+    
+    @IBAction func showDetailsButtonTapped(_ sender: AnyObject) {
+        delegate?.showStationDetails()
+    }
 
+}
+
+protocol StationMarkerDelegate {
+    func showStationDetails()
 }
