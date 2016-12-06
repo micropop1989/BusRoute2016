@@ -13,6 +13,7 @@ class CustomeStationMarkerView: UIView {
 
     
 
+    @IBOutlet weak var shapeImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var buslineLabel: UILabel!

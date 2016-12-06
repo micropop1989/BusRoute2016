@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class BusRouteViewController: UIViewController {
 
     @IBOutlet weak var destinationTilteLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
+    
+    @IBOutlet weak var routeMapView: GMSMapView!
     var bus : Bus?
     
     override func viewDidLoad() {

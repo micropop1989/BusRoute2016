@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Station-->
+        <!--Station View Controller-->
         <scene sceneID="gbk-5k-2cb">
             <objects>
                 <viewController id="fbl-TV-8Aa" customClass="StationViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,15 +62,16 @@
                             <constraint firstItem="2MO-Kk-OHk" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leadingMargin" id="sVH-lH-pAB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Station" image="busstn" id="Gnk-dN-70d"/>
+                    <navigationItem key="navigationItem" id="YbT-10-Owm"/>
                     <connections>
                         <outlet property="stationMapView" destination="2MO-Kk-OHk" id="yY8-iD-8Kc"/>
                         <outlet property="stationTableView" destination="TaX-vz-Cbr" id="RwI-rE-M3Q"/>
+                        <segue destination="9Qd-Fa-tgk" kind="show" identifier="showDetails" id="9wI-FM-V7m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEv-OR-fGZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="232.53373313343329"/>
+            <point key="canvasLocation" x="1596" y="1041"/>
         </scene>
         <!--Bus View Controller-->
         <scene sceneID="RCf-Ot-ops">
@@ -143,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g60-J6-3rs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3218.4000000000001" y="232.53373313343329"/>
+            <point key="canvasLocation" x="4157.6000000000004" y="232.53373313343329"/>
         </scene>
         <!--Bus Route View Controller-->
         <scene sceneID="Kaw-WL-Tkj">
@@ -157,7 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-4I-vVR">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-4I-vVR" customClass="GMSMapView">
                                 <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-zz-QzH">
@@ -215,13 +216,14 @@
                         <outlet property="changeRouteButton" destination="x8m-0J-72L" id="6MR-3h-FLy"/>
                         <outlet property="destinationLabel" destination="Tod-t3-OKd" id="UMv-L6-mPJ"/>
                         <outlet property="destinationTilteLabel" destination="MYx-3d-30q" id="OKI-ZT-0yV"/>
+                        <outlet property="routeMapView" destination="s4K-4I-vVR" id="pEx-Qz-sLQ"/>
                         <outlet property="seeRouteDetailButton" destination="Qdr-Bi-z5e" id="wwr-mp-Sgp"/>
                         <segue destination="1OG-24-X59" kind="show" identifier="seeRouteDetailSegue" id="bHL-lP-0Av"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9M1-it-0ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3994" y="166"/>
+            <point key="canvasLocation" x="4892" y="232.53373313343329"/>
         </scene>
         <!--Station Detail View Controller-->
         <scene sceneID="JYz-gj-w0W">
@@ -327,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njt-1q-K6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2927" y="1153"/>
+            <point key="canvasLocation" x="2319" y="1042"/>
         </scene>
         <!--Title-->
         <scene sceneID="iZh-hQ-k9k">
@@ -451,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJC-Un-QVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4733.6000000000004" y="165.06746626686657"/>
+            <point key="canvasLocation" x="5672.8000000000002" y="165.06746626686657"/>
         </scene>
         <!--Custom View Controller-->
         <scene sceneID="OT6-cH-qFw">
@@ -464,7 +466,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="fbl-TV-8Aa" kind="relationship" relationship="viewControllers" id="bIH-TU-0Ox"/>
+                        <segue destination="mac-xe-UCD" kind="relationship" relationship="viewControllers" id="bIH-TU-0Ox"/>
                         <segue destination="pl6-Re-JKB" kind="relationship" relationship="viewControllers" id="KVQ-Ip-Qz5"/>
                         <segue destination="jb8-Oq-TdN" kind="relationship" relationship="viewControllers" id="s1t-L0-DHq"/>
                     </connections>
@@ -490,7 +492,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pR2-pd-O4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2388" y="-273"/>
+            <point key="canvasLocation" x="3327.1999999999998" y="-273.01349325337333"/>
         </scene>
         <!--Direction View Controller-->
         <scene sceneID="EwY-CH-3bX">
@@ -571,6 +573,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqG-72-1TS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="638" y="233"/>
+        </scene>
+        <!--Station-->
+        <scene sceneID="tjY-Fm-dzK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mac-xe-UCD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Station" image="busstn" id="Gnk-dN-70d"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dGO-CJ-dpL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fbl-TV-8Aa" kind="relationship" relationship="rootViewController" id="XCj-JM-e3a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqC-6z-Cgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="232.53373313343329"/>
         </scene>
     </scenes>
     <resources>

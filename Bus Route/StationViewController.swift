@@ -72,7 +72,7 @@ class StationViewController: UIViewController {
             markerView = nil
         }else{
             markerView = loadedView?.first as? CustomeStationMarkerView
-            markerView?.alpha = 0.9
+            markerView?.shapeImage.alpha = 0.9
             
             markerView?.delegate = self
         }
@@ -146,6 +146,33 @@ class StationViewController: UIViewController {
         
         stationTableView.reloadData()
     }
+    
+    func selectMarker(at index: Int, marker: GMSMarker){
+        //custume marker infowindow
+        //superimpose on top
+        guard let markerView = markerView
+            else { return }
+        
+        markerView.station = filteredStation[index]
+        
+        markerView.nameLabel.text = marker.title
+        markerView.distanceLabel.text = marker.snippet
+        markerView.paraView.moveNearCoordinate(marker.position)
+        markerView.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0)
+        //marker.infoWindowAnchor.y = 0.3
+        
+        
+        let location = marker.position
+        
+        tappedMarker = marker
+        markerView.removeFromSuperview()
+        // markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        
+        markerView.center = stationMapView.projection.point(for: location)
+        markerView.center.y -= 120
+        
+        stationMapView.addSubview(markerView)
+    }
 }
 
 extension StationViewController : GMSMapViewDelegate{
@@ -181,37 +208,12 @@ extension StationViewController : GMSMapViewDelegate{
         stationMapView.selectedMarker = marker
         
         if let data = marker.userData,
-            let index = data as? Int,
-            let markerView = markerView {
+            let index = data as? Int {
             let indexPath = IndexPath(row: index, section: 0)
             stationTableView.selectRow(at: indexPath , animated: true, scrollPosition: .middle)
             
-            
-            //custume marker infowindow
-            //superimpose on top
-            
-            markerView.station = filteredStation[index]
-            
-            markerView.nameLabel.text = marker.title
-            markerView.distanceLabel.text = marker.snippet
-            markerView.paraView.moveNearCoordinate(marker.position)
-            markerView.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0)
-            //marker.infoWindowAnchor.y = 0.3
-
-            
-            let location = marker.position
-            
-            tappedMarker = marker
-            markerView.removeFromSuperview()
-           // markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-            
-            markerView.center = stationMapView.projection.point(for: location)
-            markerView.center.y -= 120
-
-            stationMapView.addSubview(markerView)
+            selectMarker(at: index, marker: marker)
         }
-        
-        //
         
         return false
     }
@@ -280,14 +282,26 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStation = filteredStation[indexPath.row]
-        stationMapView.selectedMarker = selectedStation.mapMarker
+        //stationMapView.selectedMarker = selectedStation.mapMarker
         stationMapView.animate(toLocation: selectedStation.mapMarker.position)
+        
+        selectMarker(at: indexPath.row, marker: selectedStation.mapMarker)
     }
 }
 
 extension StationViewController : StationMarkerDelegate{
     func showStationDetails() {
-        //markerView?.station
+        performSegue(withIdentifier: "showDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails"{
+        
+            let vc = segue.destination as! StationDetailViewController
+            vc.station = markerView?.station
+            
+        }
+        
     }
     
 }
