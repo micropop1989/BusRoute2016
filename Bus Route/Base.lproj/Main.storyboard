@@ -222,7 +222,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9M1-it-0ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
+            </objects>/Users/allanchai/Desktop/bus route 2016/BusRoute2016/Bus Route/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="4892" y="232.53373313343329"/>
         </scene>
         <!--Station Detail View Controller-->
@@ -377,7 +377,7 @@
                                             <frame key="frameInset" width="343" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotWithScp" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="8bW-Dp-NDK"/>
                                                         <constraint firstAttribute="height" constant="30" id="xsS-K3-Qnd"/>
@@ -598,7 +598,6 @@
         <image name="bus" width="30" height="30"/>
         <image name="busstn" width="30" height="30"/>
         <image name="direaction" width="30" height="30"/>
-        <image name="dotWithScp" width="30" height="30"/>
         <image name="route" width="30" height="65"/>
     </resources>
 </document>
