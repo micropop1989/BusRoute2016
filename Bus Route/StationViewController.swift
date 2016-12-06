@@ -21,6 +21,8 @@ class StationViewController: UIViewController {
     var mapViewCoordinate = CLLocationCoordinate2D()
     let centermarker = GMSMarker()
     
+    var searchNearby = false
+    
     var frDBref2 : FIRDatabaseReference!
     
     @IBOutlet weak var stationMapView: GMSMapView!{
@@ -35,13 +37,15 @@ class StationViewController: UIViewController {
         }
     }
     
+    var markerView : CustomeStationMarkerView?
+    
     var allStation : [Station] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         frDBref2 = FIRDatabase.database().reference()
-        //fetchStations()
+        fetchStations()
         
         stationMapView.isMyLocationEnabled = true
         stationMapView.animate(toLocation: currentLocation)
@@ -58,6 +62,15 @@ class StationViewController: UIViewController {
         currentLocationMarker.map = stationMapView
         
         stationMapView.selectedMarker = currentLocationMarker
+        
+        //custome marker
+        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
+        if loadedView?.count == 0{
+            markerView = nil
+        }else{
+            markerView = loadedView?.first as? CustomeStationMarkerView
+            markerView?.alpha = 0.9
+        }
         
     }
     
@@ -81,7 +94,7 @@ class StationViewController: UIViewController {
             //main tread , sort
             DispatchQueue.main.async {
                 
-                self.nextbyBusStation(coordinate: self.currentLocation)
+                self.showNearbyBusStation(coordinate: self.currentLocation)
                 
             }
         })
@@ -89,7 +102,7 @@ class StationViewController: UIViewController {
     }
     
     
-    func nextbyBusStation(coordinate: CLLocationCoordinate2D, delta: Double = 0.01){
+    func showNearbyBusStation(coordinate: CLLocationCoordinate2D, delta: Double = 0.01){
         //allStation.sort(by: {$0.lat! > $1.lat!})
         filteredStation = []
         
@@ -123,12 +136,15 @@ class StationViewController: UIViewController {
             marker.title = temp.address
             marker.icon = GMSMarker.markerImage(with: UIColor.red)
             marker.snippet = temp.stationID
+            
+            marker.tracksInfoWindowChanges = true
+            
             marker.map = stationMapView
             
             
         }
         
-        
+        centermarker.isTappable = false
         centermarker.position = coordinate
         centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
         centermarker.map = stationMapView
@@ -145,7 +161,10 @@ extension StationViewController : GMSMapViewDelegate{
         print("Idle")
         print(position.target)
         mapViewCoordinate = position.target
-        nextbyBusStation(coordinate: mapViewCoordinate)
+
+        if searchNearby {
+            showNearbyBusStation(coordinate: mapViewCoordinate)
+        }
         
     }
     
@@ -162,14 +181,17 @@ extension StationViewController : GMSMapViewDelegate{
         return true
     }
     
+    
+    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         
         //return UII
         
-        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
-        let markerView = loadedView?.first as? UIView
-        markerView?.alpha = 0.9
-       
+        markerView?.nameLabel.text = marker.title
+        markerView?.distanceLabel.text = marker.snippet
+        markerView?.paraView.moveNearCoordinate(marker.position)
+        markerView?.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0.2)
+        marker.infoWindowAnchor.y = 0.3
         return markerView
     }
     

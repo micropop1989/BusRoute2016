@@ -11,20 +11,17 @@ import GoogleMaps
 
 class CustomeStationMarkerView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var buslineLabel: UILabel!
     @IBOutlet weak var paraView: GMSPanoramaView!
     
     
-    
+    override func draw(_ rect: CGRect) {
+        //paraView.transform = CGAffineTransform(rotationAngle: -0.09)
+        paraView.layer.borderWidth = 1.0
+        paraView.layer.borderColor = UIColor.orange.cgColor
+    }
 
 }
