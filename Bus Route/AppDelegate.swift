@@ -25,6 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure ()
         GMSServices.provideAPIKey(GMAPIKey)
         GMSPlacesClient.provideAPIKey(GMAPIKey)
+        
+        
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.gray], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        
+        UINavigationBar.appearance().barTintColor = UIColor.dodgerBlue
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+       
+
+
 
         return true
     }
