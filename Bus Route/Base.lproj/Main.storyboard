@@ -375,7 +375,7 @@
                                             <frame key="frameInset" width="343" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotWithScp" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="8bW-Dp-NDK"/>
                                                         <constraint firstAttribute="height" constant="30" id="xsS-K3-Qnd"/>
@@ -451,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJC-Un-QVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4733.6000000000004" y="165.06746626686657"/>
+            <point key="canvasLocation" x="4631" y="166"/>
         </scene>
         <!--Custom View Controller-->
         <scene sceneID="OT6-cH-qFw">
@@ -577,7 +577,6 @@
         <image name="bus" width="30" height="30"/>
         <image name="busstn" width="30" height="30"/>
         <image name="direaction" width="30" height="30"/>
-        <image name="dotWithScp" width="30" height="30"/>
         <image name="route" width="30" height="65"/>
     </resources>
 </document>

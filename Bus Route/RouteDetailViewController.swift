@@ -31,6 +31,7 @@ class RouteDetailViewController: UIViewController {
         destinationLabel.text = "\((bus?.busTitle)!)"
         routeTableView.delegate = self
         routeTableView.dataSource = self
+        //routeTableView.allowsMultipleSelection = false
         
         frDBref = FIRDatabase.database().reference()
         
@@ -152,8 +153,17 @@ extension RouteDetailViewController: UITableViewDelegate {
         busCell.dotImage.image = image
         
         tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        let busCell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
+        let image : UIImage = UIImage(named: "dotWithScp")!
+        busCell.dotImage.image = image
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
 
 }
 
@@ -172,12 +182,17 @@ extension RouteDetailViewController: UITableViewDataSource {
            // routeCell.IDLabel.text = station.stationID
             routeCell.routeLabel.text = station.address
         
+        let image : UIImage = UIImage(named: "dotWithScp")!
+        routeCell.dotImage.image = image
+        
         
         if indexPath.row == 0 {
             routeCell.upperRouteImage.isHidden = true
             
+            
         } else if indexPath.row == self.stations.count-1 {
             routeCell.lowerRouteImage.isHidden = true
+           
             
         } else {
             routeCell.upperRouteImage.isHidden = false
