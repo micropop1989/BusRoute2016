@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomeStationMarkerView" customModule="Bus_Route" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="287" height="135"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXJ-ts-53X">
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="markerShape" translatesAutoresizingMaskIntoConstraints="NO" id="whV-k7-KbM"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-Lg-zRY">
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIo-Nh-neX">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-Zv-fHi" customClass="GMSPanoramaView">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="Egj-rh-H47"/>
+                                <constraint firstAttribute="width" constant="120" id="f9T-PP-gKQ"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus line" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhI-Qu-uQM">
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="whV-k7-KbM" secondAttribute="trailing" constant="-4" id="0hm-m3-6YW"/>
+                        <constraint firstItem="Snz-Lg-zRY" firstAttribute="top" secondItem="HIo-Nh-neX" secondAttribute="bottom" constant="10" id="11u-AK-d2F"/>
+                        <constraint firstItem="Snz-Lg-zRY" firstAttribute="leading" secondItem="HIo-Nh-neX" secondAttribute="leading" id="AWR-mx-cap"/>
+                        <constraint firstItem="NRR-Zv-fHi" firstAttribute="top" secondItem="rXJ-ts-53X" secondAttribute="top" constant="10" id="B5v-Mz-UcX"/>
+                        <constraint firstItem="whV-k7-KbM" firstAttribute="leading" secondItem="rXJ-ts-53X" secondAttribute="leading" constant="-2" id="DTp-CN-u4S"/>
+                        <constraint firstItem="whV-k7-KbM" firstAttribute="top" secondItem="rXJ-ts-53X" secondAttribute="top" constant="-2" id="GqO-ZA-8es"/>
+                        <constraint firstItem="NRR-Zv-fHi" firstAttribute="leading" secondItem="rXJ-ts-53X" secondAttribute="leading" constant="10" id="I07-Q4-seH"/>
+                        <constraint firstItem="HhI-Qu-uQM" firstAttribute="top" secondItem="Snz-Lg-zRY" secondAttribute="bottom" constant="10" id="Wym-SO-ppR"/>
+                        <constraint firstItem="HIo-Nh-neX" firstAttribute="top" secondItem="NRR-Zv-fHi" secondAttribute="top" id="YlM-9z-cLu"/>
+                        <constraint firstAttribute="bottom" secondItem="whV-k7-KbM" secondAttribute="bottom" constant="-10" id="g52-A2-4lF"/>
+                        <constraint firstItem="HIo-Nh-neX" firstAttribute="leading" secondItem="NRR-Zv-fHi" secondAttribute="trailing" constant="10" id="qUM-YW-3im"/>
+                        <constraint firstItem="HhI-Qu-uQM" firstAttribute="leading" secondItem="HIo-Nh-neX" secondAttribute="leading" id="v6v-6b-eVy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rXJ-ts-53X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="43d-NY-l3N"/>
+                <constraint firstAttribute="bottom" secondItem="rXJ-ts-53X" secondAttribute="bottom" id="HFh-NU-12s"/>
+                <constraint firstAttribute="trailing" secondItem="rXJ-ts-53X" secondAttribute="trailing" id="Qdr-Sc-AOS"/>
+                <constraint firstItem="rXJ-ts-53X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tX6-ff-fdQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buslineLabel" destination="HhI-Qu-uQM" id="V6X-Cf-LQg"/>
+                <outlet property="distanceLabel" destination="Snz-Lg-zRY" id="6yI-bP-rrJ"/>
+                <outlet property="nameLabel" destination="HIo-Nh-neX" id="csN-Yn-hfF"/>
+                <outlet property="paraView" destination="NRR-Zv-fHi" id="xLV-OM-emG"/>
+            </connections>
+            <point key="canvasLocation" x="-448.5" y="-193.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="markerShape" width="257" height="108"/>
+    </resources>
+</document>

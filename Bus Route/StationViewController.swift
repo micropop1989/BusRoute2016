@@ -15,11 +15,23 @@ import SwiftyJSON
 class StationViewController: UIViewController {
     
     let currentLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(3.1349378, 101.6299155)
+    let currentLocationMarker = GMSMarker()
+    
+    var filteredStation : [Station] = []
+    var mapViewCoordinate = CLLocationCoordinate2D()
+    let centermarker = GMSMarker()
+    
     var frDBref2 : FIRDatabaseReference!
     
     @IBOutlet weak var stationMapView: GMSMapView!{
         didSet{
             stationMapView.delegate = self
+        }
+    }
+    @IBOutlet weak var stationTableView: UITableView!{
+        didSet{
+            stationTableView.dataSource = self
+            stationTableView.delegate = self
         }
     }
     
@@ -29,17 +41,28 @@ class StationViewController: UIViewController {
         super.viewDidLoad()
         
         frDBref2 = FIRDatabase.database().reference()
-        fetchStations()
+        //fetchStations()
         
         stationMapView.isMyLocationEnabled = true
         stationMapView.animate(toLocation: currentLocation)
         stationMapView.animate(toZoom: 15.0)
         
-        // Do any additional setup after loading the view.
+        mapViewCoordinate = currentLocation
+        
+        //marker
+        currentLocationMarker.position = currentLocation
+        currentLocationMarker.title = "You Are Here"
+        currentLocationMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+        
+        currentLocationMarker.tracksInfoWindowChanges = true
+        currentLocationMarker.map = stationMapView
+        
+        stationMapView.selectedMarker = currentLocationMarker
+        
     }
     
     func fetchStations(){
-         frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
+        frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
             
             
             let enumerator = stationSnapshot.children
@@ -58,14 +81,61 @@ class StationViewController: UIViewController {
             //main tread , sort
             DispatchQueue.main.async {
                 
+                self.nextbyBusStation(coordinate: self.currentLocation)
+                
             }
         })
         
     }
     
     
-    func sortBusStation(){
-        allStation.sort(by: {$0.lat < $1.lat})
+    func nextbyBusStation(coordinate: CLLocationCoordinate2D, delta: Double = 0.01){
+        //allStation.sort(by: {$0.lat! > $1.lat!})
+        filteredStation = []
+        
+        filteredStation = allStation.filter { (station) -> Bool in
+            guard let lat = station.lat,
+                let lng = station.long
+                else{return false}
+            
+            if lat < Double(coordinate.latitude - delta) || lat > Double(coordinate.latitude + delta){
+                return false
+            }
+            else if lng < Double(coordinate.longitude - delta) || lng > Double(coordinate.longitude + delta){
+                return false
+            }
+            
+            return true
+        }
+        
+        print(filteredStation.count)
+        
+        stationMapView.clear()
+        //display marker
+        for temp in filteredStation{
+            guard let lat = temp.lat,
+                let lng = temp.long
+                else{continue}
+            
+            let marker = GMSMarker()
+            let location = CLLocationCoordinate2DMake(lat, lng)
+            marker.position = location
+            marker.title = temp.address
+            marker.icon = GMSMarker.markerImage(with: UIColor.red)
+            marker.snippet = temp.stationID
+            marker.map = stationMapView
+            
+            
+        }
+        
+        
+        centermarker.position = coordinate
+        centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        centermarker.map = stationMapView
+        
+        currentLocationMarker.map = stationMapView
+        
+        stationTableView.reloadData()
     }
 }
 
@@ -74,9 +144,71 @@ extension StationViewController : GMSMapViewDelegate{
         
         print("Idle")
         print(position.target)
+        mapViewCoordinate = position.target
+        nextbyBusStation(coordinate: mapViewCoordinate)
+        
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         print(position.target)
+        centermarker.position = position.target
+        //centermarker.map = stationMapView
+        
     }
+    
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        stationMapView.selectedMarker = marker
+        return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        
+        //return UII
+        
+        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
+        let markerView = loadedView?.first as? UIView
+        markerView?.alpha = 0.9
+       
+        return markerView
+    }
+    
+    
+}
+
+extension StationViewController : UITableViewDelegate , UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredStation.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            else { return UITableViewCell()}
+        
+        let temp : Station = filteredStation[indexPath.row]
+        
+        cell.textLabel?.text = temp.address
+        
+        let a = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        
+        let b = CLLocation(latitude: temp.lat!, longitude: temp.long!)
+        
+        
+        let dist = a.distance(from: b)
+        
+        var subtitleStr = ""
+        if dist < 1000 {
+            subtitleStr = "\(String(format: "%0.f00", dist/100))m away bus:\(temp.buses.count)"
+        }
+        else{
+            
+            subtitleStr = "\(String(format: "%0.1f", dist/1000))km away bus:\(temp.buses.count)"
+        }
+        
+        cell.detailTextLabel?.text = subtitleStr
+        
+        return cell
+    }
+    
 }
