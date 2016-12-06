@@ -16,7 +16,8 @@ class StationDetailViewController: UIViewController {
     @IBOutlet weak var stationDetailTable: UITableView!
     var frDBref : FIRDatabaseReference!
     var buses : [Bus] = []
-    let stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
+    var stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
+    var station : Station?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,18 @@ class StationDetailViewController: UIViewController {
         stationDetailTable.estimatedRowHeight = 99.0
         
         stationDetailTable.separatorColor = .blue
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        guard let id = station?.stationID
+            else{ return }
         
-        
+        stationID = id
+
         fetchRoute()
+        
     }
 
     func fetchRoute() {
@@ -92,7 +101,10 @@ extension StationDetailViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let titleCell = tableView.dequeueReusableCell(withIdentifier: "stationCell",
                                                           for: indexPath) as! StationTableViewCell
-            titleCell.stationLabel.text = "Station Name: KL Sentral"
+            if let stat = station {
+                
+                titleCell.stationLabel.text = "Station Name: \(stat.address!)"
+            }
             
             return titleCell
         } else  {
