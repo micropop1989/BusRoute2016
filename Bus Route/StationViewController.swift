@@ -77,6 +77,10 @@ class StationViewController: UIViewController {
             markerView?.delegate = self
         }
         
+        stationTableView.tableFooterView = UIView()
+        stationTableView.rowHeight = UITableViewAutomaticDimension
+        stationTableView.estimatedRowHeight = 99.0
+        
     }
     
     func fetchStations(){

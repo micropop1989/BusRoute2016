@@ -146,7 +146,6 @@ extension RouteDetailViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let busCell : RouteTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "RouteCell", for: indexPath) as? RouteTableViewCell)!
         
         let busCell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
         let image : UIImage = UIImage(named: "dot")!
