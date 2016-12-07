@@ -15,14 +15,13 @@ class RouteDetailViewController: UIViewController {
     var stations : [Station] = []
     var frDBref : FIRDatabaseReference!
     
-    
     var routeID : String?
     
-
     @IBOutlet weak var destinationTitleLabel: UILabel!
-    
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var routeTableView: UITableView!
+    
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
     
     
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ class RouteDetailViewController: UIViewController {
         destinationLabel.text = "\((bus?.busTitle)!)"
         routeTableView.delegate = self
         routeTableView.dataSource = self
-        //routeTableView.allowsMultipleSelection = false
+        routeTableView.allowsMultipleSelection = false
         
         frDBref = FIRDatabase.database().reference()
         
@@ -51,7 +50,7 @@ class RouteDetailViewController: UIViewController {
         
     }
     
-   
+    
     @IBAction func editButton(_ sender: UIBarButtonItem) {
         if sender.title == "Edit" {
             sender.title = "Save"
@@ -60,11 +59,14 @@ class RouteDetailViewController: UIViewController {
         } else if sender.title == "Save" {
             
             let message: String = "Are you sure you want save route?"
-             let alertController = UIAlertController(title: "Save Comfirmation", message: message, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Save Comfirmation", message: message, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
                 action in
-                self.stations = []
-                self.fetchRoute()
+                //self.stations = []
+                //self.fetchRoute()
+                
+                self.routeTableView.setEditing(false, animated: true)
+                sender.title = "Edit"
             })
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
                 action in
@@ -81,7 +83,7 @@ class RouteDetailViewController: UIViewController {
                 self.routeTableView.setEditing(false, animated: true)
                 sender.title = "Edit"
                 //stationDictionary = []
-                })
+            })
             alertController.addAction(cancelAction)
             alertController.addAction(saveAction)
             present(alertController, animated: true, completion: nil)
@@ -90,8 +92,8 @@ class RouteDetailViewController: UIViewController {
             
             
         }
-    
-    
+        
+        
     }
     
     
@@ -103,19 +105,21 @@ class RouteDetailViewController: UIViewController {
         guard let routeID = bus?.routeID
             else{ return}
         self.routeID = routeID
-    
-       // let routeID = "route0232"
+        
+        // let routeID = "route0232"
         frDBref.child("routes").child(routeID).child("orderedStations").observeSingleEvent(of: .value, with: { (routeSnapshot) in
-            
             guard let routeDictionary = routeSnapshot.value as? [String]
                 else {
                     
                     return
             }
-        
-        
-        
+            
+            
+            let dispatchGp = DispatchGroup()
+            
             for station in routeDictionary {
+                
+                dispatchGp.enter()
                 
                 self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
                     
@@ -129,13 +133,16 @@ class RouteDetailViewController: UIViewController {
                     newStation.stationID = station
                     //newStation.address = stationDictionary["address"] as? String
                     self.stations.append(newStation)
-                    self.routeTableView.reloadData()
                     
-                    })
-        
-                }
-
-    })
+                    
+                    dispatchGp.leave()
+                })
+                
+            }
+            dispatchGp.notify(queue: DispatchQueue.main, execute: {
+                self.routeTableView.reloadData()
+            })
+        })
     }
 }
 
@@ -144,27 +151,29 @@ extension RouteDetailViewController: UITableViewDelegate {
         return .none
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let busCell : RouteTableViewCell = (tableView.dequeueReusableCell(withIdentifier: "RouteCell", for: indexPath) as? RouteTableViewCell)!
         
-        let busCell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
-        let image : UIImage = UIImage(named: "dot")!
-        busCell.dotImage.image = image
+        if selectedIndexPath != indexPath {
+            if let busCell = tableView.cellForRow(at: selectedIndexPath) as? RouteTableViewCell {
+                busCell.dotImage.image = UIImage(named: "dotWithScp")
+            }
+            
+            if let busCell = tableView.cellForRow(at: indexPath) as? RouteTableViewCell {
+                busCell.dotImage.image = UIImage(named: "dot")
+            }
+            
+            selectedIndexPath = indexPath
+        }
         
-        tableView.reloadRows(at: [indexPath], with: .none)
-        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        //        if let busCell = tableView.cellForRow(at: indexPath) as? RouteTableViewCell {
+        //            busCell.dotImage.image = UIImage(named: "dotWithScp")
+        //        }
         
-        let busCell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
-        let image : UIImage = UIImage(named: "dotWithScp")!
-        busCell.dotImage.image = image
-        
-        tableView.reloadRows(at: [indexPath], with: .none)
     }
-
+    
 }
 
 extension RouteDetailViewController: UITableViewDataSource {
@@ -173,42 +182,44 @@ extension RouteDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
         
-            
-            let routeCell = tableView.dequeueReusableCell(withIdentifier: "RouteCell",
-                                                          for: indexPath) as! RouteTableViewCell
-            let station = stations[indexPath.row]
-           // routeCell.IDLabel.text = station.stationID
-            routeCell.routeLabel.text = station.address
-        
-        let image : UIImage = UIImage(named: "dotWithScp")!
-        routeCell.dotImage.image = image
-        
-        
-        if indexPath.row == 0 {
-            routeCell.upperRouteImage.isHidden = true
-            
-            
-        } else if indexPath.row == self.stations.count-1 {
-            routeCell.lowerRouteImage.isHidden = true
-           
-            
-        } else {
-            routeCell.upperRouteImage.isHidden = false
-            routeCell.lowerRouteImage.isHidden = false
+        var routeCell : RouteTableViewCell
+        if let cell = tableView.cellForRow(at: indexPath) as? RouteTableViewCell {
+            routeCell = cell
+        }
+        else{
+            routeCell = tableView.dequeueReusableCell(withIdentifier: "RouteCell",for: indexPath) as! RouteTableViewCell
         }
         
         
-            return routeCell
-            
         
+        let station = stations[indexPath.row]
+        // routeCell.IDLabel.text = station.stationID
+        
+        routeCell.routeLabel.text = station.address
+        routeCell.selectionStyle = .default
+        
+        routeCell.upperRouteImage.isHidden = false
+        routeCell.lowerRouteImage.isHidden = false
+        
+        if indexPath.row == 0 {
+            routeCell.upperRouteImage.isHidden = true
+        } else if indexPath.row == self.stations.count-1 {
+            routeCell.lowerRouteImage.isHidden = true
+        }
+        
+        routeCell.dotImage.image = UIImage(named: "dotWithScp")!
+        if indexPath == selectedIndexPath {
+            routeCell.dotImage.image = UIImage(named: "dot")!
+        }
+        
+        return routeCell
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
         
-
+        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
