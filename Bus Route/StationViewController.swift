@@ -256,12 +256,14 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-            else { return UITableViewCell()}
-        
+        guard let cell : StnTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? StnTableViewCell else {
+            return UITableViewCell()
+            
+        }
         let temp : Station = filteredStation[indexPath.row]
         
-        cell.textLabel?.text = temp.address
+      //  cell.textLabel?.text = temp.address
+        cell.stationLabel.text = temp.address
         
         let a = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         
@@ -272,14 +274,16 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         
         var subtitleStr = ""
         if dist < 1000 {
-            subtitleStr = "\(String(format: "%0.f00", dist/100))m away bus:\(temp.buses.count)"
+            subtitleStr = "\(String(format: "%0.f00", dist/100))m away"
         }
         else{
             
-            subtitleStr = "\(String(format: "%0.1f", dist/1000))km away bus:\(temp.buses.count)"
+            subtitleStr = "\(String(format: "%0.1f", dist/1000))km away"
         }
         
-        cell.detailTextLabel?.text = subtitleStr
+      //  cell.detailTextLabel?.text = subtitleStr
+        cell.distanceLabel.text = "\(subtitleStr)"
+        cell.busNumberLabel.text = "\(temp.buses.count)"
         
         return cell
     }
