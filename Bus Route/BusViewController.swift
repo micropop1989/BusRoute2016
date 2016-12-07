@@ -18,9 +18,15 @@ class BusViewController: UIViewController {
     var filterBuses : [Bus] = []
     var frDBref : FIRDatabaseReference!
     
+    var container  = UIView()
+    var loadingView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       // activityIndicator.startAnimating()
+        showActivityIndicatory(uiView: self.view)
         frDBref = FIRDatabase.database().reference()
         
         busTableView.delegate = self
@@ -42,7 +48,9 @@ class BusViewController: UIViewController {
         busTableView.estimatedRowHeight = 99.0
         
         fetchBus()
-     
+        
+        
+        //container.isHidden = true
         //frDBref.observe(.childAdded, with: {(snapshot) in
         //})
 
@@ -91,6 +99,9 @@ class BusViewController: UIViewController {
             self.buses.append(newBus)
             
             self.busTableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidesWhenStopped = true
+            self.container.removeFromSuperview()
             
         })
     }
@@ -116,6 +127,35 @@ class BusViewController: UIViewController {
             let destination = segue.destination as! BusRouteViewController
             destination.bus = seletedBus
         }
+    }
+    
+    
+    func showActivityIndicatory(uiView: UIView) {
+        container  = UIView()
+        container.frame = uiView.frame
+        container.center = uiView.center
+        container.backgroundColor = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 0.3)
+        //container.isHidden = false
+      
+        
+        loadingView = UIView()
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = uiView.center
+        loadingView.backgroundColor = UIColor.dodgerBlue
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        activityIndicator = UIActivityIndicatorView()
+       // activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
+      
+        loadingView.addSubview(activityIndicator)
+        container.addSubview(loadingView)
+        uiView.addSubview(container)
+        activityIndicator.startAnimating()
     }
 }
 
@@ -158,7 +198,14 @@ extension BusViewController: UITableViewDataSource {
        // let bus = buses[indexPath.row]
         busCell.busNumberLabel.text = bus.busNumber!
         busCell.busDestinationLabel.text = bus.busTitle!
+       
+        busCell.busNumberView.layer.borderWidth = 1
+        busCell.busNumberView.layer.borderColor = UIColor.dodgerBlue.cgColor
+            busCell.busNumberView.layer.cornerRadius = 8.0
+        
+       
         print(bus.busNumber!)
+        print(indexPath.row)
         return busCell
     }
     
