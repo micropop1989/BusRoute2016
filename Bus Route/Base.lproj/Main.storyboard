@@ -222,7 +222,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9M1-it-0ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>/Users/allanchai/Desktop/bus route 2016/BusRoute2016/Bus Route/Base.lproj/Main.storyboard
+            </objects>
             <point key="canvasLocation" x="4892" y="232.53373313343329"/>
         </scene>
         <!--Station Detail View Controller-->
@@ -367,17 +367,17 @@
                                     <constraint firstItem="7S7-sX-9sI" firstAttribute="leading" secondItem="gzM-4p-AqJ" secondAttribute="leading" constant="4" id="rnb-hD-Pzx"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-rA-D7z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-rA-D7z">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="91" id="sXA-OJ-fSa" customClass="RouteTableViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="94" id="sXA-OJ-fSa" customClass="RouteTableViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sXA-OJ-fSa" id="Sq1-du-veS">
-                                            <frame key="frameInset" width="343" height="90"/>
+                                            <frame key="frameInset" width="343" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotWithScp" translatesAutoresizingMaskIntoConstraints="NO" id="1iy-PB-7lv">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="8bW-Dp-NDK"/>
                                                         <constraint firstAttribute="height" constant="30" id="xsS-K3-Qnd"/>
@@ -598,6 +598,7 @@
         <image name="bus" width="30" height="30"/>
         <image name="busstn" width="30" height="30"/>
         <image name="direaction" width="30" height="30"/>
+        <image name="dotWithScp" width="30" height="30"/>
         <image name="route" width="30" height="65"/>
     </resources>
 </document>

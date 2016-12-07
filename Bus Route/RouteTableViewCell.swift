@@ -20,12 +20,14 @@ class RouteTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        dotImage.image = UIImage(named: "dot")
-
-        // Configure the view for the selected state
-    }
+    /*
+     if routeCell.isSelected {
+     routeCell.dotImage.image = UIImage(named: "dot")!
+     }else{
+     routeCell.dotImage.image = UIImage(named: "dotWithScp")!
+     }
+     
+ */
     
     
 
