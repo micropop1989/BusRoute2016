@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class RouteDetailViewController: UIViewController {
     var bus : Bus?
+    
     var stations : [Station] = []
     var frDBref : FIRDatabaseReference!
     
@@ -26,13 +27,14 @@ class RouteDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = "\((bus?.busNumber)!)"
         destinationLabel.text = "\((bus?.busTitle)!)"
         routeTableView.delegate = self
         routeTableView.dataSource = self
         routeTableView.allowsMultipleSelection = false
         
-        frDBref = FIRDatabase.database().reference()
+        //frDBref = FIRDatabase.database().reference()
         
         
         routeTableView.tableFooterView = UIView()
@@ -40,7 +42,8 @@ class RouteDetailViewController: UIViewController {
         routeTableView.estimatedRowHeight = 99.0
         
         
-        fetchRoute()
+        //fetchRoute()
+        routeTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,63 +90,45 @@ class RouteDetailViewController: UIViewController {
             alertController.addAction(cancelAction)
             alertController.addAction(saveAction)
             present(alertController, animated: true, completion: nil)
-            
-            
-            
-            
         }
-        
-        
     }
     
     
-    
-    
-    func fetchRoute() {
-        
-        
-        guard let routeID = bus?.routeID
-            else{ return}
-        self.routeID = routeID
-        
-        // let routeID = "route0232"
-        frDBref.child("routes").child(routeID).child("orderedStations").observeSingleEvent(of: .value, with: { (routeSnapshot) in
-            guard let routeDictionary = routeSnapshot.value as? [String]
-                else {
-                    
-                    return
-            }
-            
-            
-            let dispatchGp = DispatchGroup()
-            
-            for station in routeDictionary {
-                
-                dispatchGp.enter()
-                
-                self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
-                    
-                    
-                    guard let stationDictionary = stationSnapshot.value as? [String : AnyObject]
-                        else {
-                            return
-                    }
-                    
-                    let newStation = Station(dict: stationDictionary)
-                    newStation.stationID = station
-                    //newStation.address = stationDictionary["address"] as? String
-                    self.stations.append(newStation)
-                    
-                    
-                    dispatchGp.leave()
-                })
-                
-            }
-            dispatchGp.notify(queue: DispatchQueue.main, execute: {
-                self.routeTableView.reloadData()
-            })
-        })
-    }
+//    func fetchRoute() {
+//        guard let routeID = bus?.routeID
+//            else{ return}
+//        self.routeID = routeID
+//        
+//        // let routeID = "route0232"
+//        frDBref.child("routes").child(routeID).child("orderedStations").observeSingleEvent(of: .value, with: { (routeSnapshot) in
+//            guard let routeDictionary = routeSnapshot.value as? [String]
+//                else { return }
+//            let dispatchGp = DispatchGroup()
+//            
+//            for station in routeDictionary {
+//                
+//                dispatchGp.enter()
+//                
+//                self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
+//                    
+//                    
+//                    guard let stationDictionary = stationSnapshot.value as? [String : AnyObject]
+//                        else { return }
+//                    
+//                    let newStation = Station(dict: stationDictionary)
+//                    newStation.stationID = station
+//                    //newStation.address = stationDictionary["address"] as? String
+//                    self.stations.append(newStation)
+//                    
+//                    dispatchGp.leave()
+//                })
+//                
+//            }
+//            dispatchGp.notify(queue: DispatchQueue.main, execute: {
+//                self.routeTableView.reloadData()
+//            })
+//        })
+//    }
 }
 
 extension RouteDetailViewController: UITableViewDelegate {

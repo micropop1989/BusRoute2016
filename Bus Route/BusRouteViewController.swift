@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
+import FirebaseDatabase
 
 class BusRouteViewController: UIViewController {
 
@@ -17,12 +19,23 @@ class BusRouteViewController: UIViewController {
     @IBOutlet weak var routeMapView: GMSMapView!
     var bus : Bus?
     
+    //fetchdata
+    var stations : [Station] = []
+    var frDBref : FIRDatabaseReference!
+    var routeID : String?
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "\((bus?.busNumber)!)"
         destinationLabel.text = bus?.busTitle
         
+        //fetchdata
+        frDBref = FIRDatabase.database().reference()
+        fetchRoute()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +45,66 @@ class BusRouteViewController: UIViewController {
         customUI().customButton(button: seeRouteDetailButton)
         customUI().customButton(button: changeRouteButton)
     }
+    
+    
+    //fetchdata
+    func fetchRoute() {
+        guard let routeID = bus?.routeID
+            else{ return}
+        self.routeID = routeID
+        
+        // let routeID = "route0232"
+        frDBref.child("routes").child(routeID).child("orderedStations").observeSingleEvent(of: .value, with: { (routeSnapshot) in
+            guard let routeDictionary = routeSnapshot.value as? [String]
+                else { return }
+            let dispatchGp = DispatchGroup()
+            
+            for station in routeDictionary {
+                
+                dispatchGp.enter()
+                
+                self.frDBref.child("stations").child(station).observeSingleEvent(of: .value, with: { (stationSnapshot) in
+                    
+                    
+                    guard let stationDictionary = stationSnapshot.value as? [String : AnyObject]
+                        else { return }
+                    
+                    let newStation = Station(dict: stationDictionary)
+                    newStation.stationID = station
+                    //newStation.address = stationDictionary["address"] as? String
+                    self.stations.append(newStation)
+                    
+                    dispatchGp.leave()
+                })
+                
+            }
+            dispatchGp.notify(queue: DispatchQueue.main, execute: {
+                print("Doen fetch data")
+                self.showStationOnMap()
+            })
+        })
+    }
+    
+    func showStationOnMap(){
+        let path = GMSMutablePath()
+        
+        routeMapView.animate(toLocation: stations[0].mapMarker.position)
+        routeMapView.animate(toZoom: 12.5)
+        for i in stations{
+            i.mapMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+            i.mapMarker.map = routeMapView
+            
+            path.add(i.mapMarker.position)
+        }
+        
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 3.0
+        polyline.geodesic = true
+        polyline.map = routeMapView
+        polyline.strokeColor = UIColor.red
+    }
+    
+    
 
     @IBOutlet weak var seeRouteDetailButton: UIButton!
     {
@@ -57,16 +130,11 @@ class BusRouteViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "seeRouteDetailSegue") {
-            
-                
-                
                 let destination = segue.destination as! RouteDetailViewController
                 destination.bus = bus
-        
+                destination.stations = stations
         }
     }
-    
-    
-
-    
 }
+
+
