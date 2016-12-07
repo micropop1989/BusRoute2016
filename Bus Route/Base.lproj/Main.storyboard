@@ -224,14 +224,84 @@
                                     <constraint firstItem="8QO-8s-Ofv" firstAttribute="top" secondItem="Tod-t3-OKd" secondAttribute="bottom" constant="8" id="pRK-ij-ODZ"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OeW-pY-yJA">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="KLA-WC-Pd7"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Iyf-2S-ro2">
+                                    <size key="itemSize" width="50" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="YWq-SI-Em9" customClass="RouteStationCollectionViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotWithScp" translatesAutoresizingMaskIntoConstraints="NO" id="drE-Ck-qoQ">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="lF6-8u-0nH"/>
+                                                        <constraint firstAttribute="height" constant="20" id="x9u-cU-iTe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="route-horz" translatesAutoresizingMaskIntoConstraints="NO" id="2b3-Qn-dm5">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="h77-eO-VRe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="route-horz" translatesAutoresizingMaskIntoConstraints="NO" id="gL0-hU-VGT">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="qNg-h3-05S"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ny6-IV-fo4">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="g8B-HB-ORJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="drE-Ck-qoQ" firstAttribute="centerX" secondItem="YWq-SI-Em9" secondAttribute="centerX" id="4iX-uS-Ss2"/>
+                                            <constraint firstItem="gL0-hU-VGT" firstAttribute="leading" secondItem="drE-Ck-qoQ" secondAttribute="trailing" id="6lM-WE-xL6"/>
+                                            <constraint firstItem="ny6-IV-fo4" firstAttribute="centerY" secondItem="YWq-SI-Em9" secondAttribute="centerY" constant="15" id="Bqv-9u-iPJ"/>
+                                            <constraint firstItem="ny6-IV-fo4" firstAttribute="centerX" secondItem="YWq-SI-Em9" secondAttribute="centerX" id="IHl-2v-KsX"/>
+                                            <constraint firstItem="drE-Ck-qoQ" firstAttribute="centerY" secondItem="2b3-Qn-dm5" secondAttribute="centerY" id="JgE-b3-XMp"/>
+                                            <constraint firstAttribute="trailing" secondItem="gL0-hU-VGT" secondAttribute="trailing" id="SAb-yw-DCC"/>
+                                            <constraint firstItem="2b3-Qn-dm5" firstAttribute="leading" secondItem="YWq-SI-Em9" secondAttribute="leading" id="gUv-E0-aPR"/>
+                                            <constraint firstItem="drE-Ck-qoQ" firstAttribute="leading" secondItem="2b3-Qn-dm5" secondAttribute="trailing" id="nkU-Ut-Tmk"/>
+                                            <constraint firstItem="drE-Ck-qoQ" firstAttribute="top" secondItem="YWq-SI-Em9" secondAttribute="top" constant="5" id="s3f-oq-OOA"/>
+                                            <constraint firstItem="gL0-hU-VGT" firstAttribute="centerY" secondItem="drE-Ck-qoQ" secondAttribute="centerY" id="t0t-S8-on5"/>
+                                        </constraints>
+                                        <size key="customSize" width="50" height="150"/>
+                                        <connections>
+                                            <outlet property="dotImage" destination="drE-Ck-qoQ" id="KJ4-aY-m0a"/>
+                                            <outlet property="leftImage" destination="2b3-Qn-dm5" id="gFL-Ud-xnh"/>
+                                            <outlet property="nameLabel" destination="ny6-IV-fo4" id="Vw0-uU-kft"/>
+                                            <outlet property="rightImage" destination="gL0-hU-VGT" id="TEg-gh-zfG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="s4K-4I-vVR" firstAttribute="top" secondItem="b0f-zz-QzH" secondAttribute="bottom" id="4B2-3F-XLC"/>
+                            <constraint firstItem="OeW-pY-yJA" firstAttribute="top" secondItem="b0f-zz-QzH" secondAttribute="bottom" id="68p-tX-jch"/>
                             <constraint firstItem="b0f-zz-QzH" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leading" id="8wl-oi-koy"/>
                             <constraint firstItem="b0f-zz-QzH" firstAttribute="top" secondItem="c6W-MR-ige" secondAttribute="bottom" id="TWe-Xo-yDW"/>
                             <constraint firstAttribute="bottom" secondItem="s4K-4I-vVR" secondAttribute="bottom" id="XdM-IQ-rPn"/>
+                            <constraint firstItem="OeW-pY-yJA" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leadingMargin" id="cOg-6W-QMK"/>
                             <constraint firstItem="s4K-4I-vVR" firstAttribute="leading" secondItem="1Um-jf-pXh" secondAttribute="leading" id="pcM-L6-jDq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OeW-pY-yJA" secondAttribute="trailing" id="rMz-tS-19l"/>
+                            <constraint firstItem="s4K-4I-vVR" firstAttribute="top" secondItem="OeW-pY-yJA" secondAttribute="bottom" id="uHM-pk-es2"/>
                             <constraint firstAttribute="trailing" secondItem="s4K-4I-vVR" secondAttribute="trailing" id="zj6-aV-1EI"/>
                             <constraint firstAttribute="trailing" secondItem="b0f-zz-QzH" secondAttribute="trailing" id="zkf-7U-0Bz"/>
                         </constraints>
@@ -242,6 +312,7 @@
                         <outlet property="destinationTilteLabel" destination="MYx-3d-30q" id="OKI-ZT-0yV"/>
                         <outlet property="routeMapView" destination="s4K-4I-vVR" id="pEx-Qz-sLQ"/>
                         <outlet property="seeRouteDetailButton" destination="Qdr-Bi-z5e" id="wwr-mp-Sgp"/>
+                        <outlet property="stationCollectionView" destination="OeW-pY-yJA" id="BQJ-Zy-is0"/>
                         <segue destination="1OG-24-X59" kind="show" identifier="seeRouteDetailSegue" id="bHL-lP-0Av"/>
                     </connections>
                 </viewController>
@@ -633,5 +704,6 @@
         <image name="direaction" width="30" height="30"/>
         <image name="dotWithScp" width="30" height="30"/>
         <image name="route" width="30" height="65"/>
+        <image name="route-horz" width="65" height="30"/>
     </resources>
 </document>
