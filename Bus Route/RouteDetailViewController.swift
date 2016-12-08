@@ -189,7 +189,8 @@ extension RouteDetailViewController: UITableViewDataSource {
         
         if indexPath.row == 0 {
             routeCell.upperRouteImage.isHidden = true
-        } else if indexPath.row == self.stations.count-1 {
+        }
+        if indexPath.row == self.stations.count-1 {
             routeCell.lowerRouteImage.isHidden = true
         }
         
