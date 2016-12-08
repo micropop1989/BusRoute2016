@@ -46,6 +46,7 @@ class StationViewController: UIViewController {
     
     var allStation : [Station] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,9 +81,9 @@ class StationViewController: UIViewController {
             markerView?.delegate = self
         }
         
-        stationTableView.tableFooterView = UIView()
+        //stationTableView.tableFooterView = UIView()
         stationTableView.rowHeight = UITableViewAutomaticDimension
-        stationTableView.estimatedRowHeight = 99.0
+        stationTableView.estimatedRowHeight = 300.0
         
     }
     
@@ -205,10 +206,11 @@ extension StationViewController : GMSMapViewDelegate{
         markerView?.center.y -= 120
         
     }
-
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         //custome info window
         markerView?.removeFromSuperview()
+
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -265,7 +267,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         }
         let temp : Station = filteredStation[indexPath.row]
         
-      //  cell.textLabel?.text = temp.address
+        //  cell.textLabel?.text = temp.address
         cell.stationLabel.text = temp.address
         
         let a = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
@@ -284,9 +286,59 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             subtitleStr = "\(String(format: "%0.1f", dist/1000))km away"
         }
         
-      //  cell.detailTextLabel?.text = subtitleStr
         cell.distanceLabel.text = "\(subtitleStr)"
         cell.busNumberLabel.text = "\(temp.buses.count)"
+        
+        //passesby bus icon
+        let width = cell.busIconView.frame.size.width
+        //let height = cell.busIconView.frame.size.height
+        
+        let busView = cell.busIconView
+        busView?.subviews.forEach({ $0.removeFromSuperview()})
+        
+        
+        let slotWidth : CGFloat = 60.0
+        let slotSpacing : CGFloat = 5.0
+        let numberOfSlot = Int((width + slotSpacing) / (slotWidth + slotSpacing))
+        
+        let num = temp.buses.count
+        
+        let maxNumberofSlot = min(num,numberOfSlot)
+        
+        var row  = 0
+        
+        for index in 0..<maxNumberofSlot {
+            
+            let col = index % numberOfSlot
+            row = index / numberOfSlot
+            
+            let x =  CGFloat(col) * (slotWidth + slotSpacing)
+            let y =  CGFloat(row) * 45.0
+            
+            let rect = CGRect(x: x , y: y, width: slotWidth, height: 40)
+            let lable : UILabel = UILabel(frame: rect)
+            
+            
+            if index == numberOfSlot - 1 && num > numberOfSlot {
+                let more = num - numberOfSlot
+                lable.text = "\(more) more..."
+            }
+            else{
+                let bus = temp.buses[index]
+                lable.text = bus.busNumber
+            }
+            
+            
+            lable.layer.borderWidth = 2.0
+            lable.layer.borderColor = UIColor.dodgerBlue.cgColor
+            lable.layer.cornerRadius = 8.0
+            lable.textAlignment = .center
+            lable.font = lable.font.withSize(15)
+            lable.adjustsFontSizeToFitWidth = true
+        
+            busView?.addSubview(lable)
+            busView?.sizeToFit()
+        }
         
         cell.delegate = self
         
@@ -296,10 +348,20 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStation = filteredStation[indexPath.row]
         //stationMapView.selectedMarker = selectedStation.mapMarker
-        stationMapView.animate(toLocation: selectedStation.mapMarker.position)
+
+        //stationMapView.animate(toLocation: selectedStation.mapMarker.position)
+        
+        var point = stationMapView.projection.point(for: selectedStation.mapMarker.position)
+        
+        let center = stationMapView.center
+        point.y -= center.y / 2
+        
+        let newLoc = stationMapView.projection.coordinate(for: point)
+        stationMapView.animate(toLocation: newLoc)
         
         selectMarker(at: indexPath.row, marker: selectedStation.mapMarker)
     }
+    
 }
 
 extension StationViewController : StationMarkerDelegate{
@@ -309,7 +371,7 @@ extension StationViewController : StationMarkerDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails"{
-        
+            
             let vc = segue.destination as! StationDetailViewController
             vc.station = markerView?.station
             
