@@ -26,14 +26,14 @@
                                     <constraint firstAttribute="height" constant="325" id="qVP-Z2-xuN"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="136" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-vz-Cbr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-vz-Cbr">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="136" id="IYS-CQ-ixS" customClass="StnTableViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="136"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="IYS-CQ-ixS" customClass="StnTableViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IYS-CQ-ixS" id="vyY-qZ-okU">
-                                            <frame key="frameInset" width="375" height="135"/>
+                                            <frame key="frameInset" width="375" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busStn1" translatesAutoresizingMaskIntoConstraints="NO" id="VUu-7t-PET">
@@ -92,17 +92,27 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huA-6Z-5v8">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="rh0-05-kV2"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="huA-6Z-5v8" firstAttribute="bottom" secondItem="vyY-qZ-okU" secondAttribute="bottomMargin" constant="5" id="1Xd-j5-Knm"/>
+                                                <constraint firstItem="huA-6Z-5v8" firstAttribute="top" secondItem="u8U-9N-pwL" secondAttribute="bottom" constant="5" id="1ez-ug-Vd3"/>
                                                 <constraint firstItem="VUu-7t-PET" firstAttribute="leading" secondItem="vyY-qZ-okU" secondAttribute="leading" constant="8" id="3Ia-UR-0nI"/>
                                                 <constraint firstItem="VUu-7t-PET" firstAttribute="top" secondItem="vyY-qZ-okU" secondAttribute="top" constant="8" id="8RV-Ni-ltD"/>
+                                                <constraint firstItem="huA-6Z-5v8" firstAttribute="leading" secondItem="u8U-9N-pwL" secondAttribute="leading" id="96z-MY-jOF"/>
+                                                <constraint firstItem="huA-6Z-5v8" firstAttribute="trailing" secondItem="u8U-9N-pwL" secondAttribute="trailing" id="IAe-Oe-chd"/>
                                                 <constraint firstItem="u8U-9N-pwL" firstAttribute="top" secondItem="VUu-7t-PET" secondAttribute="top" id="LP7-7v-jxU"/>
                                                 <constraint firstItem="u8U-9N-pwL" firstAttribute="leading" secondItem="VUu-7t-PET" secondAttribute="trailing" constant="8" id="MSp-c6-ykV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="u8U-9N-pwL" secondAttribute="trailing" constant="8" id="kK4-bS-KPA"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="u8U-9N-pwL" secondAttribute="bottom" constant="8" id="uzd-eg-IL3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="u8U-9N-pwL" secondAttribute="trailing" id="kK4-bS-KPA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="busIconView" destination="huA-6Z-5v8" id="kTc-WN-OTL"/>
                                             <outlet property="busNumberLabel" destination="aSz-3E-34v" id="xLH-9I-oDN"/>
                                             <outlet property="distanceLabel" destination="L3i-iN-GHg" id="n63-dI-5Xz"/>
                                             <outlet property="infoButton" destination="etg-yX-8Rw" id="SYz-qk-Pl5"/>
@@ -754,6 +764,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqC-6z-Cgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1596" y="232.53373313343329"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5h6-Uv-pVz">
+            <objects>
+                <viewController id="g9U-vs-ELj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jh0-n8-N5f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rw-at-caT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

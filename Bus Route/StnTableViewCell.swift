@@ -13,6 +13,9 @@ class StnTableViewCell: UITableViewCell {
     @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var busNumberLabel: UILabel!
+    
+    @IBOutlet weak var busIconView: UIView!
+    
     var delegate: StnTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -32,7 +35,6 @@ class StnTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

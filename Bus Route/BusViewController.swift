@@ -201,7 +201,7 @@ extension BusViewController: UITableViewDataSource {
        
         busCell.busNumberView.layer.borderWidth = 1
         busCell.busNumberView.layer.borderColor = UIColor.dodgerBlue.cgColor
-            busCell.busNumberView.layer.cornerRadius = 8.0
+        busCell.busNumberView.layer.cornerRadius = 8.0
         
        
         print(bus.busNumber!)
