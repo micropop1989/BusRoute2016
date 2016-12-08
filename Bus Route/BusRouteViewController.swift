@@ -116,8 +116,12 @@ class BusRouteViewController: UIViewController {
         
         routeMapView.animate(toLocation: stations[0].mapMarker.position)
         routeMapView.animate(toZoom: 12.5)
+        
+        let icon = UIImage(named: "maker50")
+        
         for i in stations{
-            i.mapMarker.icon = GMSMarker.markerImage(with: UIColor.green)  //UIImage(named: "BusstopMaker")
+            i.mapMarker.icon = icon
+            i.mapMarker.opacity = 0.3
             i.mapMarker.map = routeMapView
             
             path.add(i.mapMarker.position)
@@ -222,8 +226,10 @@ extension BusRouteViewController : UICollectionViewDataSource, UICollectionViewD
         let selectedCell = collectionView.cellForItem(at: indexPath) as? RouteStationCollectionViewCell
         selectedCell?.dotImage.image = UIImage(named: "dot")
         
-        routeMapView.animate(toLocation: stations[indexPath.row].mapMarker.position )
+        let selectedStation = stations[indexPath.row]
+        routeMapView.animate(toLocation: selectedStation.mapMarker.position )
         routeMapView.animate(toZoom: 14.0)
+        selectedStation.mapMarker.opacity = 1.0
         
     }
     
@@ -233,6 +239,9 @@ extension BusRouteViewController : UICollectionViewDataSource, UICollectionViewD
         
         let deselectedCell = collectionView.cellForItem(at: indexPath) as? RouteStationCollectionViewCell
         deselectedCell?.dotImage.image = UIImage(named: "dotWithScp")
+        
+        let deselectedStation = stations[indexPath.row]
+        deselectedStation.mapMarker.opacity = 0.3
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
