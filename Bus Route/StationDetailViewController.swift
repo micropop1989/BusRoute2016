@@ -103,7 +103,8 @@ extension StationDetailViewController: UITableViewDataSource {
                                                           for: indexPath) as! StationTableViewCell
             if let stat = station {
                 
-                titleCell.stationLabel.text = "Station Name: \(stat.address!)"
+                titleCell.stationLabel.text = "\(stat.address!)"
+                titleCell.selectionStyle = UITableViewCellSelectionStyle.none
             }
             
             return titleCell
@@ -114,6 +115,7 @@ extension StationDetailViewController: UITableViewDataSource {
             let bus = buses[indexPath.row-1]
             busCell.busNumberLabel.text = bus.busNumber
             busCell.busTitleLabel.text = bus.busTitle
+            //busCell.selectionStyle = UITableViewCellSelectionStyle.default
             return busCell
             
         }
