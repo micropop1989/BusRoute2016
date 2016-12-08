@@ -180,6 +180,16 @@ class StationViewController: UIViewController {
         markerView.center.y -= 120
         
         stationMapView.addSubview(markerView)
+        
+        
+        //move map
+        var point = stationMapView.projection.point(for: marker.position)
+        let center = stationMapView.center
+        point.y -= center.y / 2
+        
+        let newLoc = stationMapView.projection.coordinate(for: point)
+        stationMapView.animate(toLocation: newLoc)
+
     }
 }
 
@@ -223,6 +233,10 @@ extension StationViewController : GMSMapViewDelegate{
             
             selectMarker(at: index, marker: marker)
         }
+        
+        
+        
+        
         
         return false
     }
@@ -321,7 +335,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             
             if index == numberOfSlot - 1 && num > numberOfSlot {
                 let more = num - numberOfSlot
-                lable.text = "\(more) more..."
+                lable.text = "\(more + 1) more..."
             }
             else{
                 let bus = temp.buses[index]
@@ -351,13 +365,13 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
 
         //stationMapView.animate(toLocation: selectedStation.mapMarker.position)
         
-        var point = stationMapView.projection.point(for: selectedStation.mapMarker.position)
-        
-        let center = stationMapView.center
-        point.y -= center.y / 2
-        
-        let newLoc = stationMapView.projection.coordinate(for: point)
-        stationMapView.animate(toLocation: newLoc)
+//        var point = stationMapView.projection.point(for: selectedStation.mapMarker.position)
+//        
+//        let center = stationMapView.center
+//        point.y -= center.y / 2
+//        
+//        let newLoc = stationMapView.projection.coordinate(for: point)
+//        stationMapView.animate(toLocation: newLoc)
         
         selectMarker(at: indexPath.row, marker: selectedStation.mapMarker)
     }
