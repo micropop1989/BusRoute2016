@@ -27,6 +27,8 @@ class StationViewController: UIViewController {
     
     var frDBref2 : FIRDatabaseReference!
     
+    var indexToSend = -1
+    
     @IBOutlet weak var stationMapView: GMSMapView!{
         didSet{
             stationMapView.delegate = self
@@ -47,6 +49,7 @@ class StationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Station List"
         frDBref2 = FIRDatabase.database().reference()
         fetchStations()
         
@@ -285,6 +288,8 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         cell.distanceLabel.text = "\(subtitleStr)"
         cell.busNumberLabel.text = "\(temp.buses.count)"
         
+        cell.delegate = self
+        
         return cell
     }
     
@@ -308,8 +313,25 @@ extension StationViewController : StationMarkerDelegate{
             let vc = segue.destination as! StationDetailViewController
             vc.station = markerView?.station
             
+        } else if segue.identifier == "infoSegue" {
+            let vc = segue.destination as! StationDetailViewController
+            vc.station = filteredStation[indexToSend]
         }
         
     }
     
+}
+
+extension StationViewController : StnTableViewCellDelegate {
+    func StnTableViewCellOnInfoButtonPressed(cell: StnTableViewCell) {
+        guard let indexPath = stationTableView.indexPath(for: cell)
+            else { return }
+        indexToSend = indexPath.row
+        //let selectedStation = filteredStation[indexPath.row]
+        
+        
+        performSegue(withIdentifier: "infoSegue", sender: self)
+        
+        
+    }
 }
