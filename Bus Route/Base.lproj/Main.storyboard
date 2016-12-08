@@ -22,12 +22,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MO-Kk-OHk" customClass="GMSMapView">
                                 <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="qVP-Z2-xuN"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-vz-Cbr">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="231" id="40E-U3-fh2"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="118" id="IYS-CQ-ixS" customClass="StnTableViewCell" customModule="Bus_Route" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="118"/>
@@ -100,13 +100,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TaX-vz-Cbr" firstAttribute="top" secondItem="2MO-Kk-OHk" secondAttribute="bottom" id="CzG-ed-viy"/>
-                            <constraint firstItem="2MO-Kk-OHk" firstAttribute="top" secondItem="5GH-zu-DEb" secondAttribute="bottom" id="dFz-7m-82s"/>
-                            <constraint firstAttribute="bottom" secondItem="TaX-vz-Cbr" secondAttribute="bottom" id="dH7-Ki-cuQ"/>
-                            <constraint firstItem="2MO-Kk-OHk" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leading" id="koY-Xc-Vfj"/>
-                            <constraint firstItem="TaX-vz-Cbr" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leading" id="vY2-LK-8fv"/>
-                            <constraint firstAttribute="trailing" secondItem="TaX-vz-Cbr" secondAttribute="trailing" id="xW2-mR-aTJ"/>
-                            <constraint firstAttribute="trailing" secondItem="2MO-Kk-OHk" secondAttribute="trailing" id="zKU-Vd-gID"/>
+                            <constraint firstAttribute="trailing" secondItem="2MO-Kk-OHk" secondAttribute="trailing" id="AAp-De-u3u"/>
+                            <constraint firstAttribute="bottom" secondItem="TaX-vz-Cbr" secondAttribute="bottom" id="S4K-wO-de2"/>
+                            <constraint firstItem="2MO-Kk-OHk" firstAttribute="top" secondItem="5GH-zu-DEb" secondAttribute="bottom" id="ZLc-qp-lyX"/>
+                            <constraint firstAttribute="trailing" secondItem="TaX-vz-Cbr" secondAttribute="trailing" id="aje-ve-9tN"/>
+                            <constraint firstItem="TaX-vz-Cbr" firstAttribute="top" secondItem="2MO-Kk-OHk" secondAttribute="bottom" id="oAU-Pi-L2a"/>
+                            <constraint firstItem="TaX-vz-Cbr" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leading" id="uHG-Hl-FOJ"/>
+                            <constraint firstItem="2MO-Kk-OHk" firstAttribute="leading" secondItem="Z31-3w-KvV" secondAttribute="leading" id="yMv-EB-Dxx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YbT-10-Owm"/>
