@@ -35,6 +35,7 @@
 		A1D3E9781DF508690019BEE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D3E9771DF508690019BEE2 /* GoogleService-Info.plist */; };
 		A1D6FB181DF128600077E90B /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6FB171DF1285F0077E90B /* Direction.swift */; };
 		A1D6FB1A1DF128C00077E90B /* Miscelaneas.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6FB191DF128C00077E90B /* Miscelaneas.swift */; };
+		A1EF24DA1DF7FE9B00487648 /* RouteStationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EF24D91DF7FE9B00487648 /* RouteStationCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		A1D3E9771DF508690019BEE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A1D6FB171DF1285F0077E90B /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		A1D6FB191DF128C00077E90B /* Miscelaneas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Miscelaneas.swift; sourceTree = "<group>"; };
+		A1EF24D91DF7FE9B00487648 /* RouteStationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteStationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */,
 				50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */,
 				50ADE4551DF655450081BFD2 /* customUI.swift */,
+				A1EF24D91DF7FE9B00487648 /* RouteStationCollectionViewCell.swift */,
 				50ADE4591DF80DB30081BFD2 /* directionTableViewCell.swift */,
 			);
 			name = View;
@@ -315,6 +318,7 @@
 				50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */,
 				50D258031DEE68A4009BDBC3 /* Station.swift in Sources */,
 				50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */,
+				A1EF24DA1DF7FE9B00487648 /* RouteStationCollectionViewCell.swift in Sources */,
 				A1618B751DF55D6500596049 /* CustomeStationMarkerView.swift in Sources */,
 				50ADE45A1DF80DB30081BFD2 /* directionTableViewCell.swift in Sources */,
 				50D257D61DED444E009BDBC3 /* RouteDetailViewController.swift in Sources */,
