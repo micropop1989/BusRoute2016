@@ -9,15 +9,14 @@
 import UIKit
 
 class directionTableViewCell: UITableViewCell {
-    @IBOutlet weak var stationLabel: UILabel!
-
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var numberOfBusLabel: UILabel!
-    override func awakeFromNib() {
+        override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    @IBOutlet weak var distanceLabel: UILabel!
 
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var arrivedLabel: UILabel!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
