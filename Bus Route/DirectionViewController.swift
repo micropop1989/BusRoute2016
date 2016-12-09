@@ -40,6 +40,7 @@ class DirectionViewController: UIViewController {
     var allPolylines = [GMSPolyline]()
     var selectedIndex = 0
     
+    var routeBound = GMSCoordinateBounds()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,8 @@ class DirectionViewController: UIViewController {
     }
     
     func showPath(){
+        routeBound = GMSCoordinateBounds()
+        
         for i in navi{
             let path = GMSPath(fromEncodedPath: i.overviewPolyline)
             
@@ -169,11 +172,17 @@ class DirectionViewController: UIViewController {
             
             allPolylines.append(polyline)
             
+            
+            routeBound = routeBound.includingCoordinate(i.southwest)
+            routeBound = routeBound.includingCoordinate(i.northeast)
+            
         }
         
         print("paths found : \(allPolylines.count)")
-        
         tableView.reloadData()
+        
+        selectNewPath(newIndex: 0)
+        
     }
     
     func selectNewPath(newIndex : Int){
@@ -196,9 +205,9 @@ class DirectionViewController: UIViewController {
         
         tableView.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
         
-        let path = navi[selectedIndex]
-        let bound = GMSCoordinateBounds(coordinate: path.southwest, coordinate: path.northeast)
-        let update = GMSCameraUpdate.fit(bound, withPadding: 20.0)
+        //        let path = navi[selectedIndex]
+        //        let bound = GMSCoordinateBounds(coordinate: path.southwest, coordinate: path.northeast)
+        let update = GMSCameraUpdate.fit(routeBound, withPadding: 10.0)
         mapView.moveCamera(update)
         
         
@@ -224,7 +233,7 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
         mapView.clear()
         setCurrentLocationMarker()
         let bound = GMSCoordinateBounds(coordinate: currentLocation, coordinate: place.coordinate)
-        let update = GMSCameraUpdate.fit(bound, withPadding: 20.0)
+        let update = GMSCameraUpdate.fit(bound, withPadding: 30.0)
         mapView.moveCamera(update)
         allPolylines = []
         navi = []
@@ -281,11 +290,11 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
         for step in temp.steps{
             str2 += ("\(step.travelMode) \(step.distance) ->")
         }
-       // cell.textLabel?.text = str
+        // cell.textLabel?.text = str
         cell.distanceLabel.text = temp.distance
         cell.arrivedLabel.text = temp.duration
         cell.tempLabel.text = str2
-       // cell.detailTextLabel?.text = str2
+        // cell.detailTextLabel?.text = str2
         
         cell.selectionStyle = .gray
         
@@ -297,6 +306,55 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
         self.selectNewPath(newIndex: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let frameSize = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40)
+        let footerView = UIView(frame: frameSize)
+        
+        let button = UIButton(frame: frameSize)
+        
+        if tableView.numberOfRows(inSection: section) > 0 {
+            
+            button.setTitle("GO", for: .normal)
+            button.backgroundColor = UIColor.green
+            button.addTarget(self, action: #selector(self.goPressed), for: .touchUpInside)
+        }else{
+            button.setTitle("Search...", for: .normal)
+            button.backgroundColor = UIColor.red
+            button.addTarget(self, action: #selector(self.searchPressed), for: .touchUpInside)
+        }
+        
+        button.layer.borderWidth = 2.0
+        button.layer.borderColor = UIColor.black.cgColor
+        
+        button.titleLabel?.font = button.titleLabel?.font.withSize(30.0)
+        
+        
+        footerView.addSubview(button)
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40.0
+    }
+    
+    
+    func searchPressed(){
+        print("search")
+    }
+    
+    func goPressed(){
+        print("Go")
+        performSegue(withIdentifier: "showNaviDetails", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNaviDetails" {
+            let vc = segue.destination as! NaviDetailsViewController
+            vc.path = navi[selectedIndex]
+        }
+    }
     
 }
 
