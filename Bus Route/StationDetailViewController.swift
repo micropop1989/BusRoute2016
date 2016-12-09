@@ -45,7 +45,7 @@ class StationDetailViewController: UIViewController {
     }
 
     func fetchRoute() {
-
+            buses = []
         frDBref.child("stations").child(stationID).child("route").observeSingleEvent(of: .value, with: { (routeSnapshot) in
             
             guard let routeDictionary = routeSnapshot.value as? [String: AnyObject]
