@@ -13,7 +13,7 @@ class StationTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        stationLabel.textColor  = UIColor.dodgerBlue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
