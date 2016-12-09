@@ -272,7 +272,7 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        guard let cell : directionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? directionTableViewCell
             else { return UITableViewCell() }
         
         let temp = navi[indexPath.row]
@@ -281,8 +281,11 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
         for step in temp.steps{
             str2 += ("\(step.travelMode) \(step.distance) ->")
         }
-        cell.textLabel?.text = str
-        cell.detailTextLabel?.text = str2
+       // cell.textLabel?.text = str
+        cell.distanceLabel.text = temp.distance
+        cell.arrivedLabel.text = temp.duration
+        cell.tempLabel.text = str2
+       // cell.detailTextLabel?.text = str2
         
         cell.selectionStyle = .gray
         
