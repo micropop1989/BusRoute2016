@@ -29,6 +29,7 @@
 		50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */; };
 		50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */; };
 		50D258031DEE68A4009BDBC3 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258021DEE68A4009BDBC3 /* Station.swift */; };
+		50EF153B1DFA71B4006810E3 /* ShowStationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */; };
 		A1618B731DF55AE200596049 /* StationMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1618B721DF55AE200596049 /* StationMarker.xib */; };
 		A1618B751DF55D6500596049 /* CustomeStationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */; };
 		A1CEFE3F1DF67418005C5018 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEFE3E1DF67418005C5018 /* CustomViewController.swift */; };
@@ -63,6 +64,7 @@
 		50D257D91DED6212009BDBC3 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		50D258021DEE68A4009BDBC3 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStationDetailViewController.swift; sourceTree = "<group>"; };
 		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
 		A1618B721DF55AE200596049 /* StationMarker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationMarker.xib; sourceTree = "<group>"; };
 		A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeStationMarkerView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */,
 				50C081A01DEEC4DE0066C355 /* StationDetailViewController.swift */,
 				A1CEFE3E1DF67418005C5018 /* CustomViewController.swift */,
+				50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				A1D6FB1A1DF128C00077E90B /* Miscelaneas.swift in Sources */,
 				50D257CA1DEC0CD9009BDBC3 /* BusTableViewCell.swift in Sources */,
 				50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */,
+				50EF153B1DFA71B4006810E3 /* ShowStationDetailViewController.swift in Sources */,
 				50ADE4561DF655450081BFD2 /* customUI.swift in Sources */,
 				50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */,
 			);
