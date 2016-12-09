@@ -336,7 +336,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="g8B-HB-ORJ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
