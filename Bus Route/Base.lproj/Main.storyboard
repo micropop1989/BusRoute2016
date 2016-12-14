@@ -558,9 +558,6 @@
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Z5-NK-Y1F">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="235" id="pLj-90-BxT"/>
-                                        </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteCell" rowHeight="94" id="rLd-MT-XQA" customClass="RouteTableViewCell" customModule="Bus_Route" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="94"/>
@@ -616,38 +613,40 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMq-9a-oMD">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMq-9a-oMD">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="65Z-Ox-1qD"/>
-                                            <constraint firstAttribute="height" constant="40" id="YC5-8l-R8f"/>
+                                            <constraint firstAttribute="width" constant="40" id="8Q9-xn-24H"/>
+                                            <constraint firstAttribute="height" constant="40" id="Bcq-Nz-Jtc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Close"/>
+                                        <state key="normal" title="Close" image="close"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="EHp-CU-yDn" firstAttribute="top" secondItem="u2g-KC-Nul" secondAttribute="bottom" constant="8" symbolic="YES" id="23I-Dj-hCf"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="leading" secondItem="EHp-CU-yDn" secondAttribute="leading" id="4rH-0B-WMP"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="top" secondItem="EHp-CU-yDn" secondAttribute="bottom" constant="20" id="7Fw-p3-DyI"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="centerX" secondItem="u2g-KC-Nul" secondAttribute="centerX" id="C6a-AU-3pY"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="trailing" secondItem="EHp-CU-yDn" secondAttribute="trailing" id="GOn-XG-LkS"/>
-                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="top" secondItem="9Z5-NK-Y1F" secondAttribute="bottom" constant="8" id="HCH-11-3fA"/>
-                                    <constraint firstItem="9Z5-NK-Y1F" firstAttribute="top" secondItem="EtM-v6-dfs" secondAttribute="bottom" constant="8" id="KoX-SZ-Exz"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Z5-NK-Y1F" secondAttribute="bottom" constant="8" id="4OO-eG-Tm0"/>
+                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="top" secondItem="EHp-CU-yDn" secondAttribute="top" id="EDv-qJ-NQN"/>
+                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="top" secondItem="FMq-9a-oMD" secondAttribute="bottom" constant="20" id="Fkg-n0-hkV"/>
+                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="leading" secondItem="zue-zO-Q6g" secondAttribute="leading" id="HzZ-UD-sPJ"/>
                                     <constraint firstItem="u2g-KC-Nul" firstAttribute="leading" secondItem="zue-zO-Q6g" secondAttribute="leading" id="LMI-KK-L0f"/>
-                                    <constraint firstItem="9Z5-NK-Y1F" firstAttribute="leading" secondItem="zue-zO-Q6g" secondAttribute="leading" id="MeC-bt-Yjn"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="trailing" secondItem="9Z5-NK-Y1F" secondAttribute="trailing" id="TwA-Cl-G7u"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="top" secondItem="zue-zO-Q6g" secondAttribute="top" constant="82" id="jdo-3z-mZY"/>
-                                    <constraint firstItem="EtM-v6-dfs" firstAttribute="leading" secondItem="9Z5-NK-Y1F" secondAttribute="leading" id="ny2-ga-ac6"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Z5-NK-Y1F" secondAttribute="trailing" id="sTT-mT-Bad"/>
-                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="centerX" secondItem="zue-zO-Q6g" secondAttribute="centerX" id="xkd-4h-wTH"/>
+                                    <constraint firstItem="9Z5-NK-Y1F" firstAttribute="leading" secondItem="zue-zO-Q6g" secondAttribute="leading" id="Sln-oc-0bm"/>
+                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="leading" secondItem="EHp-CU-yDn" secondAttribute="trailing" id="UJV-d8-dxN"/>
+                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="leading" secondItem="EHp-CU-yDn" secondAttribute="trailing" id="c2L-Af-0QH"/>
+                                    <constraint firstItem="FMq-9a-oMD" firstAttribute="bottom" secondItem="EHp-CU-yDn" secondAttribute="bottom" id="hCi-9m-Yx1"/>
+                                    <constraint firstAttribute="trailing" secondItem="EtM-v6-dfs" secondAttribute="trailing" id="iIC-GO-AbQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Z5-NK-Y1F" secondAttribute="trailing" id="l7g-Jj-OSt"/>
+                                    <constraint firstItem="u2g-KC-Nul" firstAttribute="top" secondItem="zue-zO-Q6g" secondAttribute="top" id="pIt-J2-OZY"/>
+                                    <constraint firstAttribute="trailing" secondItem="u2g-KC-Nul" secondAttribute="trailing" id="q4U-tx-WVk"/>
+                                    <constraint firstItem="9Z5-NK-Y1F" firstAttribute="top" secondItem="EtM-v6-dfs" secondAttribute="bottom" constant="8" id="rQd-MG-kMV"/>
+                                    <constraint firstAttribute="trailing" secondItem="FMq-9a-oMD" secondAttribute="trailing" id="vJx-hT-Bbx"/>
+                                    <constraint firstItem="EHp-CU-yDn" firstAttribute="top" secondItem="u2g-KC-Nul" secondAttribute="bottom" constant="8" id="w4A-bJ-tWe"/>
+                                    <constraint firstItem="EHp-CU-yDn" firstAttribute="leading" secondItem="zue-zO-Q6g" secondAttribute="leading" id="zUz-BH-bK2"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.23633413461538461" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="zue-zO-Q6g" firstAttribute="leading" secondItem="n8C-Kr-6PL" secondAttribute="leading" id="6an-wE-7lN"/>
-                            <constraint firstItem="UIt-zP-bM1" firstAttribute="top" secondItem="zue-zO-Q6g" secondAttribute="bottom" constant="150" id="TXp-II-I9q"/>
+                            <constraint firstItem="UIt-zP-bM1" firstAttribute="top" secondItem="zue-zO-Q6g" secondAttribute="bottom" id="TXp-II-I9q"/>
                             <constraint firstAttribute="trailing" secondItem="zue-zO-Q6g" secondAttribute="trailing" id="dSO-wp-jz3"/>
                             <constraint firstItem="zue-zO-Q6g" firstAttribute="top" secondItem="Fwr-Af-XKw" secondAttribute="bottom" constant="80" id="rts-Kk-WRW"/>
                         </constraints>
@@ -1211,6 +1210,7 @@
         <image name="busStn1" width="45" height="30"/>
         <image name="busstn" width="30" height="30"/>
         <image name="clock-1" width="20" height="20"/>
+        <image name="close" width="100" height="100"/>
         <image name="direaction" width="30" height="30"/>
         <image name="distance" width="30" height="30"/>
         <image name="dotWithScp" width="30" height="30"/>

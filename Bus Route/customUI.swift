@@ -65,7 +65,7 @@ extension UIColor {
     
     @nonobjc static let deepSkyBlue = UIColor(red:0.0/255, green:191.0/255, blue:255.0/255, alpha:1.0)
     
-    @nonobjc static let dodgerBlue = UIColor(red:30.0/255, green:144.0/255, blue:255.0/255, alpha:1.0)
+    @nonobjc static let dodgerBlue = UIColor(red:68.0/255, green:163.0/255, blue:211.0/255, alpha:1.0)
     
     @nonobjc static let lawnGreen = UIColor(red:124.0/255, green:252.0/255, blue:0.0/255, alpha:1.0)
     
