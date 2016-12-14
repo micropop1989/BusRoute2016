@@ -836,11 +836,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="92" id="bKr-6g-cLe" customClass="directionTableViewCell" customModule="Bus_Route" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKr-6g-cLe" id="9Vb-ZO-J9R">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="bKr-6g-cLe" id="9Vb-ZO-J9R">
                                             <frame key="frameInset" width="375" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9L-G8-7cq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9L-G8-7cq">
                                                     <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="vDV-eD-iWW"/>
@@ -849,31 +849,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xwo-XH-lsz">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xwo-XH-lsz">
                                                     <frame key="frameInset" width="359" height="30"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tu5-EI-Nmy">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tu5-EI-Nmy">
+                                                            <frame key="frameInset" width="180" height="30"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-rd-hGx">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="distance" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-rd-hGx">
+                                                                    <frame key="frameInset" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="nQC-rd-hGx" secondAttribute="height" multiplier="1:1" id="Pit-Gd-X14"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Nr-KoH">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Nr-KoH">
+                                                                    <frame key="frameInset" minX="30" width="150" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9B-sc-gWa">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9B-sc-gWa">
+                                                            <frame key="frameInset" minX="180" width="180" height="30"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="4es-St-Bsd">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="4es-St-Bsd">
+                                                                    <frame key="frameInset" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="4es-St-Bsd" secondAttribute="height" multiplier="1:1" id="R9l-LY-pXt"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-aI-0Vm">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-aI-0Vm">
+                                                                    <frame key="frameInset" minX="30" width="150" height="30"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -933,7 +939,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pl6-Re-JKB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Direction" image="direaction" id="nuD-lj-cLA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0mc-ZK-HfO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0mc-ZK-HfO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -952,7 +958,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mac-xe-UCD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Station" image="busstn" id="Gnk-dN-70d"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGO-CJ-dpL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dGO-CJ-dpL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -981,21 +987,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="naviDetailCell" textLabel="EP8-0l-ucL" detailTextLabel="BAK-2n-jG2" style="IBUITableViewCellStyleSubtitle" id="KXu-pJ-aBr">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="175" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KXu-pJ-aBr" id="Rl1-aq-WD8">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="175" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EP8-0l-ucL">
-                                                    <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EP8-0l-ucL">
+                                                    <frame key="frameInset" minX="15" minY="9" width="20" height="11"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BAK-2n-jG2">
-                                                    <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                                    <frame key="frameInset" minX="15" minY="20" width="44" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -1006,17 +1012,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqc-G6-s0g" customClass="GMSMapView">
+                                <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Wqc-G6-s0g" firstAttribute="top" secondItem="baY-ZW-2y4" secondAttribute="bottom" id="3lC-h4-30M"/>
+                            <constraint firstItem="TPw-9x-23H" firstAttribute="top" secondItem="Wqc-G6-s0g" secondAttribute="bottom" id="4Lh-ze-39r"/>
                             <constraint firstItem="TPw-9x-23H" firstAttribute="top" secondItem="ZKu-8L-Mae" secondAttribute="bottom" id="4v2-dh-LIh"/>
-                            <constraint firstItem="ZKu-8L-Mae" firstAttribute="leading" secondItem="Jh0-n8-N5f" secondAttribute="leading" id="55t-jr-6h6"/>
+                            <constraint firstItem="ZKu-8L-Mae" firstAttribute="leading" secondItem="Jh0-n8-N5f" secondAttribute="leading" constant="200" id="55t-jr-6h6"/>
                             <constraint firstItem="ZKu-8L-Mae" firstAttribute="top" secondItem="baY-ZW-2y4" secondAttribute="bottom" id="8p3-To-TuQ"/>
+                            <constraint firstItem="ZKu-8L-Mae" firstAttribute="leading" secondItem="Wqc-G6-s0g" secondAttribute="trailing" id="BwQ-46-htG"/>
                             <constraint firstAttribute="trailing" secondItem="ZKu-8L-Mae" secondAttribute="trailing" id="MWr-5H-7Rc"/>
+                            <constraint firstItem="Wqc-G6-s0g" firstAttribute="leading" secondItem="Jh0-n8-N5f" secondAttribute="leading" id="bP6-cQ-Sms"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="naviDetailTableView" destination="ZKu-8L-Mae" id="HAM-NG-DoT"/>
+                        <outlet property="naviMapView" destination="Wqc-G6-s0g" id="JDH-wz-ick"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rw-at-caT" userLabel="First Responder" sceneMemberID="firstResponder"/>
