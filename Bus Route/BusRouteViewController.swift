@@ -23,6 +23,8 @@ class BusRouteViewController: UIViewController {
     var stations : [Station] = []
     var frDBref : FIRDatabaseReference!
     var routeID : String?
+    var selectedIndexPath = IndexPath(item: 0, section: 0)
+
     
     
     @IBOutlet weak var stationCollectionView: UICollectionView! {
@@ -39,6 +41,8 @@ class BusRouteViewController: UIViewController {
         self.title = "\((bus?.busNumber)!)"
         destinationLabel.text = bus?.busTitle
         
+        routeMapView.delegate = self
+        
         //fetchdata
         frDBref = FIRDatabase.database().reference()
         fetchRoute()
@@ -54,21 +58,21 @@ class BusRouteViewController: UIViewController {
         
         
         
-//        let gradient = CAGradientLayer(layer: stationCollectionView)
-//        
-//        gradient.frame = stationCollectionView.bounds
-//        gradient.colors = [UIColor.white.withAlphaComponent(0), UIColor.white, UIColor.white.withAlphaComponent(0)]
-//        // Here, percentage would be the percentage of the collection view
-//        // you wish to blur from the top. This depends on the relative sizes
-//        // of your collection view and the header.
-//        gradient.locations = [0.0, 0.5, 1.0]
-//        gradient.isOpaque = false
-//        gradient.opacity = 0.5
-//        //stationCollectionView.layer.mask = gradient
-//        //stationCollectionView.layer.addSublayer(gradient)
-//        //stationCollectionView.layerWillDraw(gradient)
-//        stationCollectionView.layer.mask = gradient
-//        //stationCollectionView.mask? = gradient
+        //        let gradient = CAGradientLayer(layer: stationCollectionView)
+        //
+        //        gradient.frame = stationCollectionView.bounds
+        //        gradient.colors = [UIColor.white.withAlphaComponent(0), UIColor.white, UIColor.white.withAlphaComponent(0)]
+        //        // Here, percentage would be the percentage of the collection view
+        //        // you wish to blur from the top. This depends on the relative sizes
+        //        // of your collection view and the header.
+        //        gradient.locations = [0.0, 0.5, 1.0]
+        //        gradient.isOpaque = false
+        //        gradient.opacity = 0.5
+        //        //stationCollectionView.layer.mask = gradient
+        //        //stationCollectionView.layer.addSublayer(gradient)
+        //        //stationCollectionView.layerWillDraw(gradient)
+        //        stationCollectionView.layer.mask = gradient
+        //        //stationCollectionView.mask? = gradient
     }
     
     
@@ -114,17 +118,24 @@ class BusRouteViewController: UIViewController {
     func showStationOnMap(){
         let path = GMSMutablePath()
         
-        routeMapView.animate(toLocation: stations[0].mapMarker.position)
-        routeMapView.animate(toZoom: 12.5)
         
-        let icon = UIImage(named: "maker50")
+        let camera = GMSCameraPosition.camera(withTarget: stations[0].mapMarker.position , zoom: 12.5)
         
-        for i in stations{
-            i.mapMarker.icon = icon
-            i.mapMarker.opacity = 0.3
-            i.mapMarker.map = routeMapView
+        routeMapView.camera = camera
+        
+        //routeMapView.animate(toLocation: stations[0].mapMarker.position)
+        //        routeMapView.animate(toZoom: 12.5)
+        
+        let icon = UIImage(named: "maker30")
+        
+        for i in 0..<(stations.count) {
+            let tempStat = stations[i]
+            tempStat.mapMarker.icon = icon
+            tempStat.mapMarker.opacity = 0.3
+            tempStat.mapMarker.map = routeMapView
+            tempStat.mapMarker.userData = i
             
-            path.add(i.mapMarker.position)
+            path.add(tempStat.mapMarker.position)
         }
         
         let polyline = GMSPolyline(path: path)
@@ -183,7 +194,7 @@ extension BusRouteViewController : UICollectionViewDataSource, UICollectionViewD
         }
         else{
             guard let dequeueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? RouteStationCollectionViewCell
-            else{ return UICollectionViewCell() }
+                else{ return UICollectionViewCell() }
             cell = dequeueCell
         }
         
@@ -202,7 +213,7 @@ extension BusRouteViewController : UICollectionViewDataSource, UICollectionViewD
         }
         
         cell.dotImage.image = UIImage(named: "dotWithScp")
-        if cell.isSelected {
+        if indexPath == selectedIndexPath {
             cell.dotImage.image = UIImage(named: "dot")
         }
         
@@ -210,44 +221,89 @@ extension BusRouteViewController : UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
+        
         let CellWidth : CGFloat = 50.0
-            let collectionViewWidth = collectionView.frame.size.width
-            let inset = collectionViewWidth / 2.0 - CellWidth / 2.0
-
-            return UIEdgeInsetsMake(0, inset, 0, inset)
+        let collectionViewWidth = collectionView.frame.size.width
+        let inset = collectionViewWidth / 2.0 - CellWidth / 2.0
+        
+        return UIEdgeInsetsMake(0, inset, 0, inset)
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        actionDeselectCell(at: selectedIndexPath, from: collectionView)
+        actionSelectCell(at: indexPath, from: collectionView)
+    }
+    
+
+    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //
+    //        print("move")
+    //    }
+    
+    func actionSelectCell(at indexPath : IndexPath,from cv : UICollectionView?){
+        
+        let collectionView : UICollectionView
+        
+        if cv != nil {
+            collectionView = cv!
+        }
+        else {
+            collectionView = stationCollectionView
+        }
+        
         
         let selectedCell = collectionView.cellForItem(at: indexPath) as? RouteStationCollectionViewCell
         selectedCell?.dotImage.image = UIImage(named: "dot")
         
         let selectedStation = stations[indexPath.row]
+ 
         routeMapView.animate(toLocation: selectedStation.mapMarker.position )
         routeMapView.animate(toZoom: 14.0)
+    
         selectedStation.mapMarker.opacity = 1.0
         
+        selectedIndexPath = indexPath
+        
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("deselect")
+    func actionDeselectCell(at indexPath : IndexPath,from cv : UICollectionView?){
+        
+        let collectionView : UICollectionView
+        
+        if cv != nil {
+            collectionView = cv!
+        }
+        else {
+            collectionView = stationCollectionView
+        }
         
         let deselectedCell = collectionView.cellForItem(at: indexPath) as? RouteStationCollectionViewCell
         deselectedCell?.dotImage.image = UIImage(named: "dotWithScp")
         
         let deselectedStation = stations[indexPath.row]
         deselectedStation.mapMarker.opacity = 0.3
+        
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        print("move")
-//    }
-    
 }
 
+
+extension BusRouteViewController : GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        
+        let index = marker.userData as? Int
+        let indexPath = IndexPath(item: index!, section: 0)
+        
+        
+        
+        actionDeselectCell(at: selectedIndexPath, from: stationCollectionView)
+        actionSelectCell(at: indexPath, from: stationCollectionView)
+        
+        
+        return true
+    }
+}

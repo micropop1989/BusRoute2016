@@ -87,6 +87,11 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         }else{
             //walking
             if let substep = step.substeps?[indexPath.row] {
+                if let maneuver = substep.maneuver {
+                    cell.imageView?.image = UIImage(named: maneuver)
+                } else {
+                    cell.imageView?.image = UIImage()
+                }
                 cell.textLabel?.text = substep.instruction
                 cell.detailTextLabel?.text = "\(substep.distance)  \(substep.duration) \(substep.travelMode)"
             }
