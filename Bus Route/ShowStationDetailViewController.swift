@@ -21,6 +21,22 @@ class ShowStationDetailViewController: UIViewController {
     var stations : [Station] = []
     var bus : Bus?
     var id : String?
+    var delegate: ShowStationDetailViewControllerDelegate?
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton! {
+        didSet {
+            closeButton.addTarget(self, action: #selector(onCloseButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    func handleTap(tapGesture: UITapGestureRecognizer) {
+        delegate?.close(viewController: self)
+    }
+    
+    func onCloseButtonPressed(button: UIButton) {
+        delegate?.close(viewController: self)
+    }
     
     @IBOutlet weak var nextStationLabel: UILabel!
    
@@ -39,11 +55,15 @@ class ShowStationDetailViewController: UIViewController {
         super.viewDidLoad()
 //stationID = id!
 //        routesID = (bus?.routeID)!
+        setTitleLable()
+        setCloseButton()
         
         frDBref = FIRDatabase.database().reference()
         nextStationLabel.textColor = UIColor.dodgerBlue
       //  fetchData()
         fetchStation()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -196,10 +216,26 @@ extension ShowStationDetailViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func setTitleLable() {
+        titleLabel.backgroundColor = UIColor.dodgerBlue
+        titleLabel.textColor = UIColor.white
+        
+    }
     
+    func setCloseButton() {
+        closeButton.layer.borderColor = UIColor.dodgerBlue.cgColor
+        closeButton.layer.borderWidth = 2
+        closeButton.tintColor = UIColor.dodgerBlue
+        closeButton.layer.cornerRadius =    5
+    }
 
 }
 
 extension ShowStationDetailViewController: UICollectionViewDelegate {
     
+}
+
+
+protocol ShowStationDetailViewControllerDelegate {
+    func close(viewController: ShowStationDetailViewController)
 }

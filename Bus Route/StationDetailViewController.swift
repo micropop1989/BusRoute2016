@@ -18,11 +18,14 @@ class StationDetailViewController: UIViewController {
     var buses : [Bus] = []
     var stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
     var station : Station?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
       stationDetailTable.delegate = self
       stationDetailTable.dataSource = self
+      
+  //    ShowStationDetailViewController.delegate = self
    frDBref = FIRDatabase.database().reference()
         
         stationDetailTable.tableFooterView = UIView()
@@ -30,10 +33,15 @@ class StationDetailViewController: UIViewController {
         stationDetailTable.estimatedRowHeight = 99.0
         
         stationDetailTable.separatorColor = .blue
+        
+      
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         
         guard let id = station?.stationID
             else{ return }
@@ -97,11 +105,14 @@ extension StationDetailViewController: UITableViewDelegate {
         
         controller.stationID = stationID
         controller.routesID = buses[indexPath.row-1].routeID
-
+        controller.delegate = self
+        
         
         
         addChildViewController(controller)
-        controller.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.5)
+        let height : CGFloat = self.view.frame.height * 0.5
+        //controller.view.frame = CGRect(x: 0, y: height-150, width: self.view.frame.width, height: height)
+        controller.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height)
         view.addSubview((controller.view)!)
         controller.didMove(toParentViewController: self)
        
@@ -142,5 +153,13 @@ extension StationDetailViewController: UITableViewDataSource {
             
         }
 
+    }
+}
+
+extension StationDetailViewController: ShowStationDetailViewControllerDelegate {
+    func close(viewController: ShowStationDetailViewController) {
+     viewController.willMove(toParentViewController: nil)
+     viewController.view.removeFromSuperview()
+     viewController.removeFromParentViewController()
     }
 }
