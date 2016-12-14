@@ -28,6 +28,8 @@ class CustomeStationMarkerView: UIView {
         //paraView.transform = CGAffineTransform(rotationAngle: -0.09)
         paraView.layer.borderWidth = 1.0
         paraView.layer.borderColor = UIColor.orange.cgColor
+        paraView.navigationLinksHidden = true
+        
     }
     
     @IBAction func showDetailsButtonTapped(_ sender: AnyObject) {
