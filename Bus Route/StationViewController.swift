@@ -327,9 +327,9 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             row = index / numberOfSlot
             
             let x =  CGFloat(col) * (slotWidth + slotSpacing)
-            let y =  CGFloat(row) * 45.0
+            let y =  CGFloat(row) * 35.0
             
-            let rect = CGRect(x: x , y: y, width: slotWidth, height: 40)
+            let rect = CGRect(x: x , y: y, width: slotWidth, height: 30)
             let lable : UILabel = UILabel(frame: rect)
             
             
@@ -343,7 +343,8 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             }
             
             
-            lable.layer.borderWidth = 2.0
+            lable.textColor = UIColor.dodgerBlue
+            lable.layer.borderWidth = 2.5
             lable.layer.borderColor = UIColor.dodgerBlue.cgColor
             lable.layer.cornerRadius = 8.0
             lable.textAlignment = .center

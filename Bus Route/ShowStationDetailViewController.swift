@@ -44,13 +44,13 @@ class ShowStationDetailViewController: UIViewController {
     var stationID = "ChIJG38s6Nw1zDERcPotrSj5sVY"
     
     
-    @IBOutlet weak var stationCollectionView: UICollectionView! {
+    
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            stationCollectionView.dataSource = self
-            stationCollectionView.delegate = self
+            tableView.delegate = self
+            tableView.dataSource = self
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //stationID = id!
@@ -60,6 +60,10 @@ class ShowStationDetailViewController: UIViewController {
         
         frDBref = FIRDatabase.database().reference()
         nextStationLabel.textColor = UIColor.dodgerBlue
+        
+        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 99.0
       //  fetchData()
         fetchStation()
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -124,7 +128,7 @@ class ShowStationDetailViewController: UIViewController {
             let stationBefore : String
             let stationAfter  : String
             
-            if (index == 0) {
+          /*  if (index == 0) {
                 stationAfter = stationArray[index! + 1]
             }
             else if (index == lastindex) {
@@ -135,7 +139,7 @@ class ShowStationDetailViewController: UIViewController {
             }
             
             
-            
+            */
             
             self.numberOfnextStation = stationArray.count-index!-1
             
@@ -164,7 +168,7 @@ class ShowStationDetailViewController: UIViewController {
                     //newStation.address = stationDictionary["address"] as? String
                     self.stations.append(newStation)
                     }
-                    self.stationCollectionView.reloadData()
+                    self.tableView.reloadData()
                 
                 
                     //dispatchGp.leave()
@@ -176,45 +180,51 @@ class ShowStationDetailViewController: UIViewController {
     
 }
 
-extension ShowStationDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension ShowStationDetailViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stations.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : RouteStationCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : RouteTableViewCell
         
-        
-        if let dequeueCell = collectionView.cellForItem(at: indexPath) as? RouteStationCollectionViewCell{
+        if let dequeueCell = tableView.cellForRow(at: indexPath) as?
+            RouteTableViewCell {
             cell = dequeueCell
         }
+        
+        
         else{
-            guard let dequeueCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? RouteStationCollectionViewCell
-                else{ return UICollectionViewCell() }
-            cell = dequeueCell
+            cell = tableView.dequeueReusableCell(withIdentifier: "RouteCell", for: indexPath) as! RouteTableViewCell
         }
         
-        let stop = stations[indexPath.row]
+        let station = stations[indexPath.row]
+        // routeCell.IDLabel.text = station.stationID
         
-        cell.nameLabel.text = stop.address
-        //cell.nameLabel.text = stop.stationID
-        cell.leftImage.isHidden = false
-        cell.rightImage.isHidden = false
+        cell.routeLabel.text = station.address
+        cell.selectionStyle = .none
+        
+        cell.upperRouteImage.isHidden = false
+        cell.lowerRouteImage.isHidden = false
         
         if indexPath.row == 0 {
-            cell.leftImage.isHidden = true
+            cell.upperRouteImage.isHidden = true
         }
-        if indexPath.row == stations.count - 1 {
-            cell.rightImage.isHidden = true
+        if indexPath.row == self.stations.count-1 {
+            cell.lowerRouteImage.isHidden = true
         }
         
-        cell.dotImage.image = UIImage(named: "dotWithScp")
-        if cell.isSelected {
-            cell.dotImage.image = UIImage(named: "dot")
-        }
+        cell.dotImage.image = UIImage(named: "dotWithScp")!
+       // if indexPath == selectedIndexPath {
+         //   cell.dotImage.image = UIImage(named: "dot")!
+        
         
         return cell
+
     }
+    
+    
     
     func setTitleLable() {
         titleLabel.backgroundColor = UIColor.dodgerBlue
@@ -231,7 +241,7 @@ extension ShowStationDetailViewController: UICollectionViewDataSource {
 
 }
 
-extension ShowStationDetailViewController: UICollectionViewDelegate {
+extension ShowStationDetailViewController: UITableViewDelegate {
     
 }
 
