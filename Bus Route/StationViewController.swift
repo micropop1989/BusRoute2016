@@ -356,9 +356,9 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             }
             
             
-            lable.textColor = UIColor.deepSkyBlue
+            lable.textColor = UIColor.dodgerBlue
             lable.layer.borderWidth = 2.5
-            lable.layer.borderColor = UIColor.deepSkyBlue.cgColor
+            lable.layer.borderColor = UIColor.dodgerBlue.cgColor
             lable.layer.cornerRadius = 8.0
             lable.textAlignment = .center
             lable.font = lable.font.withSize(15)
