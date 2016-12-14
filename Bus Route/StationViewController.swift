@@ -390,6 +390,67 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         selectMarker(at: indexPath.row, marker: selectedStation.mapMarker)
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        
+        let loadedView = Bundle.main.loadNibNamed("StationTableHeader", owner: self, options: nil)
+        if loadedView?.count == 0{
+            return UIView()
+        }else{
+            let headerView = loadedView?.first as? StationTableHeaderView
+            headerView?.delegate = self
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            headerView?.addGestureRecognizer(panGesture)
+            
+            return headerView
+        }
+    }
+    
+    
+    
+    @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+            
+            
+            let translation = gestureRecognizer.translation(in: stationTableView)
+            // note: 'view' is optional and need to be unwrapped
+//            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
+            
+            let rect = stationTableView.frame
+            
+            print(rect)
+            let x = rect.origin.x
+            let y = rect.origin.y + translation.y
+            let width = rect.size.width
+            let height = rect.size.height - translation.y
+            
+            let newRect = CGRect(x: x, y: y, width: width, height: height)
+            
+            
+            let heightConstraint : NSLayoutConstraint
+            for constraint in stationTableView.constraints {
+                if (constraint.firstAttribute == NSLayoutAttributeHeight) {
+                    heightConstraint = constraint;
+                    break
+                }
+            }
+            
+            heightConstraint.constant = 100;
+            
+            
+            stationTableView.frame = newRect
+            //print(translation.y)
+            
+            
+            gestureRecognizer.setTranslation(CGPoint.zero, in: stationTableView)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60.0
+    }
+    
 }
 
 extension StationViewController : StationMarkerDelegate{
@@ -410,6 +471,12 @@ extension StationViewController : StationMarkerDelegate{
         
     }
     
+}
+
+extension StationViewController : StationTableHeaderDelegate{
+    func tableHeaderButtonPressed() {
+    print ("tapped")
+    }
 }
 
 extension StationViewController : StnTableViewCellDelegate {
