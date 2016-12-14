@@ -23,7 +23,7 @@ class StationDetailViewController: UIViewController {
         super.viewDidLoad()
       stationDetailTable.delegate = self
       stationDetailTable.dataSource = self
-      frDBref = FIRDatabase.database().reference()
+   frDBref = FIRDatabase.database().reference()
         
         stationDetailTable.tableFooterView = UIView()
         stationDetailTable.rowHeight = UITableViewAutomaticDimension
@@ -68,6 +68,7 @@ class StationDetailViewController: UIViewController {
                     }
                     newBus.busNumber = busDictionary["line"] as? String
                     newBus.busTitle = busDictionary["direction"] as? String
+                    newBus.routeID = routeKey as? String
                     self.buses.append(newBus)
                     self.stationDetailTable.reloadData()
                     
@@ -89,7 +90,28 @@ class StationDetailViewController: UIViewController {
 
 
 extension StationDetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ShowStationDetailViewController") as! ShowStationDetailViewController
+        
+        controller.stationID = stationID
+        controller.routesID = buses[indexPath.row-1].routeID
+
+        
+        
+        addChildViewController(controller)
+        controller.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.5)
+        view.addSubview((controller.view)!)
+        controller.didMove(toParentViewController: self)
+       
+        
+        
+        
+        
+
+        
+    }
 }
 
 extension StationDetailViewController: UITableViewDataSource {
