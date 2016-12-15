@@ -514,7 +514,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             }else if height < ((60.0 + maxY)*3/4) {
                 height = maxY/2
             }else {
-                height = maxY - 5.0
+                height = maxY - 1.0
                 
                 headerView?.headerButton.setTitle("down", for: .normal)
             }
@@ -559,10 +559,10 @@ extension StationViewController : StationTableHeaderDelegate{
         
         if (button.currentTitle! == "down") {
             heightConstraint.constant = 60
-            headerView?.headerButton.setTitle("down", for: .normal)
-        } else if (button.currentTitle! == "up"){
-            heightConstraint.constant = maxY - 5.0
             headerView?.headerButton.setTitle("up", for: .normal)
+        } else if (button.currentTitle! == "up"){
+            heightConstraint.constant = maxY - 1.0
+            headerView?.headerButton.setTitle("down", for: .normal)
         }else{
             print("error : button error")
         }
