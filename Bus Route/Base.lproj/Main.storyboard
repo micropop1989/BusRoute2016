@@ -36,7 +36,7 @@
                                             <frame key="frameInset" width="375" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busStn1" translatesAutoresizingMaskIntoConstraints="NO" id="VUu-7t-PET">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busstn2" translatesAutoresizingMaskIntoConstraints="NO" id="VUu-7t-PET">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="TRA-ta-0i4"/>
                                                         <constraint firstAttribute="width" constant="45" id="n0L-v0-vJs"/>
@@ -56,7 +56,7 @@
                                                                         <constraint firstAttribute="width" constant="30" id="fgf-42-KSJ"/>
                                                                         <constraint firstAttribute="width" secondItem="etg-yX-8Rw" secondAttribute="height" multiplier="1:1" id="w8H-18-u6Y"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button" image="info"/>
+                                                                    <state key="normal" title="Button" image="info2"/>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -64,7 +64,7 @@
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KGg-Ex-Rvf">
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xfU-Ne-ZQK">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus2" translatesAutoresizingMaskIntoConstraints="NO" id="xfU-Ne-ZQK">
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="CnK-Lg-BmN"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="i32-9W-rmN"/>
@@ -186,7 +186,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9vz-Xn-fIA">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus2" translatesAutoresizingMaskIntoConstraints="NO" id="9vz-Xn-fIA">
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="qoh-vh-oYN"/>
                                                                 <constraint firstAttribute="width" secondItem="9vz-Xn-fIA" secondAttribute="height" multiplier="1:1" id="xaG-IV-7SQ"/>
@@ -420,7 +420,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busStn1" translatesAutoresizingMaskIntoConstraints="NO" id="KpK-SA-uok">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busstn2" translatesAutoresizingMaskIntoConstraints="NO" id="KpK-SA-uok">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="GZu-8E-Ndm"/>
                                                         <constraint firstAttribute="height" constant="45" id="HJl-Do-O64"/>
@@ -449,18 +449,15 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwT-xd-JCR">
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-J1-dLb">
+                                                        <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-J1-dLb">
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xbE-89-P7j">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus2" translatesAutoresizingMaskIntoConstraints="NO" id="xbE-89-P7j">
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="xbE-89-P7j" secondAttribute="height" multiplier="1:1" id="aJC-e3-eId"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="q9U-xg-9Xs"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="8DL-V3-mzs"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="92K-Pz-WSz"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-L8-S4f">
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="60" id="HgL-Qg-eyv"/>
-                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -468,13 +465,14 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="xbE-89-P7j" secondAttribute="bottom" constant="4" id="0U3-Hg-Xkk"/>
-                                                                <constraint firstItem="xbE-89-P7j" firstAttribute="leading" secondItem="2FB-J1-dLb" secondAttribute="leading" constant="8" id="MNX-6U-bqA"/>
-                                                                <constraint firstItem="xbE-89-P7j" firstAttribute="top" secondItem="2FB-J1-dLb" secondAttribute="top" constant="8" id="dfo-ec-You"/>
-                                                                <constraint firstItem="N1A-L8-S4f" firstAttribute="leading" secondItem="xbE-89-P7j" secondAttribute="trailing" id="h6t-hk-7ur"/>
-                                                                <constraint firstItem="N1A-L8-S4f" firstAttribute="top" secondItem="xbE-89-P7j" secondAttribute="top" id="nRX-BJ-6I7"/>
-                                                                <constraint firstAttribute="trailing" secondItem="N1A-L8-S4f" secondAttribute="trailing" constant="8" id="pPa-P1-J7C"/>
-                                                                <constraint firstAttribute="bottom" secondItem="N1A-L8-S4f" secondAttribute="bottom" constant="4" id="xed-OP-Y6k"/>
+                                                                <constraint firstItem="xbE-89-P7j" firstAttribute="top" secondItem="2FB-J1-dLb" secondAttribute="top" constant="8" id="5CE-Uk-Jmw"/>
+                                                                <constraint firstAttribute="height" constant="48" id="80k-4W-fQ5"/>
+                                                                <constraint firstAttribute="width" constant="114" id="G6b-cl-S5l"/>
+                                                                <constraint firstItem="xbE-89-P7j" firstAttribute="leading" secondItem="2FB-J1-dLb" secondAttribute="leading" constant="8" id="JTq-2X-N4h"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xbE-89-P7j" secondAttribute="bottom" constant="8" id="bMj-Jn-X0e"/>
+                                                                <constraint firstItem="N1A-L8-S4f" firstAttribute="leading" secondItem="xbE-89-P7j" secondAttribute="trailing" priority="999" id="oxo-sj-kL5"/>
+                                                                <constraint firstItem="N1A-L8-S4f" firstAttribute="centerY" secondItem="xbE-89-P7j" secondAttribute="centerY" id="uNB-1H-vxf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="N1A-L8-S4f" secondAttribute="trailing" constant="8" id="yTW-mf-wqJ"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-jq-BgK">
@@ -485,13 +483,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yQO-jq-BgK" secondAttribute="bottom" id="Kfl-0N-dzZ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="2FB-J1-dLb" secondAttribute="bottom" constant="8" id="L8u-rb-foo"/>
-                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="leading" secondItem="2FB-J1-dLb" secondAttribute="trailing" constant="4" id="NTf-mb-YZj"/>
-                                                        <constraint firstItem="2FB-J1-dLb" firstAttribute="leading" secondItem="xwT-xd-JCR" secondAttribute="leading" constant="8" id="QJZ-ZB-t1g"/>
+                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="top" secondItem="2FB-J1-dLb" secondAttribute="top" id="4PE-Hq-QeF"/>
+                                                        <constraint firstItem="2FB-J1-dLb" firstAttribute="top" secondItem="xwT-xd-JCR" secondAttribute="top" constant="4" id="PaB-Wk-to0"/>
+                                                        <constraint firstItem="2FB-J1-dLb" firstAttribute="leading" secondItem="xwT-xd-JCR" secondAttribute="leading" constant="8" id="PdQ-Dh-iXI"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yQO-jq-BgK" secondAttribute="bottom" constant="24" id="kSU-Ma-zPP"/>
                                                         <constraint firstAttribute="trailing" secondItem="yQO-jq-BgK" secondAttribute="trailing" constant="8" id="liT-sL-5n7"/>
-                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="top" secondItem="2FB-J1-dLb" secondAttribute="top" id="mJl-AV-7EP"/>
-                                                        <constraint firstItem="2FB-J1-dLb" firstAttribute="top" secondItem="xwT-xd-JCR" secondAttribute="top" constant="4" id="rda-vo-CfW"/>
+                                                        <constraint firstItem="yQO-jq-BgK" firstAttribute="leading" secondItem="2FB-J1-dLb" secondAttribute="trailing" constant="8" id="zjE-Of-8a8"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -525,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njt-1q-K6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="1857"/>
+            <point key="canvasLocation" x="1596" y="1856.2218890554725"/>
         </scene>
         <!--Show Station Detail View Controller-->
         <scene sceneID="GMg-sE-qTW">
@@ -618,7 +615,7 @@
                                             <constraint firstAttribute="width" constant="40" id="8Q9-xn-24H"/>
                                             <constraint firstAttribute="height" constant="40" id="Bcq-Nz-Jtc"/>
                                         </constraints>
-                                        <state key="normal" title="Close" image="close"/>
+                                        <state key="normal" title="Close" image="close2"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -811,9 +808,9 @@
         <scene sceneID="kr2-ZI-n4q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jb8-Oq-TdN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bus" image="bus" id="03N-Oq-Grk"/>
+                    <tabBarItem key="tabBarItem" title="Bus" image="busicon(dark)" selectedImage="busicon(white)" id="03N-Oq-Grk"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Mcz-X7-oe7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mcz-X7-oe7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -850,11 +847,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="92" id="bKr-6g-cLe" customClass="directionTableViewCell" customModule="Bus_Route" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="bKr-6g-cLe" id="9Vb-ZO-J9R">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKr-6g-cLe" id="9Vb-ZO-J9R">
                                             <frame key="frameInset" width="375" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9L-G8-7cq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9L-G8-7cq">
                                                     <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="vDV-eD-iWW"/>
@@ -863,37 +860,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xwo-XH-lsz">
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xwo-XH-lsz">
                                                     <frame key="frameInset" width="359" height="30"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tu5-EI-Nmy">
-                                                            <frame key="frameInset" width="180" height="30"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tu5-EI-Nmy">
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="distance" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-rd-hGx">
-                                                                    <frame key="frameInset" width="30" height="30"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-rd-hGx">
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="nQC-rd-hGx" secondAttribute="height" multiplier="1:1" id="Pit-Gd-X14"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Nr-KoH">
-                                                                    <frame key="frameInset" minX="30" width="150" height="30"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut8-Nr-KoH">
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9B-sc-gWa">
-                                                            <frame key="frameInset" minX="180" width="180" height="30"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9B-sc-gWa">
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="clock-1" translatesAutoresizingMaskIntoConstraints="NO" id="4es-St-Bsd">
-                                                                    <frame key="frameInset" width="30" height="30"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="4es-St-Bsd">
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="4es-St-Bsd" secondAttribute="height" multiplier="1:1" id="R9l-LY-pXt"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-aI-0Vm">
-                                                                    <frame key="frameInset" minX="30" width="150" height="30"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-aI-0Vm">
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -951,9 +942,9 @@
         <scene sceneID="bq5-gX-QLh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pl6-Re-JKB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Direction" image="direaction" id="nuD-lj-cLA"/>
+                    <tabBarItem key="tabBarItem" title="Direction" image="direction(Dark)" selectedImage="direction(white)" id="nuD-lj-cLA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0mc-ZK-HfO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0mc-ZK-HfO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -970,9 +961,9 @@
         <scene sceneID="tjY-Fm-dzK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mac-xe-UCD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Station" image="busstn" id="Gnk-dN-70d"/>
+                    <tabBarItem key="tabBarItem" title="Station" image="bus-stop(dark)" selectedImage="bus-stop(white)" id="Gnk-dN-70d"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dGO-CJ-dpL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGO-CJ-dpL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1213,16 +1204,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bus" width="30" height="30"/>
-        <image name="busIcon" width="30" height="30"/>
-        <image name="busStn1" width="45" height="30"/>
-        <image name="busstn" width="30" height="30"/>
-        <image name="clock-1" width="20" height="20"/>
-        <image name="close" width="100" height="100"/>
-        <image name="direaction" width="30" height="30"/>
+        <image name="bus-stop(dark)" width="32" height="32"/>
+        <image name="bus-stop(white)" width="32" height="32"/>
+        <image name="bus2" width="100" height="100"/>
+        <image name="busicon(dark)" width="32" height="32"/>
+        <image name="busicon(white)" width="32" height="32"/>
+        <image name="busstn2" width="156" height="100"/>
+        <image name="clock" width="100" height="100"/>
+        <image name="close2" width="100" height="100"/>
+        <image name="direction(Dark)" width="32" height="32"/>
+        <image name="direction(white)" width="32" height="32"/>
         <image name="distance" width="30" height="30"/>
         <image name="dotWithScp" width="30" height="30"/>
-        <image name="info" width="30" height="30"/>
+        <image name="info2" width="100" height="100"/>
         <image name="main_background" width="3840" height="2160"/>
         <image name="maker50" width="39" height="50"/>
         <image name="route" width="30" height="65"/>
