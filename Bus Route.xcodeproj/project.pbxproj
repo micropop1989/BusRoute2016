@@ -30,6 +30,8 @@
 		50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */; };
 		50D258031DEE68A4009BDBC3 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258021DEE68A4009BDBC3 /* Station.swift */; };
 		50EF153B1DFA71B4006810E3 /* ShowStationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */; };
+		A10D43AF1E014D4B00A0A3AA /* StationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */; };
+		A10D43B11E014D5F00A0A3AA /* StationTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */; };
 		A1618B731DF55AE200596049 /* StationMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1618B721DF55AE200596049 /* StationMarker.xib */; };
 		A1618B751DF55D6500596049 /* CustomeStationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */; };
 		A19078B51DFA7CEA00C3AFCF /* NaviDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19078B41DFA7CE900C3AFCF /* NaviDetailsViewController.swift */; };
@@ -68,6 +70,8 @@
 		50D258021DEE68A4009BDBC3 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStationDetailViewController.swift; sourceTree = "<group>"; };
 		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
+		A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableHeaderView.swift; sourceTree = "<group>"; };
+		A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationTableHeader.xib; sourceTree = "<group>"; };
 		A1618B721DF55AE200596049 /* StationMarker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationMarker.xib; sourceTree = "<group>"; };
 		A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeStationMarkerView.swift; sourceTree = "<group>"; };
 		A19078B41DFA7CE900C3AFCF /* NaviDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviDetailsViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				50D257C51DEC0C60009BDBC3 /* Model */,
 				50C549381DEBFE6D005418E1 /* Main.storyboard */,
 				A1618B721DF55AE200596049 /* StationMarker.xib */,
+				A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */,
+				A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */,
 				A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */,
 				50C549341DEBFE6D005418E1 /* AppDelegate.swift */,
 				50C5493E1DEBFE6D005418E1 /* Assets.xcassets */,
@@ -252,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10D43B11E014D5F00A0A3AA /* StationTableHeader.xib in Resources */,
 				50C549421DEBFE6D005418E1 /* LaunchScreen.storyboard in Resources */,
 				A1618B731DF55AE200596049 /* StationMarker.xib in Resources */,
 				A1D3E9781DF508690019BEE2 /* GoogleService-Info.plist in Resources */,
@@ -340,6 +347,7 @@
 				50C5493D1DEBFE6D005418E1 /* Bus_Route.xcdatamodeld in Sources */,
 				50EF153B1DFA71B4006810E3 /* ShowStationDetailViewController.swift in Sources */,
 				50ADE4561DF655450081BFD2 /* customUI.swift in Sources */,
+				A10D43AF1E014D4B00A0A3AA /* StationTableHeaderView.swift in Sources */,
 				50D257D41DED1590009BDBC3 /* BusRouteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
