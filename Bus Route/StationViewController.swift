@@ -21,7 +21,7 @@ class StationViewController: UIViewController {
     var mapViewCoordinate = CLLocationCoordinate2D()
     let centermarker = GMSMarker()
     
-    var searchNearby = false
+    var searchNearby = true
     
     var tappedMarker = GMSMarker()
     
@@ -48,6 +48,8 @@ class StationViewController: UIViewController {
     
     var minY : CGFloat = 0.0
     var maxY : CGFloat = 0.0
+    var headerView : StationTableHeaderView?
+    var heightConstraint = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +81,19 @@ class StationViewController: UIViewController {
         }else{
             markerView = loadedView?.first as? CustomeStationMarkerView
             markerView?.shapeImage.alpha = 0.9
-            
+    
             markerView?.delegate = self
+        }
+        
+        let loadedView2 = Bundle.main.loadNibNamed("StationTableHeader", owner: self, options: nil)
+        if loadedView2?.count == 0{
+            headerView = nil
+        }else{
+            headerView = loadedView2?.first as? StationTableHeaderView
+            headerView?.delegate = self
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            headerView?.addGestureRecognizer(panGesture)
         }
         
         //stationTableView.tableFooterView = UIView()
@@ -92,8 +105,10 @@ class StationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        minY = stationMapView.frame.minY - 0.1
-        maxY = stationMapView.frame.maxY + 0.1 - 60.0
+        minY = stationMapView.frame.minY
+        maxY = stationMapView.frame.maxY - 60.0
+        
+        getStationTVHeightConstraint()
     }
     
     
@@ -207,15 +222,27 @@ class StationViewController: UIViewController {
 
         markerView.translatesAutoresizingMaskIntoConstraints = true
         stationMapView.addSubview(markerView)
-        
+        searchNearby = false
         
         //move map
-        var point = stationMapView.projection.point(for: marker.position)
-        let center = stationMapView.center
-        point.y -= center.y / 2
-        let newLoc = stationMapView.projection.coordinate(for: point)
-        stationMapView.animate(toLocation: newLoc)
+//        var point = stationMapView.projection.point(for: marker.position)
+//        let center = stationMapView.center
+//        point.y -= center.y / 2
+//        let newLoc = stationMapView.projection.coordinate(for: point)
+//        stationMapView.animate(toLocation: newLoc)
+        stationMapView.animate(toLocation: marker.position)
 
+    }
+    
+    
+    
+    func getStationTVHeightConstraint(){
+        for constraint in stationTableView.constraints {
+            if (constraint.identifier == "TableHeight") {
+                heightConstraint = constraint
+                return
+            }
+        }
     }
 }
 
@@ -235,7 +262,7 @@ extension StationViewController : GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         //print(position.target)
         
-        //centermarker.position = position.target
+        centermarker.position = position.target
         
         //centermarker.map = stationMapView
         
@@ -248,6 +275,8 @@ extension StationViewController : GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         //custome info window
         markerView?.removeFromSuperview()
+        searchNearby = true
+
 
     }
     
@@ -261,11 +290,6 @@ extension StationViewController : GMSMapViewDelegate{
             
             selectMarker(at: index, marker: marker)
         }
-        
-        
-        
-        
-        
         return false
     }
     
@@ -405,21 +429,19 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         selectMarker(at: indexPath.row, marker: selectedStation.mapMarker)
     }
     
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         
-        let loadedView = Bundle.main.loadNibNamed("StationTableHeader", owner: self, options: nil)
-        if loadedView?.count == 0{
-            return UIView()
-        }else{
-            let headerView = loadedView?.first as? StationTableHeaderView
-            headerView?.delegate = self
+        
+            headerView?.headerLabel.text = "Searching nearby station..."
             
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-            headerView?.addGestureRecognizer(panGesture)
+            if filteredStation.count != 0 {
+                headerView?.headerLabel.text = "\(filteredStation.count) station(s) found"
+            }
             
             return headerView
-        }
+        
     }
     
     
@@ -435,10 +457,11 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             let rect = stationTableView.frame
             
             var y = rect.origin.y
+            let oriHeight = rect.size.height
             
-            print ("\(y)  \(maxY)   \(minY)")
+            print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
             
-            if y <= maxY && y >= minY - 0.1 {
+            if y <= maxY + 0.11 && y >= minY - 0.11 {
                 
             y += translation.y
             y = max(minY, y)
@@ -447,8 +470,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             let x = rect.origin.x
 
             let width = rect.size.width
-            let height = rect.size.height - translation.y
-
+            let height = 60.0 + maxY - y
             let newRect = CGRect(x: x, y: y, width: width, height: height)
             
             stationTableView.frame = newRect
@@ -465,52 +487,43 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
                 
                 
                 //var point = stationMapView.projection.point(for: marker.position)
-                var center = stationMapView.center
-                
-                print("center")
-                print(center)
-                print("\(stationMapView.projection.coordinate(for: center))")
-                
-                //point.y -= center.y / 2
-                center.y += translation.y
-                
-                let newLoc = stationMapView.projection.coordinate(for: center)
-                
-                print("new center")
-                print(center)
-                print("\(stationMapView.projection.coordinate(for: center))")
-                
-                print("translation")
-                print(translation.y)
-                print("")
-                
-                stationMapView.animate(toLocation: newLoc)
+//                let heightDelta = height - oriHeight
+//                
+//                print(heightDelta)
+//                var center = stationMapView.center
+//                print(center.y)
+//                //center.y = center.y + heightDelta/2
+//                print(center.y)
+//                let newLoc = stationMapView.projection.coordinate(for: center)
+//                
+////                stationMapView.animate(toLocation: newLoc)
+//                let cam = GMSCameraUpdate.setTarget(newLoc)
+//                stationMapView.moveCamera(cam)
                 
             }
             gestureRecognizer.setTranslation(CGPoint.zero, in: stationTableView)
         }
         
-//        else if gestureRecognizer.state == .ended {
-//            
-//            var heightConstraint = NSLayoutConstraint()
-//            for constraint in stationTableView.constraints {
-//                if (constraint.identifier == "TableHeight") {
-//                    heightConstraint = constraint;
-//                    break
-//                }
-//            }
-//            let height = max(60,stationTableView.frame.size.height)
-//            
-//            heightConstraint.constant = height
-//            
-//            //centermarker.position = position.target
-//            //centermarker.map = stationMapView
-//            
-//            //custome info window (move when map resize)
-//            markerView?.center = stationMapView.projection.point(for: tappedMarker.position)
-//            markerView?.center.y -= 120
-//            
-//        }
+        else if gestureRecognizer.state == .ended {
+            
+            var height = stationTableView.frame.size.height
+            
+            if height < ((60.0 + maxY)/4) {
+                height = 60
+                headerView?.headerButton.setTitle("up", for: .normal)
+            }else if height < ((60.0 + maxY)*3/4) {
+                height = maxY/2
+            }else {
+                height = maxY - 5.0
+                
+                headerView?.headerButton.setTitle("down", for: .normal)
+            }
+            heightConstraint.constant = height
+            
+            UIView.animate(withDuration: 0.3) {
+                self.stationTableView.layoutIfNeeded()
+            }
+        }
         
     }
     
@@ -541,8 +554,22 @@ extension StationViewController : StationMarkerDelegate{
 }
 
 extension StationViewController : StationTableHeaderDelegate{
-    func tableHeaderButtonPressed() {
+    func tableHeaderButtonPressed(button : UIButton) {
     print ("tapped")
+        
+        if (button.currentTitle! == "down") {
+            heightConstraint.constant = 60
+            headerView?.headerButton.setTitle("down", for: .normal)
+        } else if (button.currentTitle! == "up"){
+            heightConstraint.constant = maxY - 5.0
+            headerView?.headerButton.setTitle("up", for: .normal)
+        }else{
+            print("error : button error")
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.stationTableView.layoutIfNeeded()
+        }
     }
 }
 
