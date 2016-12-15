@@ -141,6 +141,7 @@ class StationViewController: UIViewController {
         for i in 0..<(filteredStation.count) {
             let temp = filteredStation[i]
             temp.mapMarker.userData = i
+            temp.mapMarker.icon = UIImage(named: "maker30")
             temp.mapMarker.map = stationMapView
             
         }
@@ -161,18 +162,30 @@ class StationViewController: UIViewController {
         guard let markerView = markerView
             else { return }
         
-        markerView.station = filteredStation[index]
+        tappedMarker.panoramaView = nil
         
+        
+        marker.panoramaView = markerView.paraView
+        
+        
+        markerView.station = filteredStation[index]
         markerView.nameLabel.text = marker.title
         markerView.distanceLabel.text = marker.snippet
-        markerView.paraView.moveNearCoordinate(marker.position)
-        markerView.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0)
+        markerView.paraView.delegate = self
+        //markerView.paraView.moveNearCoordinate(marker.position)
+        markerView.paraView.moveNearCoordinate(marker.position, radius: 100)
+//        //markerView.paraView.panorama?.coordinate
+//        markerView.paraView.camera = GMSPanoramaCamera(heading: 180, pitch: 0, zoom: 0)
         //marker.infoWindowAnchor.y = 0.3
         
+        //save marker
+
         
         let location = marker.position
         
         tappedMarker = marker
+        
+        
         markerView.removeFromSuperview()
         // markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         
@@ -410,5 +423,13 @@ extension StationViewController : StnTableViewCellDelegate {
         performSegue(withIdentifier: "infoSegue", sender: self)
         
         
+    }
+}
+
+extension StationViewController : GMSPanoramaViewDelegate {
+    func panoramaView(_ view: GMSPanoramaView, didMoveTo panorama: GMSPanorama, nearCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        let heading = calculateHeading(form: panorama.coordinate, to: coordinate)
+        view.camera = GMSPanoramaCamera(heading: heading, pitch: 0, zoom: 0)
     }
 }

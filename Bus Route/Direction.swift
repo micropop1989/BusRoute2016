@@ -14,6 +14,7 @@ class Path{
     
     
     var overviewPolyline : String = ""
+    var overlay = GMSPolyline()
     var northeast = CLLocationCoordinate2D()
     var southwest = CLLocationCoordinate2D()
     var copyrights = ""
@@ -34,6 +35,18 @@ class Path{
         
         overviewPolyline = json["overview_polyline"]["points"].stringValue
         
+        //overlay
+        DispatchQueue.main.async {
+            let path = GMSPath(fromEncodedPath: self.overviewPolyline)
+            self.overlay = GMSPolyline(path: path)
+            //overlay.title = "Step \(i)"
+            self.overlay.strokeWidth = 3.0
+            self.overlay.geodesic = true
+            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.isTappable = true
+        }
+        
+
         guard let temp = json["legs"].first?.1
             else {return}
         
@@ -59,6 +72,8 @@ class Step{
     var duration = ""
     var instruction = ""
     var polylineString = ""
+    var overlay = GMSPolyline()
+    
     var substeps : [SubStep]?
     var travelMode = ""
     var transitDetails : TransitDetails?
@@ -70,6 +85,18 @@ class Step{
         
         instruction = json["html_instructions"].stringValue
         polylineString = json["polyline"]["points"].stringValue
+        //overlay
+        DispatchQueue.main.async {
+        let path = GMSPath(fromEncodedPath: self.polylineString)
+            self.overlay = GMSPolyline(path: path)
+            //overlay.title = "Step \(i)"
+            self.overlay.strokeWidth = 3.0
+            self.overlay.geodesic = true
+            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.isTappable = true
+        }
+        
+        
         travelMode = json["travel_mode"].stringValue
         
         if json["steps"].exists() {
@@ -93,6 +120,8 @@ class SubStep {
     var duration = ""
     var instruction = ""
     var polylineString = ""
+    var overlay = GMSPolyline()
+    
     var travelMode = ""
     var maneuver : String?
     
@@ -102,6 +131,16 @@ class SubStep {
         
         instruction = json["html_instructions"].stringValue
         polylineString = json["polyline"]["points"].stringValue
+        //overlay
+        DispatchQueue.main.async {
+            let path = GMSPath(fromEncodedPath: self.polylineString)
+            self.overlay = GMSPolyline(path: path)
+            //overlay.title = "Step \(i)"
+            self.overlay.strokeWidth = 3.0
+            self.overlay.geodesic = true
+            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.isTappable = true
+        }
         travelMode = json["travel_mode"].stringValue
         
         if json["maneuver"].exists() {

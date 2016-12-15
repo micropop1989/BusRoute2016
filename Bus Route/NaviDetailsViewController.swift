@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class NaviDetailsViewController: UIViewController {
     
@@ -18,14 +19,35 @@ class NaviDetailsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var naviMapView: GMSMapView!
     
     var path : Path?
+    var selectedOverlay = GMSPolyline()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if path != nil {
             naviDetailTableView.reloadData()
+            
+            let bound = GMSCoordinateBounds(coordinate: (path?.southwest)!, coordinate: (path?.northeast)!)
+        
+            let update = GMSCameraUpdate.fit(bound, withPadding: 10.0)
+            naviMapView.moveCamera(update)
+            
+            for i : Step in (path?.steps)! {
+                if i.isTransit {
+                    i.overlay.map = naviMapView
+                }
+                else{
+                    for j : SubStep in i.substeps! {
+                        j.overlay.map = naviMapView
+                    }
+                }
+
+            }
+            
         }
         
         // Do any additional setup after loading the view.
@@ -81,6 +103,9 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
             if let transitInfo = step.transitDetails {
                 cell.textLabel?.text = transitInfo.name
                 cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
+                
+                //bus icon accordingly
+                cell.imageView?.image = UIImage()
             }
             
             
@@ -92,7 +117,10 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 } else {
                     cell.imageView?.image = UIImage()
                 }
-                cell.textLabel?.text = substep.instruction
+                cell.textLabel?.text = substep.instruction.getTargetedRoad
+                
+                print(substep.instruction)
+                
                 cell.detailTextLabel?.text = "\(substep.distance)  \(substep.duration) \(substep.travelMode)"
             }
             
@@ -111,4 +139,33 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
     }
     
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let step = path?.steps[indexPath.section]
+            else{ return }
+        let tempOverlay : GMSPolyline
+        
+        if step.isTransit {
+            tempOverlay = step.overlay
+            tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
+        }
+        else {
+        let substep : SubStep = step.substeps![indexPath.row]
+            tempOverlay = substep.overlay
+            tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
+        }
+        
+        selectedOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.4)
+        selectedOverlay = tempOverlay
+        
+        naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
+        naviMapView.animate(toZoom: 15.0)
+        
+
+    }
+    
 }
+
+
+
