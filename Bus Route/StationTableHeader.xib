@@ -21,7 +21,7 @@
                         <constraint firstAttribute="height" constant="45" id="6Ig-I0-7ZE"/>
                         <constraint firstAttribute="width" constant="45" id="qXj-XF-6sG"/>
                     </constraints>
-                    <state key="normal" title="⬆"/>
+                    <state key="normal" title="up"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N stations found near placeName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvD-xx-9OO">
                     <rect key="frame" x="10" y="21" width="290" height="18"/>

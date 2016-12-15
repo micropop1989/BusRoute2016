@@ -42,6 +42,8 @@ class DirectionViewController: UIViewController {
     
     var routeBound = GMSCoordinateBounds()
     
+    var heightConstraint = NSLayoutConstraint()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +60,8 @@ class DirectionViewController: UIViewController {
         // Put the search bar in the navigation bar.
         searchController?.searchBar.sizeToFit()
         navigationItem.titleView = searchController?.searchBar
-        
+        searchController?.searchBar.placeholder = "Where do you want to go?"
+
         //filter
         let bound = GMSCoordinateBounds(coordinate: CLLocationCoordinate2DMake(2.88, 101.50), coordinate: CLLocationCoordinate2DMake(3.26, 101.90))
         
@@ -98,6 +101,17 @@ class DirectionViewController: UIViewController {
         //mapView.mapType = kGMSTypeHybrid
     }
     
+ 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        for constraint in tableView.constraints {
+            if (constraint.identifier == "DirectionTableViewHeight") {
+                heightConstraint = constraint
+                return
+            }
+        }
+    }
+    
     func GoToLocation(location : CLLocationCoordinate2D){
         
     }
@@ -110,7 +124,7 @@ class DirectionViewController: UIViewController {
         let destination = "place_id:\(placeId)"
         let url = URL(string:"https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&alternatives=true&mode=\(mode)&transit_mode=bus&key=\(key)")
         
-        print(url)
+        //print(url)
         
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
@@ -181,6 +195,8 @@ class DirectionViewController: UIViewController {
         print("paths found : \(allPolylines.count)")
         tableView.reloadData()
         
+        heightConstraint.constant = 150.0
+        
         selectNewPath(newIndex: 0)
         
     }
@@ -207,7 +223,10 @@ class DirectionViewController: UIViewController {
         
         //        let path = navi[selectedIndex]
         //        let bound = GMSCoordinateBounds(coordinate: path.southwest, coordinate: path.northeast)
-        let update = GMSCameraUpdate.fit(routeBound, withPadding: 10.0)
+        
+        let edge = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 5.0, right: 100.0)
+        let update = GMSCameraUpdate.fit(routeBound, with: edge)
+        
         mapView.moveCamera(update)
         
         
@@ -307,6 +326,11 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if tableView.numberOfRows(inSection: section) == 0 {
+            return nil
+        }
+        
         let frameSize = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40)
         let footerView = UIView(frame: frameSize)
         
@@ -317,11 +341,12 @@ extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
             button.setTitle("GO", for: .normal)
             button.backgroundColor = UIColor.green
             button.addTarget(self, action: #selector(self.goPressed), for: .touchUpInside)
-        }else{
-            button.setTitle("Search...", for: .normal)
-            button.backgroundColor = UIColor.red
-            button.addTarget(self, action: #selector(self.searchPressed), for: .touchUpInside)
         }
+//        }else{
+//            button.setTitle("Search...", for: .normal)
+//            button.backgroundColor = UIColor.red
+//            button.addTarget(self, action: #selector(self.searchPressed), for: .touchUpInside)
+//        }
         
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.black.cgColor
