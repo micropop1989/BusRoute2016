@@ -56,7 +56,7 @@ class ShowStationDetailViewController: UIViewController {
 //stationID = id!
 //        routesID = (bus?.routeID)!
         setTitleLable()
-        setCloseButton()
+       // setCloseButton()
         
         frDBref = FIRDatabase.database().reference()
         nextStationLabel.textColor = UIColor.dodgerBlue
