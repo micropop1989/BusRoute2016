@@ -46,6 +46,8 @@ class StationViewController: UIViewController {
     
     var allStation : [Station] = []
     
+    var minY : CGFloat = 0.0
+    var maxY : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +88,14 @@ class StationViewController: UIViewController {
         stationTableView.estimatedRowHeight = 300.0
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        minY = stationMapView.frame.minY - 0.1
+        maxY = stationMapView.frame.maxY + 0.1
+    }
+    
     
     func fetchStations(){
         frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
@@ -162,6 +172,8 @@ class StationViewController: UIViewController {
         guard let markerView = markerView
             else { return }
         
+  
+        
         tappedMarker.panoramaView = nil
         
         
@@ -187,11 +199,18 @@ class StationViewController: UIViewController {
         
         
         markerView.removeFromSuperview()
-        // markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        //markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        
+        
+        print("size2 : \(markerView.frame)")
+        
         
         markerView.center = stationMapView.projection.point(for: location)
         markerView.center.y -= 120
+        print("size3 : \(markerView.frame)")
         
+        
+        markerView.translatesAutoresizingMaskIntoConstraints = true
         stationMapView.addSubview(markerView)
         
         
@@ -199,6 +218,8 @@ class StationViewController: UIViewController {
         var point = stationMapView.projection.point(for: marker.position)
         let center = stationMapView.center
         point.y -= center.y / 2
+        
+        print("size4 : \(markerView.frame)")
         
         let newLoc = stationMapView.projection.coordinate(for: point)
         stationMapView.animate(toLocation: newLoc)
@@ -408,7 +429,6 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     
-    
     @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             
@@ -417,34 +437,64 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             // note: 'view' is optional and need to be unwrapped
 //            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
             
+            
+            
+            print(translation)
             let rect = stationTableView.frame
             
-            print(rect)
+            var y = rect.origin.y
+            
+            print ("\(y)  \(maxY)   \(minY)")
+            
+            if y <= maxY && y >= minY - 0.1 {
+                
+            y += translation.y
+            y = max(minY, y)
+            y = min(maxY, y)
+                
             let x = rect.origin.x
-            let y = rect.origin.y + translation.y
+
             let width = rect.size.width
             let height = rect.size.height - translation.y
-            
+
             let newRect = CGRect(x: x, y: y, width: width, height: height)
             
-            
-////            let heightConstraint : NSLayoutConstraint
-////            for constraint in stationTableView.constraints {
-////                if (constraint.firstAttribute == NSLayoutAttributeHeight) {
-////                    heightConstraint = constraint;
-////                    break
-////                }
-////            }
-//            
-//            heightConstraint.constant = 100;
-            
-            
             stationTableView.frame = newRect
-            //print(translation.y)
-            
-            
+                
+//            let mapRect = stationMapView.frame
+//            let mapOrigin = mapRect.origin
+//            let mapWidth = mapRect.width
+//            let mapHeight = mapRect.height
+//            let mapSize = CGSize(width: mapWidth, height: mapHeight + translation.y)
+//            stationMapView.frame = CGRect(origin: mapOrigin, size: mapSize)
+                
+                
+            }
             gestureRecognizer.setTranslation(CGPoint.zero, in: stationTableView)
         }
+        
+        else if gestureRecognizer.state == .ended {
+            
+            var heightConstraint = NSLayoutConstraint()
+            for constraint in stationTableView.constraints {
+                if (constraint.identifier == "TableHeight") {
+                    heightConstraint = constraint;
+                    break
+                }
+            }
+            let height = max(60,stationTableView.frame.size.height)
+            
+            heightConstraint.constant = height
+            
+            //centermarker.position = position.target
+            //centermarker.map = stationMapView
+            
+            //custome info window (move when map resize)
+            markerView?.center = stationMapView.projection.point(for: tappedMarker.position)
+            markerView?.center.y -= 120
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
