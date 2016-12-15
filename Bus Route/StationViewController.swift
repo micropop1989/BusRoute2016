@@ -93,7 +93,7 @@ class StationViewController: UIViewController {
         super.viewDidAppear(animated)
         
         minY = stationMapView.frame.minY - 0.1
-        maxY = stationMapView.frame.maxY + 0.1
+        maxY = stationMapView.frame.maxY + 0.1 - 60.0
     }
     
     
@@ -144,7 +144,7 @@ class StationViewController: UIViewController {
             return true
         }
         
-        print(filteredStation.count)
+        //print(filteredStation.count)
         
         stationMapView.clear()
         //display marker
@@ -201,15 +201,9 @@ class StationViewController: UIViewController {
         markerView.removeFromSuperview()
         //markerView = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         
-        
-        print("size2 : \(markerView.frame)")
-        
-        
         markerView.center = stationMapView.projection.point(for: location)
         markerView.center.y -= 120
-        print("size3 : \(markerView.frame)")
-        
-        
+
         markerView.translatesAutoresizingMaskIntoConstraints = true
         stationMapView.addSubview(markerView)
         
@@ -218,9 +212,6 @@ class StationViewController: UIViewController {
         var point = stationMapView.projection.point(for: marker.position)
         let center = stationMapView.center
         point.y -= center.y / 2
-        
-        print("size4 : \(markerView.frame)")
-        
         let newLoc = stationMapView.projection.coordinate(for: point)
         stationMapView.animate(toLocation: newLoc)
 
@@ -230,8 +221,8 @@ class StationViewController: UIViewController {
 extension StationViewController : GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         
-        print("Idle")
-        print(position.target)
+//        print("Idle")
+//        print(position.target)
         mapViewCoordinate = position.target
         
         if searchNearby {
@@ -241,8 +232,10 @@ extension StationViewController : GMSMapViewDelegate{
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        print(position.target)
-        centermarker.position = position.target
+        //print(position.target)
+        
+        //centermarker.position = position.target
+        
         //centermarker.map = stationMapView
         
         //custome info window (move with map)
@@ -437,9 +430,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             // note: 'view' is optional and need to be unwrapped
 //            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
             
-            
-            
-            print(translation)
+            //print(translation)
             let rect = stationTableView.frame
             
             var y = rect.origin.y
@@ -468,32 +459,57 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
 //            let mapSize = CGSize(width: mapWidth, height: mapHeight + translation.y)
 //            stationMapView.frame = CGRect(origin: mapOrigin, size: mapSize)
                 
+            
+                //move map
+                
+                
+                //var point = stationMapView.projection.point(for: marker.position)
+                var center = stationMapView.center
+                
+                print("center")
+                print(center)
+                print("\(stationMapView.projection.coordinate(for: center))")
+                
+                //point.y -= center.y / 2
+                center.y += translation.y
+                
+                let newLoc = stationMapView.projection.coordinate(for: center)
+                
+                print("new center")
+                print(center)
+                print("\(stationMapView.projection.coordinate(for: center))")
+                
+                print("translation")
+                print(translation.y)
+                print("")
+                
+                stationMapView.animate(toLocation: newLoc)
                 
             }
             gestureRecognizer.setTranslation(CGPoint.zero, in: stationTableView)
         }
         
-        else if gestureRecognizer.state == .ended {
-            
-            var heightConstraint = NSLayoutConstraint()
-            for constraint in stationTableView.constraints {
-                if (constraint.identifier == "TableHeight") {
-                    heightConstraint = constraint;
-                    break
-                }
-            }
-            let height = max(60,stationTableView.frame.size.height)
-            
-            heightConstraint.constant = height
-            
-            //centermarker.position = position.target
-            //centermarker.map = stationMapView
-            
-            //custome info window (move when map resize)
-            markerView?.center = stationMapView.projection.point(for: tappedMarker.position)
-            markerView?.center.y -= 120
-            
-        }
+//        else if gestureRecognizer.state == .ended {
+//            
+//            var heightConstraint = NSLayoutConstraint()
+//            for constraint in stationTableView.constraints {
+//                if (constraint.identifier == "TableHeight") {
+//                    heightConstraint = constraint;
+//                    break
+//                }
+//            }
+//            let height = max(60,stationTableView.frame.size.height)
+//            
+//            heightConstraint.constant = height
+//            
+//            //centermarker.position = position.target
+//            //centermarker.map = stationMapView
+//            
+//            //custome info window (move when map resize)
+//            markerView?.center = stationMapView.projection.point(for: tappedMarker.position)
+//            markerView?.center.y -= 120
+//            
+//        }
         
     }
     
