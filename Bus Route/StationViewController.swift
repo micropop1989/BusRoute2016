@@ -428,15 +428,15 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             let newRect = CGRect(x: x, y: y, width: width, height: height)
             
             
-            let heightConstraint : NSLayoutConstraint
-            for constraint in stationTableView.constraints {
-                if (constraint.firstAttribute == NSLayoutAttributeHeight) {
-                    heightConstraint = constraint;
-                    break
-                }
-            }
-            
-            heightConstraint.constant = 100;
+////            let heightConstraint : NSLayoutConstraint
+////            for constraint in stationTableView.constraints {
+////                if (constraint.firstAttribute == NSLayoutAttributeHeight) {
+////                    heightConstraint = constraint;
+////                    break
+////                }
+////            }
+//            
+//            heightConstraint.constant = 100;
             
             
             stationTableView.frame = newRect
