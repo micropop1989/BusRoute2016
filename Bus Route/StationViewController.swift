@@ -183,7 +183,7 @@ class StationViewController: UIViewController {
         
         markerView.station = filteredStation[index]
         markerView.nameLabel.text = marker.title
-        markerView.distanceLabel.text = marker.snippet
+       // markerView.distanceLabel.text = marker.snippet
         markerView.paraView.delegate = self
         //markerView.paraView.moveNearCoordinate(marker.position)
         markerView.paraView.moveNearCoordinate(marker.position, radius: 100)
