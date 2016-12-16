@@ -32,7 +32,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pF7-du-Af2">
                             <frame key="frameInset" minX="237" minY="5" width="33" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="close2">
+                            <state key="normal" image="close copy">
                                 <attributedString key="attributedTitle"/>
                             </state>
                         </button>
@@ -71,7 +71,7 @@
         </view>
     </objects>
     <resources>
-        <image name="close2" width="100" height="100"/>
+        <image name="close copy" width="100" height="100"/>
         <image name="info2" width="100" height="100"/>
     </resources>
 </document>
