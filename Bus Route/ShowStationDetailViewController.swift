@@ -23,6 +23,7 @@ class ShowStationDetailViewController: UIViewController {
     var id : String?
     var delegate: ShowStationDetailViewControllerDelegate?
     
+   // @IBOutlet weak var nextStationLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton! {
         didSet {
@@ -38,7 +39,7 @@ class ShowStationDetailViewController: UIViewController {
         delegate?.close(viewController: self)
     }
     
-    @IBOutlet weak var nextStationLabel: UILabel!
+    @IBOutlet weak var nextStationtitleLabel: UILabel!
    
     var routesID : String?
     var stationID = "ChIJG38s6Nw1zDERcPotrSj5sVY"
@@ -59,7 +60,7 @@ class ShowStationDetailViewController: UIViewController {
        // setCloseButton()
         
         frDBref = FIRDatabase.database().reference()
-        nextStationLabel.textColor = UIColor.dodgerBlue
+        nextStationtitleLabel.textColor = UIColor.dodgerBlue
         
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -125,8 +126,8 @@ class ShowStationDetailViewController: UIViewController {
             
             let index = stationArray.index(of: self.stationID)
             let lastindex = stationArray.count
-            let stationBefore : String
-            let stationAfter  : String
+          //  let stationBefore : String
+            //let stationAfter  : String
             
           /*  if (index == 0) {
                 stationAfter = stationArray[index! + 1]
@@ -146,7 +147,19 @@ class ShowStationDetailViewController: UIViewController {
             
             //print("Hi \(self.numberOfpreviousStation)")
             self.temp1Label.textColor = UIColor.dodgerBlue
+            if index == lastindex-1 {
+                self.temp1Label.text = "This Station are LAST stations"
+                self.nextStationtitleLabel.text = "No station will Display"
+            } else if index == 0  {
+                self.temp1Label.text = "This Station are 1st station"
+                self.nextStationtitleLabel.text = "Next Station"
+            } else if index == 1 || index == 2{
+                self.temp1Label.text = "This Station are \(index!+1)nd stations"
+                self.nextStationtitleLabel.text = "Next Station"
+            } else {
             self.temp1Label.text = "This Station are \(index!+1)th stations"
+                self.nextStationtitleLabel.text = "Next Station"
+            }
             
             for station in  stationArray {
                 
@@ -164,9 +177,11 @@ class ShowStationDetailViewController: UIViewController {
                     
                     let newStation = Station(dict: stationDictionary)
                     if stationArray.index(of: station)! > index! {
-                    newStation.stationID = station
+                        
+                         newStation.stationID = station
                     //newStation.address = stationDictionary["address"] as? String
-                    self.stations.append(newStation)
+                         self.stations.append(newStation)
+                        
                     }
                     self.tableView.reloadData()
                 
@@ -180,10 +195,39 @@ class ShowStationDetailViewController: UIViewController {
     
     
     func fetchtime() {
-        
+        frDBref.child("time").child(routesID!).child("orderedStations").observeSingleEvent(of: .value, with: { (timeSnapshot) in
+            
+            guard let stationArray = timeSnapshot.value as? [String]
+                else {
+                    
+                    return
+            }
+            
+            let index = stationArray.index(of: self.stationID)
+            let lastindex = stationArray.count
+            
+            for station in  stationArray {
+                
+                //  dispatchGp.enter()
+                
+                        if stationArray.index(of: station)! > index! {
+                      //  newStation.stationID = station
+                        //newStation.address = stationDictionary["address"] as? String
+                       // self.stations.append(newStation)
+                    }
+                    self.tableView.reloadData()
+                    
+                    
+                    //dispatchGp.leave()
+               
+            
+            
+        }
+        })
     }
-    
 }
+
+
 
 extension ShowStationDetailViewController: UITableViewDataSource {
     
