@@ -514,15 +514,23 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             }else if height < ((60.0 + maxY)*3/4) {
                 height = maxY/2
             }else {
-                height = maxY - 1.0
+                height = maxY - 5.0
                 
                 headerView?.headerButton.setTitle("down", for: .normal)
             }
-            heightConstraint.constant = height
             
-            UIView.animate(withDuration: 0.3) {
+            self.heightConstraint.constant = height
+            
+//            UIView.animate(withDuration: 0.5, animations: { 
+//                
+//                
+//                
+//                print("ASD")
+//            })
+            
+            UIView.animate(withDuration: 0.5, delay: 1.0, options: .beginFromCurrentState, animations: { 
                 self.stationTableView.layoutIfNeeded()
-            }
+            }, completion: nil)
         }
         
     }
@@ -561,7 +569,7 @@ extension StationViewController : StationTableHeaderDelegate{
             heightConstraint.constant = 60
             headerView?.headerButton.setTitle("up", for: .normal)
         } else if (button.currentTitle! == "up"){
-            heightConstraint.constant = maxY - 1.0
+            heightConstraint.constant = maxY - 5.0
             headerView?.headerButton.setTitle("down", for: .normal)
         }else{
             print("error : button error")
