@@ -178,6 +178,11 @@ class ShowStationDetailViewController: UIViewController {
         })
     }
     
+    
+    func fetchtime() {
+        
+    }
+    
 }
 
 extension ShowStationDetailViewController: UITableViewDataSource {
