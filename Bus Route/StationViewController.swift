@@ -21,7 +21,7 @@ class StationViewController: UIViewController {
     var mapViewCoordinate = CLLocationCoordinate2D()
     let centermarker = GMSMarker()
     
-    var searchNearby = true
+    var searchNearby = false
     
     var tappedMarker = GMSMarker()
     
@@ -56,6 +56,14 @@ class StationViewController: UIViewController {
         
         self.title = "Station List"
         frDBref2 = FIRDatabase.database().reference()
+        loadNibFile()
+        
+        //stationTableView.tableFooterView = UIView()
+        stationTableView.rowHeight = UITableViewAutomaticDimension
+        stationTableView.estimatedRowHeight = 300.0
+        stationTableView.reloadData()
+        
+        
         fetchStations()
         
         stationMapView.isMyLocationEnabled = true
@@ -74,6 +82,21 @@ class StationViewController: UIViewController {
         
         stationMapView.selectedMarker = currentLocationMarker
         
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        minY = stationMapView.frame.minY
+        maxY = stationMapView.frame.maxY - 60.0
+        
+        getStationTVHeightConstraint()
+    }
+    
+    func loadNibFile(){
         //custome marker
         let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
         if loadedView?.count == 0{
@@ -81,7 +104,7 @@ class StationViewController: UIViewController {
         }else{
             markerView = loadedView?.first as? CustomeStationMarkerView
             markerView?.shapeImage.alpha = 0.9
-    
+            
             markerView?.delegate = self
         }
         
@@ -95,26 +118,13 @@ class StationViewController: UIViewController {
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
             headerView?.addGestureRecognizer(panGesture)
         }
-        
-        //stationTableView.tableFooterView = UIView()
-        stationTableView.rowHeight = UITableViewAutomaticDimension
-        stationTableView.estimatedRowHeight = 300.0
-        
+
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        minY = stationMapView.frame.minY
-        maxY = stationMapView.frame.maxY - 60.0
-        
-        getStationTVHeightConstraint()
-    }
-    
     
     func fetchStations(){
+        
+            self.headerView?.headerLabel.text = "Loading Station data..."
         frDBref2.child("stations").observeSingleEvent(of: .value, with: { (stationSnapshot) in
-            
             
             let enumerator = stationSnapshot.children
             while let singleStationSnapshot = enumerator.nextObject() as? FIRDataSnapshot {
@@ -132,7 +142,7 @@ class StationViewController: UIViewController {
             
             //main tread , sort
             DispatchQueue.main.async {
-                
+                self.searchNearby = true
                 self.showNearbyBusStation(coordinate: self.currentLocation)
                 
             }
@@ -142,6 +152,8 @@ class StationViewController: UIViewController {
     
     
     func showNearbyBusStation(coordinate: CLLocationCoordinate2D, delta: Double = 0.01){
+        headerView?.headerLabel.text = "Searching for nearby station"
+        
         //allStation.sort(by: {$0.lat! > $1.lat!})
         filteredStation = []
         
@@ -161,8 +173,18 @@ class StationViewController: UIViewController {
         }
         
         //print(filteredStation.count)
-        
         stationMapView.clear()
+        
+        if filteredStation.count == 0
+        {
+            if delta > 0.01 {
+                headerView?.headerLabel.text = "No station found"
+                return
+            }
+            
+            showNearbyBusStation(coordinate: coordinate, delta: 0.02)
+            return
+        }
         //display marker
         for i in 0..<(filteredStation.count) {
             let temp = filteredStation[i]
@@ -174,8 +196,31 @@ class StationViewController: UIViewController {
         
         centermarker.isTappable = false
         centermarker.position = coordinate
-        centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        //centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        let img = UIImage(named: "search")
+        let newWidth : CGFloat = 30.0
+        let newHeight : CGFloat = 30.0
+        
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        img?.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    
+        centermarker.icon = newImage
+        
+        
+//        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//        view.image = img
+//        view.contentMode = .scaleAspectFit
+//        UIView.animate(withDuration: 1.0, delay: 0.0, options: .autoreverse, animations: {
+//            view.alpha = 0.3
+//        }, completion: nil)
+//        
+//        centermarker.iconView = view
+        
         centermarker.map = stationMapView
+        
+        
         
         currentLocationMarker.map = stationMapView
         
@@ -431,10 +476,6 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        
-        
-            headerView?.headerLabel.text = "Searching nearby station..."
             
             if filteredStation.count != 0 {
                 headerView?.headerLabel.text = "\(filteredStation.count) station(s) found"
@@ -519,16 +560,24 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
                 headerView?.headerButton.setTitle("down", for: .normal)
             }
             
-            self.heightConstraint.constant = height
+            
+            let y = 60.0 + maxY - height
+            let x = stationTableView.frame.origin.x
+            let width = stationTableView.frame.size.width
+            let newRect = CGRect(x: x, y: y, width: width, height: height)
             
             UIView.animate(withDuration: 0.5, animations: {
-                print(self.stationTableView.frame)
+                self.stationTableView.frame = newRect
+                self.heightConstraint.constant = height
                 self.stationTableView.layoutIfNeeded()
-                
-                print(self.stationTableView.frame)
             })
             
+            
+            
         }
+        
+        
+        
         
     }
     
@@ -561,20 +610,30 @@ extension StationViewController : StationMarkerDelegate{
 extension StationViewController : StationTableHeaderDelegate{
     func tableHeaderButtonPressed(button : UIButton) {
     print ("tapped")
+        var height = stationTableView.frame.size.height
         
         if (button.currentTitle! == "down") {
-            heightConstraint.constant = 60
+            height = 60
             headerView?.headerButton.setTitle("up", for: .normal)
         } else if (button.currentTitle! == "up"){
-            heightConstraint.constant = maxY - 5.0
+            height = maxY - 5.0
             headerView?.headerButton.setTitle("down", for: .normal)
         }else{
             print("error : button error")
         }
         
-        UIView.animate(withDuration: 0.3) {
+        
+        let y = 60.0 + maxY - height
+        let x = stationTableView.frame.origin.x
+        let width = stationTableView.frame.size.width
+        let newRect = CGRect(x: x, y: y, width: width, height: height)
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: .allowAnimatedContent , animations: {
+            self.stationTableView.frame = newRect
+            self.heightConstraint.constant = height
             self.stationTableView.layoutIfNeeded()
-        }
+        }, completion: nil)
+        
     }
 }
 
