@@ -519,16 +519,24 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
                 headerView?.headerButton.setTitle("down", for: .normal)
             }
             
-            self.heightConstraint.constant = height
+            
+            let y = 60.0 + maxY - height
+            let x = stationTableView.frame.origin.x
+            let width = stationTableView.frame.size.width
+            let newRect = CGRect(x: x, y: y, width: width, height: height)
             
             UIView.animate(withDuration: 0.5, animations: {
-                print(self.stationTableView.frame)
+                self.stationTableView.frame = newRect
+                self.heightConstraint.constant = height
                 self.stationTableView.layoutIfNeeded()
-                
-                print(self.stationTableView.frame)
             })
             
+            
+            
         }
+        
+        
+        
         
     }
     
@@ -561,20 +569,30 @@ extension StationViewController : StationMarkerDelegate{
 extension StationViewController : StationTableHeaderDelegate{
     func tableHeaderButtonPressed(button : UIButton) {
     print ("tapped")
+        var height = stationTableView.frame.size.height
         
         if (button.currentTitle! == "down") {
-            heightConstraint.constant = 60
+            height = 60
             headerView?.headerButton.setTitle("up", for: .normal)
         } else if (button.currentTitle! == "up"){
-            heightConstraint.constant = maxY - 5.0
+            height = maxY - 5.0
             headerView?.headerButton.setTitle("down", for: .normal)
         }else{
             print("error : button error")
         }
         
-        UIView.animate(withDuration: 0.3) {
+        
+        let y = 60.0 + maxY - height
+        let x = stationTableView.frame.origin.x
+        let width = stationTableView.frame.size.width
+        let newRect = CGRect(x: x, y: y, width: width, height: height)
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: .allowAnimatedContent , animations: {
+            self.stationTableView.frame = newRect
+            self.heightConstraint.constant = height
             self.stationTableView.layoutIfNeeded()
-        }
+        }, completion: nil)
+        
     }
 }
 

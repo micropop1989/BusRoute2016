@@ -26,8 +26,11 @@ class CustomeStationMarkerView: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        self.layer.borderWidth = 0.5
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.orange.cgColor
+        
         self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowRadius = 2
         //paraView.transform = CGAffineTransform(rotationAngle: -0.09)
