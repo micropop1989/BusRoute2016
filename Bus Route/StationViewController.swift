@@ -194,7 +194,8 @@ class StationViewController: UIViewController {
             
         }
         
-        centermarker.isTappable = false
+        centermarker.title = "radar"
+        centermarker.isTappable = true
         centermarker.position = coordinate
         //centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
         let img = UIImage(named: "search")
@@ -326,6 +327,15 @@ extension StationViewController : GMSMapViewDelegate{
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        
+        if marker.title == "radar" {
+            searchNearby = true
+            markerView?.removeFromSuperview()
+            showNearbyBusStation(coordinate: marker.position)
+            
+            return false
+        }
+        
         stationMapView.selectedMarker = marker
         
         if let data = marker.userData,
