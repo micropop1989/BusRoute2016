@@ -521,16 +521,13 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             
             self.heightConstraint.constant = height
             
-//            UIView.animate(withDuration: 0.5, animations: { 
-//                
-//                
-//                
-//                print("ASD")
-//            })
-            
-            UIView.animate(withDuration: 0.5, delay: 1.0, options: .beginFromCurrentState, animations: { 
+            UIView.animate(withDuration: 0.5, animations: {
+                print(self.stationTableView.frame)
                 self.stationTableView.layoutIfNeeded()
-            }, completion: nil)
+                
+                print(self.stationTableView.frame)
+            })
+            
         }
         
     }
