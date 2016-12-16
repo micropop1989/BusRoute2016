@@ -27,10 +27,10 @@ class StationTableHeaderView: UIView {
     }
     
     func buttonTapped(){
-        delegate?.tableHeaderButtonPressed()
+        delegate?.tableHeaderButtonPressed(button : headerButton)
     }
 }
 
 protocol StationTableHeaderDelegate {
-    func tableHeaderButtonPressed()
+    func tableHeaderButtonPressed(button : UIButton)
 }

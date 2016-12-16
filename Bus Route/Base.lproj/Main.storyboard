@@ -11,7 +11,7 @@
         <!--Station View Controller-->
         <scene sceneID="gbk-5k-2cb">
             <objects>
-                <viewController id="fbl-TV-8Aa" customClass="StationViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fbl-TV-8Aa" customClass="StationViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5GH-zu-DEb"/>
                         <viewControllerLayoutGuide type="bottom" id="J07-8s-Q6q"/>
@@ -23,17 +23,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MO-Kk-OHk" customClass="GMSMapView">
                                 <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-vz-Cbr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-vz-Cbr">
+                                <rect key="frame" x="0.0" y="363" width="375" height="255"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" identifier="TableHeight" id="2Gb-QK-3Wt"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="IYS-CQ-ixS" customClass="StnTableViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="174"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="122" id="IYS-CQ-ixS" customClass="StnTableViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IYS-CQ-ixS" id="vyY-qZ-okU">
-                                            <frame key="frameInset" width="375" height="173"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="busStn1" translatesAutoresizingMaskIntoConstraints="NO" id="VUu-7t-PET">
@@ -96,10 +97,10 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huA-6Z-5v8">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huA-6Z-5v8">                                                    <rect key="frame" x="61" y="75" width="306" height="30"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="rh0-05-kV2"/>
+                                                        <constraint firstAttribute="height" constant="30" id="rh0-05-kV2"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -829,7 +830,7 @@
         <!--Direction View Controller-->
         <scene sceneID="EwY-CH-3bX">
             <objects>
-                <viewController id="QSY-15-TEQ" customClass="DirectionViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="QSY-15-TEQ" customClass="DirectionViewController" customModule="Bus_Route" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YK2-le-xaw"/>
                         <viewControllerLayoutGuide type="bottom" id="kcX-Y3-jiQ"/>
@@ -839,18 +840,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZV-OV-ZMB" customClass="GMSMapView">
-                                <frame key="frameInset" minY="64" width="375" height="350"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="404"/>
                                 <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="92" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uYN-9o-IlO">
-                                <frame key="frameInset" minY="414" width="375" height="204"/>
+                                <rect key="frame" x="0.0" y="468" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="SpG-we-reP"/>
-                                    <constraint firstAttribute="height" priority="750" constant="50" id="caj-sR-5Od"/>
+                                    <constraint firstAttribute="height" identifier="DirectionTableViewHeight" id="E9z-Ld-f8s"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="92" id="bKr-6g-cLe" customClass="directionTableViewCell" customModule="Bus_Route" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="92" id="bKr-6g-cLe" customClass="directionTableViewCell" customModule="Bus_Route" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKr-6g-cLe" id="9Vb-ZO-J9R">
@@ -922,11 +922,11 @@
                         <constraints>
                             <constraint firstItem="lZV-OV-ZMB" firstAttribute="leading" secondItem="Osc-xe-o1F" secondAttribute="leading" id="3bZ-Wu-BJK"/>
                             <constraint firstItem="kcX-Y3-jiQ" firstAttribute="top" secondItem="uYN-9o-IlO" secondAttribute="bottom" id="RFf-72-hyk"/>
-                            <constraint firstItem="uYN-9o-IlO" firstAttribute="top" secondItem="lZV-OV-ZMB" secondAttribute="bottom" id="T7S-hb-Q7e"/>
                             <constraint firstItem="uYN-9o-IlO" firstAttribute="leading" secondItem="Osc-xe-o1F" secondAttribute="leading" id="gMN-mz-Vmg"/>
                             <constraint firstItem="lZV-OV-ZMB" firstAttribute="top" secondItem="YK2-le-xaw" secondAttribute="bottom" id="gsy-fY-0nq"/>
                             <constraint firstAttribute="trailing" secondItem="lZV-OV-ZMB" secondAttribute="trailing" id="had-mY-LaX"/>
                             <constraint firstAttribute="trailing" secondItem="uYN-9o-IlO" secondAttribute="trailing" id="i58-BK-8t4"/>
+                            <constraint firstItem="uYN-9o-IlO" firstAttribute="top" secondItem="lZV-OV-ZMB" secondAttribute="bottom" id="ljF-aQ-1aa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9cy-uG-U4N"/>
