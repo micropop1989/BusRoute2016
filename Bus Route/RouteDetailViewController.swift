@@ -28,7 +28,7 @@ class RouteDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "\((bus?.busNumber)!)"
+        self.title = "Bus Number: \((bus?.busNumber)!)"
         destinationLabel.text = "\((bus?.busTitle)!)"
         routeTableView.delegate = self
         routeTableView.dataSource = self
