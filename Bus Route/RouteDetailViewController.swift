@@ -34,7 +34,7 @@ class RouteDetailViewController: UIViewController {
         routeTableView.dataSource = self
         routeTableView.allowsMultipleSelection = false
         
-        //frDBref = FIRDatabase.database().reference()
+        frDBref = FIRDatabase.database().reference()
         
         
         routeTableView.tableFooterView = UIView()
@@ -80,7 +80,7 @@ class RouteDetailViewController: UIViewController {
                     
                 }
                 
-                self.frDBref.child("routes").child(self.routeID!).child("orderedStations").setValue(stationDictionary)
+                self.frDBref.child("routes").child((self.bus?.routeID!)!).child("orderedStations").setValue(stationDictionary)
                 
                 print(stationDictionary)
                 self.routeTableView.setEditing(false, animated: true)

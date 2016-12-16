@@ -45,7 +45,7 @@ class BusRouteViewController: UIViewController {
         
         //fetchdata
         frDBref = FIRDatabase.database().reference()
-        fetchRoute()
+        //fetchRoute()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,10 +55,11 @@ class BusRouteViewController: UIViewController {
         customUI().customButton(button: seeRouteDetailButton)
         customUI().customButton(button: changeRouteButton)
         
+        fetchRoute()
         
         
         
-        //        let gradient = CAGradientLayer(layer: stationCollectionView)
+        //        . gradient = CAGradientLayer(layer: stationCollectionView)
         //
         //        gradient.frame = stationCollectionView.bounds
         //        gradient.colors = [UIColor.white.withAlphaComponent(0), UIColor.white, UIColor.white.withAlphaComponent(0)]
