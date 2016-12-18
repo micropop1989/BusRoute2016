@@ -69,6 +69,7 @@ class NaviDetailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         gettableWidthConstraint()
+        selectSubPath(at: IndexPath(row: 0, section: 0))
     }
     
     func gettableWidthConstraint(){
@@ -201,7 +202,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 
                 print(substep.instruction)
                 
-                cell.detailTextLabel?.text = "\(substep.distance)  \(substep.duration) \(substep.travelMode)"
+                cell.detailTextLabel?.text = "\(substep.distance)"  //\(substep.duration) \(substep.travelMode)
             }
             
         }
@@ -253,13 +254,20 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         let coord = (selectedOverlay.path?.coordinate(at: 0))!
         var point = naviMapView.projection.point(for: coord)
         point.x += naviDetailTableView.frame.width / 2.0
+        point.y += 100
         let newCoord = naviMapView.projection.coordinate(for: point)
 //        naviMapView.animate(toLocation: newCoord)
         
-        let camera = GMSCameraPosition.camera(withTarget: newCoord, zoom: 15.0, bearing: 10, viewingAngle: 0)
+        let fromCoord = (selectedOverlay.path?.coordinate(at: 0))!
+        
+        let toCoord = selectedOverlay.path?.coordinate(at: ((selectedOverlay.path?.count())!-1))
+        
+        let heading = calculateHeading(form: fromCoord, to: toCoord!)
+        
+        let camera = GMSCameraPosition.camera(withTarget: newCoord, zoom: 17.0, bearing: heading, viewingAngle: 0)
+        
         naviMapView.animate(to: camera)
     }
-    
     
     
     
