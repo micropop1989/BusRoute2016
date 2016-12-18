@@ -23,7 +23,10 @@ class NaviDetailsViewController: UIViewController {
     
     var path : Path?
     var selectedOverlay = GMSPolyline()
-
+    var viewController = StepViewController()
+    
+    var widthConstraint = NSLayoutConstraint()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,96 @@ class NaviDetailsViewController: UIViewController {
             
         }
         
-        // Do any additional setup after loading the view.
+//        
+//        // Load Storyboard
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        
+//        // Instantiate View Controller
+//        viewController = storyboard.instantiateViewController(withIdentifier: "StepViewController") as! StepViewController
+//        
+//        viewController.path = path
+//        // Configure Child View
+//        let x = view.frame.origin.x
+//        let y = view.frame.origin.y
+//        let w = view.frame.width
+//        let h = view.frame.height
+//        
+//        let rect = CGRect(x: x, y: y, width: w / 2.0, height: h / 2.0)
+//        
+//        showNaviStepTableView(at: rect)
+//        // Do any additional setup after loading the view.
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        gettableWidthConstraint()
+    }
+    
+    func gettableWidthConstraint(){
+        for constraint in naviDetailTableView.constraints {
+            if (constraint.identifier == "StepTableWidth") {
+                widthConstraint = constraint
+                return
+            }
+        }
+    }
+    
+    
+    /*
+ 
+ 
+     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+     headerView?.addGestureRecognizer(panGesture)
+     
+     */
+//    
+//    @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+//        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+//            
+//            let translation = gestureRecognizer.translation(in: naviDetailTableView)
+//            let rect = naviDetailTableView.frame
+//            
+//            var y = rect.origin.y
+//            let oriHeight = rect.size.height
+//            s
+//            print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
+//            
+//            if y <= maxY + 0.11 && y >= minY - 0.11 {
+//                
+//                y += translation.y
+//                y = max(minY, y)
+//                y = min(maxY, y)
+//                
+//                let x = rect.origin.x
+//                
+//                let width = rect.size.width
+//                let height = 60.0 + maxY - y
+//                let newRect = CGRect(x: x, y: y, width: width, height: height)
+//                
+//                stationTableView.frame = newRect
+//            }
+//        }
+//    }
+//    
+    func showNaviStepTableView(at frame : CGRect){
+        
+        
+        addChildViewController(viewController)
+        
+        
+        // Add Child View as Subview
+        view.addSubview(viewController.view)
+        
+        
+        UIView.animate(withDuration: 3.0, animations: {
+        self.viewController.view.frame = frame //view.bounds
+        self.viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        })
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,8 +160,8 @@ class NaviDetailsViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }
+
 
 extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate{
     
@@ -142,6 +234,12 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        selectSubPath(at: indexPath)
+        
+
+    }
+    
+    func selectSubPath(at indexPath : IndexPath){
         guard let step = path?.steps[indexPath.section]
             else{ return }
         let tempOverlay : GMSPolyline
@@ -151,7 +249,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
             tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
         }
         else {
-        let substep : SubStep = step.substeps![indexPath.row]
+            let substep : SubStep = step.substeps![indexPath.row]
             tempOverlay = substep.overlay
             tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
         }
@@ -162,7 +260,6 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
         naviMapView.animate(toZoom: 15.0)
         
-
     }
     
 }

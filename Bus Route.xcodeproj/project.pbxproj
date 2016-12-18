@@ -30,6 +30,7 @@
 		50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */; };
 		50D258031DEE68A4009BDBC3 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D258021DEE68A4009BDBC3 /* Station.swift */; };
 		50EF153B1DFA71B4006810E3 /* ShowStationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */; };
+		5F9F793E1E0559AC008C2539 /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F793D1E0559AC008C2539 /* StepViewController.swift */; };
 		A10D43AF1E014D4B00A0A3AA /* StationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */; };
 		A10D43B11E014D5F00A0A3AA /* StationTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */; };
 		A1618B731DF55AE200596049 /* StationMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1618B721DF55AE200596049 /* StationMarker.xib */; };
@@ -69,6 +70,7 @@
 		50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		50D258021DEE68A4009BDBC3 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		50EF153A1DFA71B4006810E3 /* ShowStationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStationDetailViewController.swift; sourceTree = "<group>"; };
+		5F9F793D1E0559AC008C2539 /* StepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
 		937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bus Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bus Route/Pods-Bus Route.release.xcconfig"; sourceTree = "<group>"; };
 		A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationTableHeaderView.swift; sourceTree = "<group>"; };
 		A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationTableHeader.xib; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				A19078B41DFA7CE900C3AFCF /* NaviDetailsViewController.swift */,
 				50D257CD1DEC0CFC009BDBC3 /* DirectionViewController.swift */,
 				50D257D31DED1590009BDBC3 /* BusRouteViewController.swift */,
+				5F9F793D1E0559AC008C2539 /* StepViewController.swift */,
 				50D257D51DED444E009BDBC3 /* RouteDetailViewController.swift */,
 				50C081A01DEEC4DE0066C355 /* StationDetailViewController.swift */,
 				A1CEFE3E1DF67418005C5018 /* CustomViewController.swift */,
@@ -333,6 +336,7 @@
 				50D257D21DEC224E009BDBC3 /* Bus.swift in Sources */,
 				50C549351DEBFE6D005418E1 /* AppDelegate.swift in Sources */,
 				A1CEFE3F1DF67418005C5018 /* CustomViewController.swift in Sources */,
+				5F9F793E1E0559AC008C2539 /* StepViewController.swift in Sources */,
 				50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */,
 				50D258031DEE68A4009BDBC3 /* Station.swift in Sources */,
 				50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */,
@@ -478,7 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 373E2M9KW2;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -494,7 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 373E2M9KW2;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
