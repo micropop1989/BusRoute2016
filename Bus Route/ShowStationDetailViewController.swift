@@ -148,17 +148,17 @@ class ShowStationDetailViewController: UIViewController {
             //print("Hi \(self.numberOfpreviousStation)")
             self.temp1Label.textColor = UIColor.dodgerBlue
             if index == lastindex-1 {
-                self.temp1Label.text = "This Station are LAST stations"
+                self.temp1Label.text = "This Station is LAST station"
                 self.nextStationtitleLabel.text = "No station will Display"
             } else if index == 0  {
-                self.temp1Label.text = "This Station are 1st station"
-                self.nextStationtitleLabel.text = "Next Station"
+                self.temp1Label.text = "This Station is 1st station"
+                self.nextStationtitleLabel.text = "Next Station :"
             } else if index == 1 || index == 2{
-                self.temp1Label.text = "This Station are \(index!+1)nd stations"
-                self.nextStationtitleLabel.text = "Next Station"
+                self.temp1Label.text = "This Station is \(index!+1)nd stations"
+                self.nextStationtitleLabel.text = "Next Station :"
             } else {
-            self.temp1Label.text = "This Station are \(index!+1)th stations"
-                self.nextStationtitleLabel.text = "Next Station"
+            self.temp1Label.text = "This Station is \(index!+1)th stations"
+                self.nextStationtitleLabel.text = "Next Station :"
             }
             
             for station in  stationArray {
