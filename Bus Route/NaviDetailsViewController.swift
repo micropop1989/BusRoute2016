@@ -16,14 +16,17 @@ class NaviDetailsViewController: UIViewController {
         didSet{
             naviDetailTableView.dataSource = self
             naviDetailTableView.delegate = self
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            naviDetailTableView.addGestureRecognizer(panGesture)
+            
         }
     }
+    
     
     @IBOutlet weak var naviMapView: GMSMapView!
     
     var path : Path?
     var selectedOverlay = GMSPolyline()
-    var viewController = StepViewController()
     
     var widthConstraint = NSLayoutConstraint()
     
@@ -53,25 +56,13 @@ class NaviDetailsViewController: UIViewController {
             
         }
         
-//        
-//        // Load Storyboard
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        
-//        // Instantiate View Controller
-//        viewController = storyboard.instantiateViewController(withIdentifier: "StepViewController") as! StepViewController
-//        
-//        viewController.path = path
-//        // Configure Child View
-//        let x = view.frame.origin.x
-//        let y = view.frame.origin.y
-//        let w = view.frame.width
-//        let h = view.frame.height
-//        
-//        let rect = CGRect(x: x, y: y, width: w / 2.0, height: h / 2.0)
-//        
-//        showNaviStepTableView(at: rect)
-//        // Do any additional setup after loading the view.
+
     
+    }
+    
+    
+    @IBAction func edgeGestureAction(_ sender: Any) {
+        print("edge")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,62 +79,57 @@ class NaviDetailsViewController: UIViewController {
         }
     }
     
+    let maxWidth : CGFloat = 200.0
     
-    /*
- 
- 
-     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-     headerView?.addGestureRecognizer(panGesture)
-     
-     */
-//    
-//    @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
-//        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-//            
-//            let translation = gestureRecognizer.translation(in: naviDetailTableView)
-//            let rect = naviDetailTableView.frame
-//            
-//            var y = rect.origin.y
-//            let oriHeight = rect.size.height
-//            s
-//            print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
-//            
-//            if y <= maxY + 0.11 && y >= minY - 0.11 {
-//                
-//                y += translation.y
-//                y = max(minY, y)
-//                y = min(maxY, y)
-//                
-//                let x = rect.origin.x
-//                
-//                let width = rect.size.width
-//                let height = 60.0 + maxY - y
-//                let newRect = CGRect(x: x, y: y, width: width, height: height)
-//                
-//                stationTableView.frame = newRect
-//            }
-//        }
-//    }
-//    
-    func showNaviStepTableView(at frame : CGRect){
-        
-        
-        addChildViewController(viewController)
-        
-        
-        // Add Child View as Subview
-        view.addSubview(viewController.view)
-        
-        
-        UIView.animate(withDuration: 3.0, animations: {
-        self.viewController.view.frame = frame //view.bounds
-        self.viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        })
-        
-        // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
+        @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+            if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+    
+                let translation = gestureRecognizer.translation(in: naviDetailTableView)
+                let rect = naviDetailTableView.frame
+    
+                var width = rect.width
+    
+                if width < maxWidth + 1 {
+    
+                    width -= translation.x
+                    width = max(0, width)
+                    width = min(maxWidth, width)
+    
+                    let x = self.view.frame.width - width
+                    let y = rect.origin.y
+                    let height = rect.height
+                    
+                    let newRect = CGRect(x: x, y: y, width: width, height: height)
+    
+                    naviDetailTableView.frame = newRect
+                }
+            } else if gestureRecognizer.state == .ended {
+                
+                var width = naviDetailTableView.frame.size.width
+                
+                if width < maxWidth / 2.0 {
+                    width = 10
+                }else {
+                    width = maxWidth
+                }
+                
+                
+                let y = naviDetailTableView.frame.origin.y
+                let x = self.view.frame.width - width
+                let height = naviDetailTableView.frame.size.height
+                
+                let newRect = CGRect(x: x, y: y, width: width, height: height)
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.naviDetailTableView.frame = newRect
+                    self.widthConstraint.constant = width
+                    self.naviDetailTableView.layoutIfNeeded()
+                })
 
+            
+        }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -257,10 +243,23 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         selectedOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.4)
         selectedOverlay = tempOverlay
         
-        naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
-        naviMapView.animate(toZoom: 15.0)
+//        naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
+//        naviMapView.animate(toZoom: 15.0)
         
+        
+        
+        let coord = (selectedOverlay.path?.coordinate(at: 0))!
+        var point = naviMapView.projection.point(for: coord)
+        point.x += naviDetailTableView.frame.width / 2.0
+        let newCoord = naviMapView.projection.coordinate(for: point)
+//        naviMapView.animate(toLocation: newCoord)
+        
+        let camera = GMSCameraPosition.camera(withTarget: newCoord, zoom: 15.0, bearing: 10, viewingAngle: 0)
+        naviMapView.animate(to: camera)
     }
+    
+    
+    
     
 }
 
