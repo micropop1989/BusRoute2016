@@ -19,14 +19,20 @@ class DirectionViewController: UIViewController {
         }
     }
     
-    //tableView
-    @IBOutlet weak var tableView: UITableView!{
+//    //tableView
+//    @IBOutlet weak var tableView: UITableView!{
+//        didSet{
+//            tableView.delegate = self
+//            tableView.dataSource = self
+//        }
+//    }
+    
+    @IBOutlet weak var collectionView: UICollectionView! {
         didSet{
-            tableView.delegate = self
-            tableView.dataSource = self
+            collectionView.delegate = self
+            collectionView.dataSource = self
         }
     }
-    
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -44,12 +50,20 @@ class DirectionViewController: UIViewController {
     
     var heightConstraint = NSLayoutConstraint()
     
+    let padding = UIEdgeInsets(top: 10, left: 10, bottom: 120, right: 10)
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var routeDetailsLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 99.0
+//        tableView.tableFooterView = UIView()
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 99.0
         
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
@@ -99,17 +113,72 @@ class DirectionViewController: UIViewController {
         //mapView.accessibilityElementsHidden = false
         //mapView.isMyLocationEnabled = true
         //mapView.mapType = kGMSTypeHybrid
+        //loadNibFile()
     }
     
+    @IBOutlet weak var RouteView: UIView! {
+        didSet{
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            RouteView?.addGestureRecognizer(panGesture)
+        }
+    }
+    
+    var allowPanGesture = true
+    
+    @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+            let translation = gestureRecognizer.translation(in: RouteView)
+            
+            if allowPanGesture {
+            if translation.x < -25 && selectedIndex < navi.count {
+                selectNewPath(newIndex: selectedIndex+1)
+                allowPanGesture = false
+            }else if translation.x > 25 && selectedIndex > 0 {
+                selectNewPath(newIndex: selectedIndex-1)
+                allowPanGesture = false
+            }
+                
+                
+            }
+            gestureRecognizer.setTranslation(CGPoint.zero, in: RouteView)
+
+        }
+        else if gestureRecognizer.state == .ended {
+            allowPanGesture = true
+        }
+    }
  
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        for constraint in tableView.constraints {
-            if (constraint.identifier == "DirectionTableViewHeight") {
+        for constraint in RouteView.constraints {
+            if (constraint.identifier == "heightConstraint") {
                 heightConstraint = constraint
                 return
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNaviDetails" {
+            let vc = segue.destination as! NaviDetailsViewController
+            vc.path = navi[selectedIndex]
+        }
+    }
+//    var routeDetailsView : RouteDetailsView?
+    
+//    func loadNibFile(){
+//        //custome marker
+//        let loadedView = Bundle.main.loadNibNamed("RouteDetailsView", owner: self, options: nil)
+//        if loadedView?.count == 0{
+//            routeDetailsView = nil
+//        }else{
+//            routeDetailsView = loadedView?.first as? RouteDetailsView
+//            routeDetailsView?.delegate = self
+//        }
+//    }
+
+    @IBAction func goButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showNaviDetails", sender: self)
     }
     
     func GoToLocation(location : CLLocationCoordinate2D){
@@ -173,6 +242,8 @@ class DirectionViewController: UIViewController {
     func showPath(){
         routeBound = GMSCoordinateBounds()
         
+        var x : CGFloat = 0
+        
         for i in navi{
             let path = GMSPath(fromEncodedPath: i.overviewPolyline)
             
@@ -189,15 +260,19 @@ class DirectionViewController: UIViewController {
             
             routeBound = routeBound.includingCoordinate(i.southwest)
             routeBound = routeBound.includingCoordinate(i.northeast)
-            
         }
+
         
         print("paths found : \(allPolylines.count)")
-        tableView.reloadData()
+      //  tableView.reloadData()
+        collectionView.reloadData()
         
-        heightConstraint.constant = 150.0
+        heightConstraint.constant = 175.0
         
         selectNewPath(newIndex: 0)
+        
+        
+        
         
     }
     
@@ -210,8 +285,10 @@ class DirectionViewController: UIViewController {
         deselectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(0.4)
         deselectedPolyline.map = mapView
         
-        tableView.deselectRow(at: previousIndexPath, animated: true)
-        
+        //collectionView.deselectItem(at: previousIndexPath, animated: true)
+        let deselectedCell = collectionView.cellForItem(at: previousIndexPath) as? RouteCollectionViewCell
+        deselectedCell?.backgroundColor = UIColor.dodgerBlue
+    
         //select
         let newIndexPath = IndexPath(row: newIndex, section: 0)
         let selectedPolyline = allPolylines[newIndex]
@@ -219,13 +296,16 @@ class DirectionViewController: UIViewController {
         selectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(1.0)
         selectedPolyline.map = mapView
         
-        tableView.selectRow(at: newIndexPath, animated: true, scrollPosition: .middle)
-        
+        //collectionView.selectItem(at: newIndexPath, animated: true, scrollPosition: .middle)
+
         //        let path = navi[selectedIndex]
         //        let bound = GMSCoordinateBounds(coordinate: path.southwest, coordinate: path.northeast)
         
-        let edge = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 5.0, right: 100.0)
-        let update = GMSCameraUpdate.fit(routeBound, with: edge)
+        let selectedCell = collectionView.cellForItem(at: newIndexPath) as? RouteCollectionViewCell
+        selectedCell?.backgroundColor = UIColor.deepSkyBlue
+        
+        
+        let update = GMSCameraUpdate.fit(routeBound, with: padding)
         
         mapView.moveCamera(update)
         
@@ -233,6 +313,20 @@ class DirectionViewController: UIViewController {
         
         selectedIndex = newIndex
         
+        updateDetailsView(index: selectedIndex)
+    }
+    
+    func updateDetailsView(index : Int){
+        let temp = navi[index]
+        durationLabel.text =  temp.duration
+        distanceLabel.text = temp.distance
+        
+        var str2 = ""
+        for step in temp.steps{
+            str2 += ("\(step.travelMode) \(step.distance) ->")
+        }
+        
+        routeDetailsLabel.text = str2
     }
 }
 
@@ -252,11 +346,14 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
         mapView.clear()
         setCurrentLocationMarker()
         let bound = GMSCoordinateBounds(coordinate: currentLocation, coordinate: place.coordinate)
-        let update = GMSCameraUpdate.fit(bound, withPadding: 30.0)
+        //let update = GMSCameraUpdate.fit(bound, withPadding: 30.0)
+        
+        let update = GMSCameraUpdate.fit(bound, with: padding)
         mapView.moveCamera(update)
         allPolylines = []
         navi = []
-        tableView.reloadData()
+        //tableView.reloadData()
+        collectionView.reloadData()
         
         GoToLocation(placeId: place.placeID)
     }
@@ -294,92 +391,113 @@ extension DirectionViewController : GMSMapViewDelegate{
 }
 
 
-extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allPolylines.count
+//extension DirectionViewController : UITableViewDataSource , UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return navi.count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell : directionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? directionTableViewCell
+//            else { return UITableViewCell() }
+//        
+//        let temp = navi[indexPath.row]
+//        let str = "Distance : \(temp.distance) arrived in: \(temp.duration)"
+//        var str2 = ""
+//        for step in temp.steps{
+//            str2 += ("\(step.travelMode) \(step.distance) ->")
+//        }
+//        // cell.textLabel?.text = str
+//        cell.distanceLabel.text = temp.distance
+//        cell.arrivedLabel.text = temp.duration
+//        cell.tempLabel.text = str2
+//        // cell.detailTextLabel?.text = str2
+//        
+//        cell.selectionStyle = .gray
+//        
+//        return cell
+//    }
+//    
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.selectNewPath(newIndex: indexPath.row)
+//    }
+//    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        
+//        if tableView.numberOfRows(inSection: section) == 0 {
+//            return nil
+//        }
+//        
+//        let frameSize = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40)
+//        let footerView = UIView(frame: frameSize)
+//        
+//        let button = UIButton(frame: frameSize)
+//        
+//        if tableView.numberOfRows(inSection: section) > 0 {
+//            
+//            button.setTitle("GO", for: .normal)
+//            button.backgroundColor = UIColor.green
+//            button.addTarget(self, action: #selector(self.goPressed), for: .touchUpInside)
+//        }
+////        }else{
+////            button.setTitle("Search...", for: .normal)
+////            button.backgroundColor = UIColor.red
+////            button.addTarget(self, action: #selector(self.searchPressed), for: .touchUpInside)
+////        }
+//        
+//        button.layer.borderWidth = 2.0
+//        button.layer.borderColor = UIColor.black.cgColor
+//        
+//        button.titleLabel?.font = button.titleLabel?.font.withSize(30.0)
+//        
+//        
+//        footerView.addSubview(button)
+//        
+//        return footerView
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 40.0
+//    }
+//    
+//    
+//    func searchPressed(){
+//        print("search")
+//    }
+//    
+//    func goPressed(){
+//        print("Go")
+//        performSegue(withIdentifier: "showNaviDetails", sender: self)
+//        
+//    }
+//    
+//}
+
+extension DirectionViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell : directionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? directionTableViewCell
-            else { return UITableViewCell() }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return navi.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RouteCollectionViewCell", for: indexPath) as! RouteCollectionViewCell
         
         let temp = navi[indexPath.row]
-        let str = "Distance : \(temp.distance) arrived in: \(temp.duration)"
-        var str2 = ""
-        for step in temp.steps{
-            str2 += ("\(step.travelMode) \(step.distance) ->")
-        }
-        // cell.textLabel?.text = str
-        cell.distanceLabel.text = temp.distance
-        cell.arrivedLabel.text = temp.duration
-        cell.tempLabel.text = str2
-        // cell.detailTextLabel?.text = str2
         
-        cell.selectionStyle = .gray
+        cell.distanceLabel.text = temp.distance
+        cell.timeLabel.text = temp.duration
         
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectNewPath(newIndex: indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectNewPath(newIndex: indexPath.row)
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        if tableView.numberOfRows(inSection: section) == 0 {
-            return nil
-        }
-        
-        let frameSize = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40)
-        let footerView = UIView(frame: frameSize)
-        
-        let button = UIButton(frame: frameSize)
-        
-        if tableView.numberOfRows(inSection: section) > 0 {
-            
-            button.setTitle("GO", for: .normal)
-            button.backgroundColor = UIColor.green
-            button.addTarget(self, action: #selector(self.goPressed), for: .touchUpInside)
-        }
-//        }else{
-//            button.setTitle("Search...", for: .normal)
-//            button.backgroundColor = UIColor.red
-//            button.addTarget(self, action: #selector(self.searchPressed), for: .touchUpInside)
-//        }
-        
-        button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.black.cgColor
-        
-        button.titleLabel?.font = button.titleLabel?.font.withSize(30.0)
-        
-        
-        footerView.addSubview(button)
-        
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 40.0
-    }
-    
-    
-    func searchPressed(){
-        print("search")
-    }
-    
-    func goPressed(){
-        print("Go")
-        performSegue(withIdentifier: "showNaviDetails", sender: self)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showNaviDetails" {
-            let vc = segue.destination as! NaviDetailsViewController
-            vc.path = navi[selectedIndex]
-        }
-    }
-    
 }
 

@@ -35,6 +35,9 @@
 		A1618B731DF55AE200596049 /* StationMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1618B721DF55AE200596049 /* StationMarker.xib */; };
 		A1618B751DF55D6500596049 /* CustomeStationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */; };
 		A19078B51DFA7CEA00C3AFCF /* NaviDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19078B41DFA7CE900C3AFCF /* NaviDetailsViewController.swift */; };
+		A1A6B5761E07824400D9216F /* RouteDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A6B5751E07824400D9216F /* RouteDetailsView.xib */; };
+		A1A6B5781E07842000D9216F /* RouteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A6B5771E07842000D9216F /* RouteDetailsView.swift */; };
+		A1A6B57A1E078DE200D9216F /* RouteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A6B5791E078DE200D9216F /* RouteCollectionViewCell.swift */; };
 		A1CEFE3F1DF67418005C5018 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CEFE3E1DF67418005C5018 /* CustomViewController.swift */; };
 		A1D3E9781DF508690019BEE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D3E9771DF508690019BEE2 /* GoogleService-Info.plist */; };
 		A1D6FB181DF128600077E90B /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6FB171DF1285F0077E90B /* Direction.swift */; };
@@ -75,6 +78,9 @@
 		A1618B721DF55AE200596049 /* StationMarker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationMarker.xib; sourceTree = "<group>"; };
 		A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeStationMarkerView.swift; sourceTree = "<group>"; };
 		A19078B41DFA7CE900C3AFCF /* NaviDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviDetailsViewController.swift; sourceTree = "<group>"; };
+		A1A6B5751E07824400D9216F /* RouteDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteDetailsView.xib; sourceTree = "<group>"; };
+		A1A6B5771E07842000D9216F /* RouteDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetailsView.swift; sourceTree = "<group>"; };
+		A1A6B5791E078DE200D9216F /* RouteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCollectionViewCell.swift; sourceTree = "<group>"; };
 		A1CEFE3E1DF67418005C5018 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		A1D3E9771DF508690019BEE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A1D6FB171DF1285F0077E90B /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 				A1618B721DF55AE200596049 /* StationMarker.xib */,
 				A10D43B01E014D5F00A0A3AA /* StationTableHeader.xib */,
 				A10D43AE1E014D4B00A0A3AA /* StationTableHeaderView.swift */,
+				A1A6B5751E07824400D9216F /* RouteDetailsView.xib */,
+				A1A6B5771E07842000D9216F /* RouteDetailsView.swift */,
 				A1618B741DF55D6500596049 /* CustomeStationMarkerView.swift */,
 				50C549341DEBFE6D005418E1 /* AppDelegate.swift */,
 				50C5493E1DEBFE6D005418E1 /* Assets.xcassets */,
@@ -176,6 +184,7 @@
 			children = (
 				50D257C91DEC0CD9009BDBC3 /* BusTableViewCell.swift */,
 				50C081A21DEEC7C80066C355 /* StationDetailTableViewCell.swift */,
+				A1A6B5791E078DE200D9216F /* RouteCollectionViewCell.swift */,
 				50D257FE1DEE5FBD009BDBC3 /* StationTableViewCell.swift */,
 				50ADE45B1DF814110081BFD2 /* StnTableViewCell.swift */,
 				50D257D71DED61B6009BDBC3 /* RouteTitleCell.swift */,
@@ -263,6 +272,7 @@
 				50C549421DEBFE6D005418E1 /* LaunchScreen.storyboard in Resources */,
 				A1618B731DF55AE200596049 /* StationMarker.xib in Resources */,
 				A1D3E9781DF508690019BEE2 /* GoogleService-Info.plist in Resources */,
+				A1A6B5761E07824400D9216F /* RouteDetailsView.xib in Resources */,
 				50C5493F1DEBFE6D005418E1 /* Assets.xcassets in Resources */,
 				50C5493A1DEBFE6D005418E1 /* Main.storyboard in Resources */,
 			);
@@ -326,6 +336,7 @@
 				50C081A31DEEC7C80066C355 /* StationDetailTableViewCell.swift in Sources */,
 				50D257DA1DED6213009BDBC3 /* RouteTableViewCell.swift in Sources */,
 				A1D6FB181DF128600077E90B /* Direction.swift in Sources */,
+				A1A6B57A1E078DE200D9216F /* RouteCollectionViewCell.swift in Sources */,
 				50D257D81DED61B6009BDBC3 /* RouteTitleCell.swift in Sources */,
 				50D257FF1DEE5FBD009BDBC3 /* StationTableViewCell.swift in Sources */,
 				A19078B51DFA7CEA00C3AFCF /* NaviDetailsViewController.swift in Sources */,
@@ -336,6 +347,7 @@
 				50D257CE1DEC0CFC009BDBC3 /* DirectionViewController.swift in Sources */,
 				50D258031DEE68A4009BDBC3 /* Station.swift in Sources */,
 				50D257CC1DEC0CE9009BDBC3 /* BusViewController.swift in Sources */,
+				A1A6B5781E07842000D9216F /* RouteDetailsView.swift in Sources */,
 				A1EF24DA1DF7FE9B00487648 /* RouteStationCollectionViewCell.swift in Sources */,
 				A1618B751DF55D6500596049 /* CustomeStationMarkerView.swift in Sources */,
 				50ADE45A1DF80DB30081BFD2 /* directionTableViewCell.swift in Sources */,
@@ -478,7 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 373E2M9KW2;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -494,7 +506,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 373E2M9KW2;
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
