@@ -103,6 +103,11 @@ extension StationDetailViewController: UITableViewDelegate {
 
         let controller = storyboard?.instantiateViewController(withIdentifier: "ShowStationDetailViewController") as! ShowStationDetailViewController
         
+        if indexPath.row == 0 {
+            
+        } else {
+        
+        
         controller.stationID = stationID
         controller.routesID = buses[indexPath.row-1].routeID
         controller.delegate = self
@@ -115,14 +120,11 @@ extension StationDetailViewController: UITableViewDelegate {
         controller.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height)
         view.addSubview((controller.view)!)
         controller.didMove(toParentViewController: self)
+        }
        
-        
-        
-        
-        
-
-        
     }
+    
+    
 }
 
 extension StationDetailViewController: UITableViewDataSource {
