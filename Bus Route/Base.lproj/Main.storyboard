@@ -901,10 +901,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVA-uh-21m">
-                                <rect key="frame" x="0.0" y="418" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="618" width="375" height="0.0"/>
                                 <subviews>
                                     <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P2T-AF-2QA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="750" constant="75" id="hJZ-RU-5XI"/>
@@ -960,10 +960,10 @@
                                         </cells>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAw-sG-OYE">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="115"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irz-r7-C3B">
-                                                <rect key="frame" x="5" y="55" width="365" height="55"/>
+                                                <rect key="frame" x="5" y="55" width="365" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="999" constant="55" id="ro9-j0-You"/>
                                                 </constraints>
@@ -1040,7 +1040,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="P2T-AF-2QA" secondAttribute="trailing" id="2dU-mk-AA0"/>
-                                    <constraint firstAttribute="height" constant="200" identifier="heightConstraint" id="AUa-Bl-MZ7"/>
+                                    <constraint firstAttribute="height" identifier="heightConstraint" id="AUa-Bl-MZ7"/>
                                     <constraint firstAttribute="bottom" secondItem="gAw-sG-OYE" secondAttribute="bottom" id="KIy-6C-8Iv"/>
                                     <constraint firstItem="gAw-sG-OYE" firstAttribute="top" secondItem="P2T-AF-2QA" secondAttribute="bottom" id="Q5z-B2-qC5"/>
                                     <constraint firstItem="gAw-sG-OYE" firstAttribute="leading" secondItem="xVA-uh-21m" secondAttribute="leading" id="eBz-iS-20Q"/>
@@ -1051,7 +1051,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZV-OV-ZMB" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="354"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.61163817539999998" green="1" blue="0.67202532550000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
