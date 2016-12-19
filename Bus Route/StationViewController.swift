@@ -615,6 +615,11 @@ extension StationViewController : StationMarkerDelegate{
         
     }
     
+    func closeInfoWindowTapped() {
+        markerView?.removeFromSuperview()
+        searchNearby = true
+    }
+    
 }
 
 extension StationViewController : StationTableHeaderDelegate{

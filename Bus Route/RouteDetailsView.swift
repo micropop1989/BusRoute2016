@@ -10,12 +10,11 @@ import UIKit
 
 class RouteDetailsView: UIView{
     
-    @IBOutlet weak var distanceLabel: UILabel!
+
+    @IBOutlet weak var typeImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var nextImageView: UIImageView!
     
-    @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var arrivedLabel: UILabel!
-    
-    var delegate : RouteDetailsViewDelegate?
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -24,14 +23,5 @@ class RouteDetailsView: UIView{
         // Drawing code
     }
     */
-
-    @IBAction func goButtonPressed(_ sender: Any) {
-        delegate?.PressedGoButton()
-    }
     
-}
-
-
-protocol RouteDetailsViewDelegate {
-    func PressedGoButton()
 }

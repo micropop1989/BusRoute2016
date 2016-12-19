@@ -15,8 +15,6 @@ class CustomeStationMarkerView: UIView {
 
     @IBOutlet weak var shapeImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var buslineLabel: UILabel!
     @IBOutlet weak var paraView: GMSPanoramaView!
     
     var station : Station?
@@ -44,8 +42,12 @@ class CustomeStationMarkerView: UIView {
         delegate?.showStationDetails()
     }
 
+    @IBAction func closeInfoWindowPressed(_ sender: Any) {
+        delegate?.closeInfoWindowTapped()
+    }
 }
 
 protocol StationMarkerDelegate {
     func showStationDetails()
+    func closeInfoWindowTapped()
 }

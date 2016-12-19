@@ -67,6 +67,8 @@ class DirectionViewController: UIViewController {
         
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
+        resultsViewController?.view.alpha = 0.95
+        
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
@@ -109,7 +111,6 @@ class DirectionViewController: UIViewController {
         
         setCurrentLocationMarker()
         
-        
         //mapView.accessibilityElementsHidden = false
         //mapView.isMyLocationEnabled = true
         //mapView.mapType = kGMSTypeHybrid
@@ -122,6 +123,17 @@ class DirectionViewController: UIViewController {
             RouteView?.addGestureRecognizer(panGesture)
         }
     }
+    
+    func loadNibFile() -> RouteDetailsView?{
+        //custome marker
+        let loadedView = Bundle.main.loadNibNamed("RouteDetailsView", owner: self, options: nil)
+        if loadedView?.count == 0{
+            return nil
+        }else{
+            return loadedView?.first as? RouteDetailsView
+        }
+    }
+
     
     var allowPanGesture = true
     
@@ -265,12 +277,12 @@ class DirectionViewController: UIViewController {
         
         print("paths found : \(allPolylines.count)")
       //  tableView.reloadData()
-        collectionView.reloadData()
         
-        heightConstraint.constant = 175.0
+        heightConstraint.constant = 190.0
         
         selectNewPath(newIndex: 0)
         
+        collectionView.reloadData()
         
         
         
@@ -303,7 +315,7 @@ class DirectionViewController: UIViewController {
         
         let selectedCell = collectionView.cellForItem(at: newIndexPath) as? RouteCollectionViewCell
         selectedCell?.backgroundColor = UIColor.deepSkyBlue
-        
+
         
         let update = GMSCameraUpdate.fit(routeBound, with: padding)
         
@@ -322,11 +334,42 @@ class DirectionViewController: UIViewController {
         distanceLabel.text = temp.distance
         
         var str2 = ""
-        for step in temp.steps{
-            str2 += ("\(step.travelMode) \(step.distance) ->")
+        
+        for sv in routeDetailsLabel.subviews{
+            sv.removeFromSuperview()
         }
         
-        routeDetailsLabel.text = str2
+        let numOfSlot = Int(view.frame.size.width / 100)
+        
+        for i in 0..<min(numOfSlot,temp.steps.count){
+            let step = temp.steps[i]
+            str2 += ("\(step.travelMode) \(step.distance) ->")
+            let routeDetailView = loadNibFile()
+            routeDetailView?.typeImageView.image = UIImage(named: step.travelMode)
+            routeDetailView?.timeLabel.text = step.duration
+
+            
+            if i == numOfSlot-1{
+                if (temp.steps.count <= numOfSlot){
+                    routeDetailView?.nextImageView.image = nil
+                }
+                else{
+                    routeDetailView?.nextImageView.image = UIImage(named: "more")
+                }
+            }else{
+                routeDetailView?.nextImageView.image = UIImage(named: "next")
+            }
+            
+            let rect = CGRect(x: 100 * i, y: 0, width: 100, height: 55)
+            routeDetailView?.frame = rect
+            routeDetailsLabel.addSubview(routeDetailView!)
+        }
+        
+        //routeDetailsLabel.text = str2
+        
+        
+        
+        
     }
 }
 
@@ -491,6 +534,10 @@ extension DirectionViewController : UICollectionViewDataSource, UICollectionView
         
         cell.distanceLabel.text = temp.distance
         cell.timeLabel.text = temp.duration
+        
+        if indexPath.row == selectedIndex{
+            cell.backgroundColor = UIColor.deepSkyBlue
+        }
         
         return cell
     }
