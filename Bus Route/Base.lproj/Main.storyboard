@@ -909,7 +909,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" priority="750" constant="75" id="hJZ-RU-5XI"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="U6W-Xv-e59">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="U6W-Xv-e59">
                                             <size key="itemSize" width="109" height="75"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -917,14 +917,12 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RouteCollectionViewCell" id="bNu-eK-vLf" customClass="RouteCollectionViewCell" customModule="Bus_Route" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="5" width="120" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1K-X5-VNQ">
-                                                            <rect key="frame" x="13" y="13" width="94" height="25"/>
+                                                            <rect key="frame" x="13" y="13" width="42" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="aKI-sd-vEe"/>
                                                             </constraints>
@@ -933,7 +931,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vi-eD-HDL">
-                                                            <rect key="frame" x="13" y="43" width="94" height="25"/>
+                                                            <rect key="frame" x="13" y="43" width="42" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="WgS-nq-TiY"/>
                                                             </constraints>
