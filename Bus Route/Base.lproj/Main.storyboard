@@ -273,7 +273,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="See Route Detail "/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-0J-72L">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-0J-72L">
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Change Route"/>
                                             </button>
@@ -815,7 +815,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jb8-Oq-TdN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Bus" image="busicon(dark)" selectedImage="busicon(white)" id="03N-Oq-Grk"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Mcz-X7-oe7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mcz-X7-oe7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -945,9 +945,9 @@
         <scene sceneID="bq5-gX-QLh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pl6-Re-JKB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Direction" image="direction(Dark)" selectedImage="direction(white)" id="nuD-lj-cLA"/>
+                    <tabBarItem key="tabBarItem" title="Direction" image="direaction(drak)" selectedImage="direction(white)" id="nuD-lj-cLA"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0mc-ZK-HfO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0mc-ZK-HfO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -966,7 +966,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mac-xe-UCD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Station" image="bus-stop(dark)" selectedImage="bus-stop(white)" id="Gnk-dN-70d"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dGO-CJ-dpL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGO-CJ-dpL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1216,7 +1216,7 @@
         <image name="busstn2" width="156" height="100"/>
         <image name="clock" width="100" height="100"/>
         <image name="close2" width="100" height="100"/>
-        <image name="direction(Dark)" width="32" height="32"/>
+        <image name="direaction(drak)" width="32" height="32"/>
         <image name="direction(white)" width="32" height="32"/>
         <image name="distance" width="30" height="30"/>
         <image name="dotWithScp" width="30" height="30"/>

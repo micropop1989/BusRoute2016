@@ -14,6 +14,7 @@ class RouteDetailViewController: UIViewController {
     var bus : Bus?
     
     var stations : [Station] = []
+    var tempstations : [Station] = []
     var frDBref : FIRDatabaseReference!
     
     var routeID : String?
@@ -28,7 +29,7 @@ class RouteDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Bus Number: \((bus?.busNumber)!)"
+        self.title = "\((bus?.busNumber)!) : \((bus?.busTitle)!) "
         destinationLabel.text = "\((bus?.busTitle)!)"
         routeTableView.delegate = self
         routeTableView.dataSource = self
@@ -58,6 +59,7 @@ class RouteDetailViewController: UIViewController {
         if sender.title == "Edit" {
             sender.title = "Save"
             routeTableView.setEditing(true, animated: true)
+            tempstations = stations
             
         } else if sender.title == "Save" {
             
@@ -67,7 +69,8 @@ class RouteDetailViewController: UIViewController {
                 action in
                 //self.stations = []
                 //self.fetchRoute()
-                
+               self.stations = self.tempstations
+               self.routeTableView.reloadData()
                 self.routeTableView.setEditing(false, animated: true)
                 sender.title = "Edit"
             })

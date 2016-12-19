@@ -38,7 +38,7 @@ class BusRouteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Bus Number: \((bus?.busNumber)!)"
+        self.title = "🚍\((bus?.busNumber)!)"
         destinationLabel.text = bus?.busTitle
         
         routeMapView.delegate = self
@@ -79,6 +79,7 @@ class BusRouteViewController: UIViewController {
     
     //fetchdata
     func fetchRoute() {
+        stations = []
         guard let routeID = bus?.routeID
             else{ return}
         self.routeID = routeID
