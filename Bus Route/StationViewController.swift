@@ -84,7 +84,7 @@ class StationViewController: UIViewController {
         //marker
         currentLocationMarker.position = currentLocation
         currentLocationMarker.title = "You Are Here"
-        currentLocationMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+        //currentLocationMarker.icon = UIImage(named: "currentPosition") //GMSMarker.markerImage(with: UIColor.black)
         
         currentLocationMarker.tracksInfoWindowChanges = true
         currentLocationMarker.map = stationMapView
@@ -528,7 +528,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             var y = rect.origin.y
             let oriHeight = rect.size.height
             
-            print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
+            //print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
             
             if y <= maxY + 0.11 && y >= minY - 0.11 {
                 
@@ -661,7 +661,6 @@ extension StationViewController : StationMarkerDelegate{
 
 extension StationViewController : StationTableHeaderDelegate{
     func tableHeaderButtonPressed(button : UIButton) {
-    print ("tapped")
         var height = stationTableView.frame.size.height
         
         if (button.currentTitle! == "down") {
@@ -720,7 +719,9 @@ extension StationViewController : GMSPanoramaViewDelegate {
 
 extension StationViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print(newHeading.magneticHeading)
-        
+        //print(newHeading.magneticHeading)
+        if searchNearby {
+            stationMapView.animate(toBearing: newHeading.magneticHeading)
+        }
     }
 }

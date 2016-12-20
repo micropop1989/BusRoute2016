@@ -85,7 +85,7 @@ class RouteDetailViewController: UIViewController {
                 
                 self.frDBref.child("routes").child((self.bus?.routeID!)!).child("orderedStations").setValue(stationDictionary)
                 
-                print(stationDictionary)
+                //print(stationDictionary)
                 self.routeTableView.setEditing(false, animated: true)
                 sender.title = "Edit"
                 //stationDictionary = []

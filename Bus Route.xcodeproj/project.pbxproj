@@ -489,7 +489,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F399C8BB2967AB09850530D0 /* Pods-Bus Route.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Bus Route/Info.plist";
@@ -506,7 +506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 937881087D50C960D7265BA3 /* Pods-Bus Route.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Bus Route/Info.plist";

@@ -1191,9 +1191,6 @@
                             <constraint firstItem="Wqc-G6-s0g" firstAttribute="leading" secondItem="Jh0-n8-N5f" secondAttribute="leading" id="bP6-cQ-Sms"/>
                             <constraint firstAttribute="trailing" secondItem="Wqc-G6-s0g" secondAttribute="trailing" id="ptx-fW-GjY"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="A51-BF-xa4" appends="YES" id="nmx-B0-6kF"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="naviDetailTableView" destination="ZKu-8L-Mae" id="HAM-NG-DoT"/>
@@ -1201,11 +1198,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Rw-at-caT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="A51-BF-xa4">
-                    <connections>
-                        <action selector="edgeGestureAction:" destination="g9U-vs-ELj" id="8Qm-f5-LfD"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="637.60000000000002" y="1735.6821589205399"/>
         </scene>

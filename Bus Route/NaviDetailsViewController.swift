@@ -27,6 +27,7 @@ class NaviDetailsViewController: UIViewController {
     @IBOutlet weak var naviMapView: GMSMapView! {
         didSet{
             naviMapView.delegate = self
+            naviMapView.settings.myLocationButton = true
         }
     }
     
@@ -70,12 +71,30 @@ class NaviDetailsViewController: UIViewController {
             
         }
         
+        initEdgePan()
         loadNibFile()
         
 
     
     }
     
+    
+    func initEdgePan(){
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        edgePan.edges = .left
+        
+        view.addGestureRecognizer(edgePan)
+    }
+    
+    func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if recognizer.state == .recognized {
+            print("Screen edge swiped!")
+            
+            self.widthConstraint.constant = 10
+            self.naviDetailTableView.layoutIfNeeded()
+        }
+        
+    }
     
     func addStartEndMarker(){
         if let line = path?.overlay {
@@ -86,13 +105,13 @@ class NaviDetailsViewController: UIViewController {
             let startMarker = GMSMarker()
             startMarker.position = start!
             startMarker.title = "Start"
-            startMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+            startMarker.icon = UIImage(named: "currentPosition") //GMSMarker.markerImage(with: UIColor.black)
             startMarker.map = naviMapView
             
             let endMarker = GMSMarker()
             endMarker.position = end!
             endMarker.title = "Destination"
-            endMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+            endMarker.icon = UIImage(named: "start") //GMSMarker.markerImage(with: UIColor.orange)
             endMarker.map = naviMapView
         }
         
@@ -122,9 +141,6 @@ class NaviDetailsViewController: UIViewController {
     }
     
     
-    @IBAction func edgeGestureAction(_ sender: Any) {
-        print("edge")
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -263,7 +279,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 }
                 cell.textLabel?.text = substep.instruction.getTargetedRoad
                 
-                print(substep.instruction)
+                //print(substep.instruction)
                 
                 cell.detailTextLabel?.text = "\(substep.distance)"  //\(substep.duration) \(substep.travelMode)
             }
@@ -390,6 +406,17 @@ extension NaviDetailsViewController : GMSMapViewDelegate {
         
         naviMapView.addSubview(markerView)
         
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        
+        let bound = GMSCoordinateBounds(coordinate: (path?.southwest)!, coordinate: (path?.northeast)!)
+        
+        let update = GMSCameraUpdate.fit(bound, withPadding: 20.0)
+        naviMapView.moveCamera(update)
+        
+        
+        return false
     }
 }
 

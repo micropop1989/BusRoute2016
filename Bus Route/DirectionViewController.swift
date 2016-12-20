@@ -246,7 +246,7 @@ class DirectionViewController: UIViewController {
     func setCurrentLocationMarker(){
         currentLocationMarker.position = currentLocation
         currentLocationMarker.title = "You Are Here"
-        currentLocationMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+        currentLocationMarker.icon = UIImage(named: "currentPosition")   //GMSMarker.markerImage(with: UIColor.black)
         currentLocationMarker.map = mapView
         
         //mapView.selectedMarker = currentLocationMarker
@@ -254,7 +254,7 @@ class DirectionViewController: UIViewController {
     
     func setDestinationMarker(location : CLLocationCoordinate2D){
         destinationMarker.position = location
-        destinationMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        destinationMarker.icon = UIImage(named: "start")  //GMSMarker.markerImage(with: UIColor.orange)
         destinationMarker.map = mapView
     }
     
@@ -282,7 +282,7 @@ class DirectionViewController: UIViewController {
         }
 
         
-        print("paths found : \(allPolylines.count)")
+       // print("paths found : \(allPolylines.count)")
       //  tableView.reloadData()
         
         heightConstraint.constant = 190.0
@@ -389,10 +389,10 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-        print("Place coordinate: \(place.coordinate)")
+//        print("Place name: \(place.name)")
+//        print("Place address: \(place.formattedAddress)")
+//        print("Place attributions: \(place.attributions)")
+//        print("Place coordinate: \(place.coordinate)")
         
         //reset map
         selectedIndex = 0
@@ -551,7 +551,7 @@ extension DirectionViewController : UICollectionViewDataSource, UICollectionView
         cell.timeLabel.text = temp.duration
         
         if indexPath.row == selectedIndex{
-            cell.backgroundColor = UIColor.deepSkyBlue
+            cell.backgroundColor = UIColor.dodgerBlue
         }
         
         return cell
