@@ -21,22 +21,36 @@
                         <constraint firstAttribute="height" constant="45" id="6Ig-I0-7ZE"/>
                         <constraint firstAttribute="width" constant="45" id="qXj-XF-6sG"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="up"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N stations found near placeName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvD-xx-9OO">
-                    <rect key="frame" x="10" y="21" width="290" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <rect key="frame" x="45" y="20" width="255" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Wl-tN-VRW">
+                    <rect key="frame" x="5" y="13" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="dgO-vA-bqd"/>
+                        <constraint firstAttribute="height" constant="35" id="gkf-dy-KHD"/>
+                    </constraints>
+                    <state key="normal" image="refresh"/>
+                    <connections>
+                        <action selector="refreashButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="sa3-b1-6C4"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="0Wl-tN-VRW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="27o-Zw-2kA"/>
+                <constraint firstItem="0Wl-tN-VRW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4gx-cp-63L"/>
+                <constraint firstItem="kvD-xx-9OO" firstAttribute="leading" secondItem="0Wl-tN-VRW" secondAttribute="trailing" constant="5" id="7rj-EI-h6J"/>
                 <constraint firstItem="kvD-xx-9OO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CGd-16-LX5"/>
                 <constraint firstItem="hub-ph-fmJ" firstAttribute="leading" secondItem="kvD-xx-9OO" secondAttribute="trailing" constant="20" id="EpI-OZ-omZ"/>
                 <constraint firstAttribute="trailing" secondItem="hub-ph-fmJ" secondAttribute="trailing" constant="10" id="QpK-zn-PtJ"/>
                 <constraint firstItem="hub-ph-fmJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZGy-8g-fTA"/>
-                <constraint firstItem="kvD-xx-9OO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="b8N-3e-nv3"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -49,4 +63,7 @@
             <point key="canvasLocation" x="71.5" y="60"/>
         </view>
     </objects>
+    <resources>
+        <image name="refresh" width="200" height="200"/>
+    </resources>
 </document>

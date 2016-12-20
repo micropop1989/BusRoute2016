@@ -50,13 +50,14 @@ class DirectionViewController: UIViewController {
     
     var heightConstraint = NSLayoutConstraint()
     
-    let padding = UIEdgeInsets(top: 10, left: 10, bottom: 120, right: 10)
+    let padding = UIEdgeInsets(top: 30, left: 10, bottom: 100, right: 10)
     
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var routeDetailsLabel: UILabel!
     
     
+    let destinationMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +143,7 @@ class DirectionViewController: UIViewController {
             let translation = gestureRecognizer.translation(in: RouteView)
             
             if allowPanGesture {
-            if translation.x < -25 && selectedIndex < navi.count {
+            if translation.x < -25 && selectedIndex < navi.count - 1 {
                 selectNewPath(newIndex: selectedIndex+1)
                 allowPanGesture = false
             }else if translation.x > 25 && selectedIndex > 0 {
@@ -251,6 +252,12 @@ class DirectionViewController: UIViewController {
         //mapView.selectedMarker = currentLocationMarker
     }
     
+    func setDestinationMarker(location : CLLocationCoordinate2D){
+        destinationMarker.position = location
+        destinationMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        destinationMarker.map = mapView
+    }
+    
     func showPath(){
         routeBound = GMSCoordinateBounds()
         
@@ -263,7 +270,7 @@ class DirectionViewController: UIViewController {
             polyline.title = "route \(i)"
             polyline.strokeWidth = 5.0
             polyline.geodesic = true
-            polyline.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            polyline.strokeColor = UIColor.midNightBlue//.withAlphaComponent(0.4)
             polyline.isTappable = true
             polyline.map = mapView
             
@@ -280,7 +287,9 @@ class DirectionViewController: UIViewController {
         
         heightConstraint.constant = 190.0
         
-        selectNewPath(newIndex: 0)
+        if navi.count > 0 {
+            selectNewPath(newIndex: 0)
+        }
         
         collectionView.reloadData()
         
@@ -294,7 +303,7 @@ class DirectionViewController: UIViewController {
         let previousIndexPath = IndexPath(row: selectedIndex, section: 0)
         let deselectedPolyline = allPolylines[selectedIndex]
         deselectedPolyline.map = nil
-        deselectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(0.4)
+        deselectedPolyline.strokeColor = UIColor.deepSkyBlue //deselectedPolyline.strokeColor.withAlphaComponent(0.4)
         deselectedPolyline.map = mapView
         
         //collectionView.deselectItem(at: previousIndexPath, animated: true)
@@ -305,7 +314,7 @@ class DirectionViewController: UIViewController {
         let newIndexPath = IndexPath(row: newIndex, section: 0)
         let selectedPolyline = allPolylines[newIndex]
         selectedPolyline.map = nil
-        selectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(1.0)
+        selectedPolyline.strokeColor = UIColor.midNightBlue //.withAlphaComponent(0.4) //deselectedPolyline.strokeColor.withAlphaComponent(1.0)
         selectedPolyline.map = mapView
         
         //collectionView.selectItem(at: newIndexPath, animated: true, scrollPosition: .middle)
@@ -392,6 +401,7 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
         setCurrentLocationMarker()
         let bound = GMSCoordinateBounds(coordinate: currentLocation, coordinate: place.coordinate)
         //let update = GMSCameraUpdate.fit(bound, withPadding: 30.0)
+        setDestinationMarker(location: place.coordinate)
         
         let update = GMSCameraUpdate.fit(bound, with: padding)
         mapView.moveCamera(update)

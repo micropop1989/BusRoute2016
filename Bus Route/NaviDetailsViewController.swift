@@ -36,6 +36,8 @@ class NaviDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         if path != nil {
+            
+            addStartEndMarker()
             naviDetailTableView.reloadData()
             
             let bound = GMSCoordinateBounds(coordinate: (path?.southwest)!, coordinate: (path?.northeast)!)
@@ -46,6 +48,11 @@ class NaviDetailsViewController: UIViewController {
             for i : Step in (path?.steps)! {
                 if i.isTransit {
                     i.overlay.map = naviMapView
+                    if let details = i.transitDetails {
+                        addStationMarker(stop: details.departStop)
+                        addStationMarker(stop: details.arrivalStop)
+                    }
+                    
                 }
                 else{
                     for j : SubStep in i.substeps! {
@@ -60,6 +67,50 @@ class NaviDetailsViewController: UIViewController {
 
     
     }
+    
+    
+    func addStartEndMarker(){
+        if let line = path?.overlay {
+            let start = line.path?.coordinate(at: 0)
+            let num = (line.path?.count())! - 1
+            let end = line.path?.coordinate(at: num)
+            
+            let startMarker = GMSMarker()
+            startMarker.position = start!
+            startMarker.title = "Start"
+            startMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+            startMarker.map = naviMapView
+            
+            let endMarker = GMSMarker()
+            endMarker.position = end!
+            endMarker.title = "Destination"
+            endMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+            endMarker.map = naviMapView
+        }
+        
+    }
+    func addStationMarker(stop: BusStop){
+        let stationMarker = GMSMarker()
+        stationMarker.position = stop.coordinate
+        stationMarker.title = stop.name
+        stationMarker.icon = UIImage(named: "maker30")
+        stationMarker.map = naviMapView
+        
+    }
+    
+//    var markerView : CustomeStationMarkerView?
+//    
+//    func loadNibFile(){
+//        //custome marker
+//        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
+//        if loadedView?.count == 0{
+//            markerView = nil
+//        }else{
+//            markerView = loadedView?.first as? CustomeStationMarkerView
+//            markerView?.shapeImage.alpha = 0.9
+//            markerView?.delegate = self
+//        }
+//    }
     
     
     @IBAction func edgeGestureAction(_ sender: Any) {
@@ -182,8 +233,11 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         
         if step.isTransit {
             if let transitInfo = step.transitDetails {
-                cell.textLabel?.text = transitInfo.name
-                cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
+                //cell.textLabel?.text = transitInfo.name
+                
+                cell.textLabel?.text = "\(transitInfo.agency) \(transitInfo.shortName) :\(transitInfo.numStops) stops"
+                cell.detailTextLabel?.text = "to \(transitInfo.arrivalStop.name)"
+                //cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
                 
                 //bus icon accordingly
                 cell.imageView?.image = UIImage(named: "bus2")
@@ -235,15 +289,15 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         
         if step.isTransit {
             tempOverlay = step.overlay
-            tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
+            tempOverlay.strokeColor = step.overlay.strokeColor
         }
         else {
             let substep : SubStep = step.substeps![indexPath.row]
             tempOverlay = substep.overlay
-            tempOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.8)
+            tempOverlay.strokeColor = step.overlay.strokeColor
         }
         
-        selectedOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.4)
+        selectedOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.6)
         selectedOverlay = tempOverlay
         
 //        naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
@@ -254,7 +308,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         let coord = (selectedOverlay.path?.coordinate(at: 0))!
         var point = naviMapView.projection.point(for: coord)
         point.x += naviDetailTableView.frame.width / 2.0
-        point.y += 100
+        point.y -= 150
         let newCoord = naviMapView.projection.coordinate(for: point)
 //        naviMapView.animate(toLocation: newCoord)
         
