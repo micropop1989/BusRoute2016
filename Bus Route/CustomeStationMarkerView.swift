@@ -17,8 +17,8 @@ class CustomeStationMarkerView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var paraView: GMSPanoramaView!
     
-    
-    @IBOutlet weak var infoButton: UIView!
+    @IBOutlet weak var infoButton: UIButton!
+
     
     var station : Station?
     
