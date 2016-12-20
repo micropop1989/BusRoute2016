@@ -244,7 +244,6 @@
 				TargetAttributes = {
 					50C549301DEBFE6D005418E1 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 373E2M9KW2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -492,9 +491,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 373E2M9KW2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -509,9 +508,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 373E2M9KW2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Bus Route/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.transportApp.Bus-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";

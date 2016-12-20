@@ -27,6 +27,7 @@ class NaviDetailsViewController: UIViewController {
     @IBOutlet weak var naviMapView: GMSMapView! {
         didSet{
             naviMapView.delegate = self
+            naviMapView.settings.myLocationButton = true
         }
     }
     
@@ -405,6 +406,17 @@ extension NaviDetailsViewController : GMSMapViewDelegate {
         
         naviMapView.addSubview(markerView)
         
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        
+        let bound = GMSCoordinateBounds(coordinate: (path?.southwest)!, coordinate: (path?.northeast)!)
+        
+        let update = GMSCameraUpdate.fit(bound, withPadding: 20.0)
+        naviMapView.moveCamera(update)
+        
+        
+        return false
     }
 }
 
