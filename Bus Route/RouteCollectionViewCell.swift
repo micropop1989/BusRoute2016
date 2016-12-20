@@ -16,6 +16,9 @@ class RouteCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         backgroundColor = UIColor.dodgerBlue
         layer.cornerRadius = 10.0
+        
+        distanceLabel.textColor = UIColor.white
+        timeLabel.textColor = UIColor.white
     }
     
 }

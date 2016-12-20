@@ -17,6 +17,7 @@ class NaviDetailsViewController: UIViewController {
             naviDetailTableView.dataSource = self
             naviDetailTableView.delegate = self
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            panGesture.delegate = self
             naviDetailTableView.addGestureRecognizer(panGesture)
             
         }
@@ -176,6 +177,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "naviDetailCell")
             else { return UITableViewCell() }
         
+        cell.imageView?.contentMode = .scaleAspectFill
         
         if step.isTransit {
             if let transitInfo = step.transitDetails {
@@ -183,7 +185,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
                 
                 //bus icon accordingly
-                cell.imageView?.image = UIImage()
+                cell.imageView?.image = UIImage(named: "bus2")
             }
             
             
@@ -193,7 +195,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 if let maneuver = substep.maneuver {
                     cell.imageView?.image = UIImage(named: maneuver)
                 } else {
-                    cell.imageView?.image = UIImage()
+                    cell.imageView?.image = UIImage(named: "WALKING")
                 }
                 cell.textLabel?.text = substep.instruction.getTargetedRoad
                 
@@ -263,5 +265,9 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
     
 }
 
-
+extension NaviDetailsViewController : UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
 

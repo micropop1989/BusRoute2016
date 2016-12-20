@@ -51,6 +51,8 @@ class StationViewController: UIViewController {
     var headerView : StationTableHeaderView?
     var heightConstraint = NSLayoutConstraint()
     
+    var moveDirection : moveTo = .none
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -495,6 +497,12 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
         
     }
     
+    enum moveTo {
+        case top
+        case bottom
+        case none
+    }
+    
     
     @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
@@ -525,7 +533,12 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             let newRect = CGRect(x: x, y: y, width: width, height: height)
             
             stationTableView.frame = newRect
-                
+               
+                if translation.y < -30 {
+                    moveDirection = .top
+                }else if translation.y > 30 {
+                    moveDirection = .bottom
+                }
 //            let mapRect = stationMapView.frame
 //            let mapOrigin = mapRect.origin
 //            let mapWidth = mapRect.width
@@ -559,17 +572,30 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             
             var height = stationTableView.frame.size.height
             
-            if height < ((60.0 + maxY)/4) {
+            switch moveDirection {
+            case .top:
+                height = maxY - 5.0
+                headerView?.headerButton.setTitle("down", for: .normal)
+                break
+            case .bottom:
                 height = 60
                 headerView?.headerButton.setTitle("up", for: .normal)
-            }else if height < ((60.0 + maxY)*3/4) {
-                height = maxY/2
-            }else {
-                height = maxY - 5.0
-                
-                headerView?.headerButton.setTitle("down", for: .normal)
+                break
+            case .none:
+                if height < ((60.0 + maxY)/4) {
+                    height = 60
+                    headerView?.headerButton.setTitle("up", for: .normal)
+                }else if height < ((60.0 + maxY)*3/4) {
+                    height = maxY/2
+                }else {
+                    height = maxY - 5.0
+                    
+                    headerView?.headerButton.setTitle("down", for: .normal)
+                }
+                break
             }
             
+            moveDirection = .none
             
             let y = 60.0 + maxY - height
             let x = stationTableView.frame.origin.x
@@ -613,6 +639,11 @@ extension StationViewController : StationMarkerDelegate{
             vc.station = filteredStation[indexToSend]
         }
         
+    }
+    
+    func closeInfoWindowTapped() {
+        markerView?.removeFromSuperview()
+        searchNearby = true
     }
     
 }
