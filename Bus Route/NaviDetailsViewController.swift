@@ -24,13 +24,19 @@ class NaviDetailsViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var naviMapView: GMSMapView!
+    @IBOutlet weak var naviMapView: GMSMapView! {
+        didSet{
+            naviMapView.delegate = self
+        }
+    }
     
     var path : Path?
     var selectedOverlay = GMSPolyline()
     
     var widthConstraint = NSLayoutConstraint()
     
+    
+    var infoWindowPosition = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +69,8 @@ class NaviDetailsViewController: UIViewController {
             }
             
         }
+        
+        loadNibFile()
         
 
     
@@ -98,19 +106,19 @@ class NaviDetailsViewController: UIViewController {
         
     }
     
-//    var markerView : CustomeStationMarkerView?
-//    
-//    func loadNibFile(){
-//        //custome marker
-//        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
-//        if loadedView?.count == 0{
-//            markerView = nil
-//        }else{
-//            markerView = loadedView?.first as? CustomeStationMarkerView
-//            markerView?.shapeImage.alpha = 0.9
-//            markerView?.delegate = self
-//        }
-//    }
+    var markerView : CustomeStationMarkerView?
+    
+    func loadNibFile(){
+        //custome marker
+        let loadedView = Bundle.main.loadNibNamed("StationMarker", owner: self, options: nil)
+        if loadedView?.count == 0{
+            markerView = nil
+        }else{
+            markerView = loadedView?.first as? CustomeStationMarkerView
+            markerView?.shapeImage.alpha = 0.9
+            markerView?.delegate = self
+        }
+    }
     
     
     @IBAction func edgeGestureAction(_ sender: Any) {
@@ -235,7 +243,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
             if let transitInfo = step.transitDetails {
                 //cell.textLabel?.text = transitInfo.name
                 
-                cell.textLabel?.text = "\(transitInfo.agency) \(transitInfo.shortName) :\(transitInfo.numStops) stops"
+                cell.textLabel?.text = "\(transitInfo.agency) \(transitInfo.shortName)" //:\(transitInfo.numStops) stops
                 cell.detailTextLabel?.text = "to \(transitInfo.arrivalStop.name)"
                 //cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
                 
@@ -289,15 +297,15 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         
         if step.isTransit {
             tempOverlay = step.overlay
-            tempOverlay.strokeColor = step.overlay.strokeColor
+            tempOverlay.strokeColor = UIColor.deepSkyBlue
         }
         else {
             let substep : SubStep = step.substeps![indexPath.row]
             tempOverlay = substep.overlay
-            tempOverlay.strokeColor = step.overlay.strokeColor
+            tempOverlay.strokeColor = UIColor.deepSkyBlue
         }
         
-        selectedOverlay.strokeColor = step.overlay.strokeColor.withAlphaComponent(0.6)
+        selectedOverlay.strokeColor = UIColor.dodgerBlue
         selectedOverlay = tempOverlay
         
 //        naviMapView.animate(toLocation: (selectedOverlay.path?.coordinate(at: 0))!)
@@ -318,7 +326,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         
         let heading = calculateHeading(form: fromCoord, to: toCoord!)
         
-        let camera = GMSCameraPosition.camera(withTarget: newCoord, zoom: 17.0, bearing: heading, viewingAngle: 0)
+        let camera = GMSCameraPosition.camera(withTarget: newCoord, zoom: 15.0, bearing: heading, viewingAngle: 0)
         
         naviMapView.animate(to: camera)
     }
@@ -333,3 +341,72 @@ extension NaviDetailsViewController : UIGestureRecognizerDelegate {
     }
 }
 
+extension NaviDetailsViewController : GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //custome info window
+        markerView?.removeFromSuperview()
+
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        //print(position.target)
+        
+        markerView?.center = mapView.projection.point(for: infoWindowPosition)
+        markerView?.center.y -= 120
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        
+        if marker.title != "end" {
+            markerView?.removeFromSuperview()
+            showInfoWindow(marker: marker)
+        }
+        return false
+    }
+    
+     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        return UIView()
+    }
+        
+    func showInfoWindow(marker : GMSMarker){
+        guard let markerView = markerView
+            else { return }
+        infoWindowPosition = marker.position
+        markerView.removeFromSuperview()
+
+        markerView.nameLabel.text = marker.title
+        markerView.paraView.delegate = self
+        markerView.paraView.moveNearCoordinate(marker.position, radius: 100)
+        
+
+        markerView.center = naviMapView.projection.point(for: marker.position)
+        markerView.center.y -= 120
+        
+        markerView.translatesAutoresizingMaskIntoConstraints = true
+        
+        naviMapView.addSubview(markerView)
+        
+    }
+}
+
+extension NaviDetailsViewController : StationMarkerDelegate{
+        func showStationDetails() {
+            }
+        
+        
+        func closeInfoWindowTapped() {
+            markerView?.removeFromSuperview()
+
+        }
+        
+}
+
+extension NaviDetailsViewController : GMSPanoramaViewDelegate {
+    func panoramaView(_ view: GMSPanoramaView, didMoveTo panorama: GMSPanorama, nearCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        let heading = calculateHeading(form: panorama.coordinate, to: coordinate)
+        view.camera = GMSPanoramaCamera(heading: heading, pitch: 0, zoom: 0)
+    }
+}
