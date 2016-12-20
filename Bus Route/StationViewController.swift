@@ -207,16 +207,20 @@ class StationViewController: UIViewController {
         centermarker.isTappable = true
         centermarker.position = coordinate
         //centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
-        let img = UIImage(named: "search")
+        
+        var imageSet = [UIImage]()
+        for i in 1...7{
+        let img = UIImage(named: "search\(i)")
         let newWidth : CGFloat = 30.0
         let newHeight : CGFloat = 30.0
-        
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
         img?.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        imageSet.append(newImage!)
+        }
     
-        centermarker.icon = newImage
+        centermarker.icon = UIImage.animatedImage(with: imageSet, duration: 0.5)
         
         
 //        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -648,6 +652,7 @@ extension StationViewController : StationMarkerDelegate{
         }
         
     }
+    
     
     func closeInfoWindowTapped() {
         markerView?.removeFromSuperview()

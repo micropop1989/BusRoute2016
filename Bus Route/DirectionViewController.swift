@@ -57,6 +57,7 @@ class DirectionViewController: UIViewController {
     @IBOutlet weak var routeDetailsLabel: UILabel!
     
     
+    let destinationMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +143,7 @@ class DirectionViewController: UIViewController {
             let translation = gestureRecognizer.translation(in: RouteView)
             
             if allowPanGesture {
-            if translation.x < -25 && selectedIndex < navi.count {
+            if translation.x < -25 && selectedIndex < navi.count - 1 {
                 selectNewPath(newIndex: selectedIndex+1)
                 allowPanGesture = false
             }else if translation.x > 25 && selectedIndex > 0 {
@@ -228,7 +229,6 @@ class DirectionViewController: UIViewController {
                 }
                 
                 DispatchQueue.main.async {
-                    self.selectNewPath(newIndex: 0)
                     self.showPath()
                 }
                 
@@ -250,6 +250,12 @@ class DirectionViewController: UIViewController {
         currentLocationMarker.map = mapView
         
         //mapView.selectedMarker = currentLocationMarker
+    }
+    
+    func setDestinationMarker(location : CLLocationCoordinate2D){
+        destinationMarker.position = location
+        destinationMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        destinationMarker.map = mapView
     }
     
     func showPath(){
@@ -281,7 +287,9 @@ class DirectionViewController: UIViewController {
         
         heightConstraint.constant = 190.0
         
-        selectNewPath(newIndex: 0)
+        if navi.count > 0 {
+            selectNewPath(newIndex: 0)
+        }
         
         collectionView.reloadData()
         
@@ -393,6 +401,7 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
         setCurrentLocationMarker()
         let bound = GMSCoordinateBounds(coordinate: currentLocation, coordinate: place.coordinate)
         //let update = GMSCameraUpdate.fit(bound, withPadding: 30.0)
+        setDestinationMarker(location: place.coordinate)
         
         let update = GMSCameraUpdate.fit(bound, with: padding)
         mapView.moveCamera(update)
