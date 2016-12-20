@@ -116,6 +116,7 @@ class NaviDetailsViewController: UIViewController {
         }else{
             markerView = loadedView?.first as? CustomeStationMarkerView
             markerView?.shapeImage.alpha = 0.9
+            markerView?.infoButton.isHidden = true
             markerView?.delegate = self
         }
     }
@@ -362,6 +363,7 @@ extension NaviDetailsViewController : GMSMapViewDelegate {
         if marker.title != "end" {
             markerView?.removeFromSuperview()
             showInfoWindow(marker: marker)
+            marker.panoramaView = markerView?.paraView
         }
         return false
     }

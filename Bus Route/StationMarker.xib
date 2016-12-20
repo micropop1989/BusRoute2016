@@ -71,6 +71,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="infoButton" destination="rXJ-ts-53X" id="mn4-Vk-Wjf"/>
                 <outlet property="nameLabel" destination="HIo-Nh-neX" id="csN-Yn-hfF"/>
                 <outlet property="paraView" destination="NRR-Zv-fHi" id="xLV-OM-emG"/>
                 <outlet property="shapeImage" destination="whV-k7-KbM" id="1uG-mJ-Rg5"/>
