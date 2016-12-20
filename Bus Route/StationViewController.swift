@@ -335,8 +335,6 @@ extension StationViewController : GMSMapViewDelegate{
         //custome info window
         markerView?.removeFromSuperview()
         searchNearby = true
-
-
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -692,7 +690,8 @@ extension StationViewController : StationTableHeaderDelegate{
     
     func refreashButtonPressed() {
         searchNearby = true
-        showNearbyBusStation(coordinate: currentLocation)
+        
+        showNearbyBusStation(coordinate: centermarker.position)
     }
 }
 
