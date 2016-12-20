@@ -84,7 +84,7 @@ class StationViewController: UIViewController {
         //marker
         currentLocationMarker.position = currentLocation
         currentLocationMarker.title = "You Are Here"
-        currentLocationMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+        currentLocationMarker.icon = UIImage(named: "currentPosition") //GMSMarker.markerImage(with: UIColor.black)
         
         currentLocationMarker.tracksInfoWindowChanges = true
         currentLocationMarker.map = stationMapView
@@ -719,7 +719,9 @@ extension StationViewController : GMSPanoramaViewDelegate {
 
 extension StationViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print(newHeading.magneticHeading)
-        
+        //print(newHeading.magneticHeading)
+        if searchNearby {
+            stationMapView.animate(toBearing: newHeading.magneticHeading)
+        }
     }
 }

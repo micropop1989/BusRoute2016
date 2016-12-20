@@ -104,13 +104,13 @@ class NaviDetailsViewController: UIViewController {
             let startMarker = GMSMarker()
             startMarker.position = start!
             startMarker.title = "Start"
-            startMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+            startMarker.icon = UIImage(named: "currentPosition") //GMSMarker.markerImage(with: UIColor.black)
             startMarker.map = naviMapView
             
             let endMarker = GMSMarker()
             endMarker.position = end!
             endMarker.title = "Destination"
-            endMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+            endMarker.icon = UIImage(named: "start") //GMSMarker.markerImage(with: UIColor.orange)
             endMarker.map = naviMapView
         }
         
