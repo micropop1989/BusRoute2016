@@ -70,12 +70,30 @@ class NaviDetailsViewController: UIViewController {
             
         }
         
+        initEdgePan()
         loadNibFile()
         
 
     
     }
     
+    
+    func initEdgePan(){
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        edgePan.edges = .left
+        
+        view.addGestureRecognizer(edgePan)
+    }
+    
+    func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if recognizer.state == .recognized {
+            print("Screen edge swiped!")
+            
+            self.widthConstraint.constant = 10
+            self.naviDetailTableView.layoutIfNeeded()
+        }
+        
+    }
     
     func addStartEndMarker(){
         if let line = path?.overlay {
@@ -122,9 +140,6 @@ class NaviDetailsViewController: UIViewController {
     }
     
     
-    @IBAction func edgeGestureAction(_ sender: Any) {
-        print("edge")
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
