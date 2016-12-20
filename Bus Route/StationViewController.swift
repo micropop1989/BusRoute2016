@@ -53,8 +53,15 @@ class StationViewController: UIViewController {
     
     var moveDirection : moveTo = .none
     
+    
+    var locationManager:CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager  = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.startUpdatingHeading()
         
         self.title = "Station List"
         frDBref2 = FIRDatabase.database().reference()
@@ -371,6 +378,7 @@ extension StationViewController : GMSMapViewDelegate{
         
         return UIView()
     }
+    
     
     //    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
     //
@@ -697,5 +705,13 @@ extension StationViewController : GMSPanoramaViewDelegate {
         
         let heading = calculateHeading(form: panorama.coordinate, to: coordinate)
         view.camera = GMSPanoramaCamera(heading: heading, pitch: 0, zoom: 0)
+    }
+}
+
+
+extension StationViewController : CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        print(newHeading.magneticHeading)
+        
     }
 }
