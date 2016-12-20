@@ -348,8 +348,10 @@ class DirectionViewController: UIViewController {
             routeDetailView?.typeImageView.image = UIImage(named: step.travelMode)
             routeDetailView?.timeLabel.text = step.duration
 
-            
-            if i == numOfSlot-1{
+            if i == temp.steps.count - 1{
+                routeDetailView?.nextImageView.image = nil
+            }
+            else if i == numOfSlot-1{
                 if (temp.steps.count <= numOfSlot){
                     routeDetailView?.nextImageView.image = nil
                 }
@@ -431,6 +433,10 @@ extension DirectionViewController : GMSMapViewDelegate{
         }
     }
     
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        mapView.animate(toLocation: currentLocation)
+        return true
+    }
 }
 
 
