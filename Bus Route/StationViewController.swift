@@ -528,7 +528,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
             var y = rect.origin.y
             let oriHeight = rect.size.height
             
-            print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
+            //print ("\(y)  \(maxY)   \(minY), \(oriHeight)")
             
             if y <= maxY + 0.11 && y >= minY - 0.11 {
                 
@@ -661,7 +661,6 @@ extension StationViewController : StationMarkerDelegate{
 
 extension StationViewController : StationTableHeaderDelegate{
     func tableHeaderButtonPressed(button : UIButton) {
-    print ("tapped")
         var height = stationTableView.frame.size.height
         
         if (button.currentTitle! == "down") {

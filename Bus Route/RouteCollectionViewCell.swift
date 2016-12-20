@@ -14,7 +14,7 @@ class RouteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
-        backgroundColor = UIColor.dodgerBlue
+        backgroundColor = UIColor.deepSkyBlue
         layer.cornerRadius = 10.0
         
         distanceLabel.textColor = UIColor.white

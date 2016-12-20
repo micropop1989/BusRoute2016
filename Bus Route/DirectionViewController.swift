@@ -282,7 +282,7 @@ class DirectionViewController: UIViewController {
         }
 
         
-        print("paths found : \(allPolylines.count)")
+       // print("paths found : \(allPolylines.count)")
       //  tableView.reloadData()
         
         heightConstraint.constant = 190.0
@@ -389,10 +389,10 @@ extension DirectionViewController: GMSAutocompleteResultsViewControllerDelegate 
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-        print("Place coordinate: \(place.coordinate)")
+//        print("Place name: \(place.name)")
+//        print("Place address: \(place.formattedAddress)")
+//        print("Place attributions: \(place.attributions)")
+//        print("Place coordinate: \(place.coordinate)")
         
         //reset map
         selectedIndex = 0
@@ -551,7 +551,7 @@ extension DirectionViewController : UICollectionViewDataSource, UICollectionView
         cell.timeLabel.text = temp.duration
         
         if indexPath.row == selectedIndex{
-            cell.backgroundColor = UIColor.deepSkyBlue
+            cell.backgroundColor = UIColor.dodgerBlue
         }
         
         return cell
