@@ -82,14 +82,14 @@ class StationViewController: UIViewController {
         mapViewCoordinate = currentLocation
         
         //marker
-        currentLocationMarker.position = currentLocation
-        currentLocationMarker.title = "You Are Here"
+        //currentLocationMarker.position = currentLocation
+        //currentLocationMarker.title = "You Are Here"
         //currentLocationMarker.icon = UIImage(named: "currentPosition") //GMSMarker.markerImage(with: UIColor.black)
         
-        currentLocationMarker.tracksInfoWindowChanges = true
-        currentLocationMarker.map = stationMapView
+        //currentLocationMarker.tracksInfoWindowChanges = true
+        //currentLocationMarker.map = stationMapView
         
-        stationMapView.selectedMarker = currentLocationMarker
+        //stationMapView.selectedMarker = currentLocationMarker
         
         
         
@@ -396,7 +396,7 @@ extension StationViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : StnTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? StnTableViewCell else {
             return UITableViewCell()
-            
+
         }
         let temp : Station = filteredStation[indexPath.row]
         
