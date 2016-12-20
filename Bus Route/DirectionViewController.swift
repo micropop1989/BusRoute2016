@@ -263,7 +263,7 @@ class DirectionViewController: UIViewController {
             polyline.title = "route \(i)"
             polyline.strokeWidth = 5.0
             polyline.geodesic = true
-            polyline.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            polyline.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
             polyline.isTappable = true
             polyline.map = mapView
             
@@ -294,7 +294,7 @@ class DirectionViewController: UIViewController {
         let previousIndexPath = IndexPath(row: selectedIndex, section: 0)
         let deselectedPolyline = allPolylines[selectedIndex]
         deselectedPolyline.map = nil
-        deselectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(0.4)
+        deselectedPolyline.strokeColor = UIColor.midNightBlue //deselectedPolyline.strokeColor.withAlphaComponent(0.4)
         deselectedPolyline.map = mapView
         
         //collectionView.deselectItem(at: previousIndexPath, animated: true)
@@ -305,7 +305,7 @@ class DirectionViewController: UIViewController {
         let newIndexPath = IndexPath(row: newIndex, section: 0)
         let selectedPolyline = allPolylines[newIndex]
         selectedPolyline.map = nil
-        selectedPolyline.strokeColor = deselectedPolyline.strokeColor.withAlphaComponent(1.0)
+        selectedPolyline.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4) //deselectedPolyline.strokeColor.withAlphaComponent(1.0)
         selectedPolyline.map = mapView
         
         //collectionView.selectItem(at: newIndexPath, animated: true, scrollPosition: .middle)

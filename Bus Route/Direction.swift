@@ -42,7 +42,7 @@ class Path{
             //overlay.title = "Step \(i)"
             self.overlay.strokeWidth = 3.0
             self.overlay.geodesic = true
-            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
             self.overlay.isTappable = true
         }
         
@@ -92,7 +92,7 @@ class Step{
             //overlay.title = "Step \(i)"
             self.overlay.strokeWidth = 3.0
             self.overlay.geodesic = true
-            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
             self.overlay.isTappable = true
         }
         
@@ -138,7 +138,7 @@ class SubStep {
             //overlay.title = "Step \(i)"
             self.overlay.strokeWidth = 3.0
             self.overlay.geodesic = true
-            self.overlay.strokeColor = UIColor.randonColor().withAlphaComponent(0.4)
+            self.overlay.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
             self.overlay.isTappable = true
         }
         travelMode = json["travel_mode"].stringValue

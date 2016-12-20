@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-
+import GoogleMaps
 
 class StationDetailViewController: UIViewController {
 
@@ -19,6 +19,12 @@ class StationDetailViewController: UIViewController {
     var stationID = "ChIJDYS7S8BJzDER9sEkA4CN5tk"
     var station : Station?
    
+    @IBOutlet weak var streetView: GMSPanoramaView! {
+        didSet{
+            streetView.delegate = self
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +40,8 @@ class StationDetailViewController: UIViewController {
         
         stationDetailTable.separatorColor = .blue
         
-      
+        streetView.moveNearCoordinate((station?.mapMarker.position)!, radius: 100)
+        station?.mapMarker.panoramaView = streetView
     }
     
     
@@ -163,5 +170,14 @@ extension StationDetailViewController: ShowStationDetailViewControllerDelegate {
      viewController.willMove(toParentViewController: nil)
      viewController.view.removeFromSuperview()
      viewController.removeFromParentViewController()
+    }
+}
+
+
+extension StationDetailViewController : GMSPanoramaViewDelegate {
+    func panoramaView(_ view: GMSPanoramaView, didMoveTo panorama: GMSPanorama, nearCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        let heading = calculateHeading(form: panorama.coordinate, to: coordinate)
+        view.camera = GMSPanoramaCamera(heading: heading, pitch: 0, zoom: 0)
     }
 }

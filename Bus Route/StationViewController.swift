@@ -684,6 +684,11 @@ extension StationViewController : StationTableHeaderDelegate{
         }, completion: nil)
         
     }
+    
+    func refreashButtonPressed() {
+        searchNearby = true
+        showNearbyBusStation(coordinate: currentLocation)
+    }
 }
 
 extension StationViewController : StnTableViewCellDelegate {

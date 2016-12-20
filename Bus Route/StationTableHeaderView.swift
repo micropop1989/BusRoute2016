@@ -29,8 +29,13 @@ class StationTableHeaderView: UIView {
     func buttonTapped(){
         delegate?.tableHeaderButtonPressed(button : headerButton)
     }
+
+    @IBAction func refreashButtonTapped(_ sender: Any) {
+        delegate?.refreashButtonPressed()
+    }
 }
 
 protocol StationTableHeaderDelegate {
     func tableHeaderButtonPressed(button : UIButton)
+    func refreashButtonPressed()
 }
