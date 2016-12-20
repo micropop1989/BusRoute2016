@@ -246,7 +246,7 @@ class DirectionViewController: UIViewController {
     func setCurrentLocationMarker(){
         currentLocationMarker.position = currentLocation
         currentLocationMarker.title = "You Are Here"
-        currentLocationMarker.icon = GMSMarker.markerImage(with: UIColor.black)
+        currentLocationMarker.icon = UIImage(named: "currentPosition")   //GMSMarker.markerImage(with: UIColor.black)
         currentLocationMarker.map = mapView
         
         //mapView.selectedMarker = currentLocationMarker
@@ -254,7 +254,7 @@ class DirectionViewController: UIViewController {
     
     func setDestinationMarker(location : CLLocationCoordinate2D){
         destinationMarker.position = location
-        destinationMarker.icon = GMSMarker.markerImage(with: UIColor.orange)
+        destinationMarker.icon = UIImage(named: "start")  //GMSMarker.markerImage(with: UIColor.orange)
         destinationMarker.map = mapView
     }
     
