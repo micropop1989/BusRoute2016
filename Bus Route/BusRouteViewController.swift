@@ -110,7 +110,7 @@ class BusRouteViewController: UIViewController {
                 
             }
             dispatchGp.notify(queue: DispatchQueue.main, execute: {
-                print("Doen fetch data")
+                //print("Doen fetch data")
                 self.showStationOnMap()
                 self.stationCollectionView.reloadData()
             })

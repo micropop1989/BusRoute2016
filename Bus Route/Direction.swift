@@ -42,7 +42,7 @@ class Path{
             //overlay.title = "Step \(i)"
             self.overlay.strokeWidth = 3.0
             self.overlay.geodesic = true
-            self.overlay.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
+            self.overlay.strokeColor = UIColor.deepSkyBlue
             self.overlay.isTappable = true
         }
         
@@ -92,7 +92,7 @@ class Step{
             //overlay.title = "Step \(i)"
             self.overlay.strokeWidth = 3.0
             self.overlay.geodesic = true
-            self.overlay.strokeColor = UIColor.deepSkyBlue.withAlphaComponent(0.4)
+            self.overlay.strokeColor = UIColor.deepSkyBlue
             self.overlay.isTappable = true
         }
         

@@ -204,8 +204,8 @@ extension BusViewController: UITableViewDataSource {
         busCell.busNumberView.layer.cornerRadius = 8.0
         
        
-        print(bus.busNumber!)
-        print(indexPath.row)
+        //print(bus.busNumber!)
+        //print(indexPath.row)
         return busCell
     }
     

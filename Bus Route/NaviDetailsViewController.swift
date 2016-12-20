@@ -263,7 +263,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
                 }
                 cell.textLabel?.text = substep.instruction.getTargetedRoad
                 
-                print(substep.instruction)
+                //print(substep.instruction)
                 
                 cell.detailTextLabel?.text = "\(substep.distance)"  //\(substep.duration) \(substep.travelMode)
             }
