@@ -157,7 +157,7 @@ class NaviDetailsViewController: UIViewController {
         }
     }
     
-    let maxWidth : CGFloat = 200.0
+    let maxWidth : CGFloat = 300.0
     
         @IBAction func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
             if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
