@@ -182,8 +182,11 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         
         if step.isTransit {
             if let transitInfo = step.transitDetails {
-                cell.textLabel?.text = transitInfo.name
-                cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
+                //cell.textLabel?.text = transitInfo.name
+                
+                cell.textLabel?.text = "\(transitInfo.shortName) toward (transitInfo.arrivalStop.name)"
+                cell.detailTextLabel?.text = "\(transitInfo.numStops) stops"
+                //cell.detailTextLabel?.text = "\(transitInfo.type) \(transitInfo.agency) \(transitInfo.shortName) stop:\(transitInfo.numStops)"
                 
                 //bus icon accordingly
                 cell.imageView?.image = UIImage(named: "bus2")

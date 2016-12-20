@@ -1019,13 +1019,13 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-FG-vT8">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-FG-vT8">
                                                 <rect key="frame" x="325" y="5" width="45" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="Hfp-yV-XNA"/>
                                                     <constraint firstAttribute="height" priority="999" constant="45" id="VEH-ic-T2G"/>
                                                 </constraints>
-                                                <state key="normal" title="GO"/>
+                                                <state key="normal" title="GO" image="go"/>
                                                 <connections>
                                                     <action selector="goButtonPressed:" destination="QSY-15-TEQ" eventType="touchUpInside" id="ame-hw-AGo"/>
                                                 </connections>
@@ -1149,7 +1149,7 @@
                                 <rect key="frame" x="257" y="64" width="118" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" identifier="StepTableWidth" id="eL0-oa-K0I"/>
+                                    <constraint firstAttribute="width" constant="200" identifier="StepTableWidth" id="eL0-oa-K0I"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="naviDetailCell" textLabel="EP8-0l-ucL" detailTextLabel="BAK-2n-jG2" style="IBUITableViewCellStyleSubtitle" id="KXu-pJ-aBr">
@@ -1160,16 +1160,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EP8-0l-ucL">
-                                                    <rect key="frame" x="15" y="9" width="20" height="11"/>
+                                                    <rect key="frame" x="15" y="8" width="27" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BAK-2n-jG2">
-                                                    <rect key="frame" x="15" y="20" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="24" width="38" height="12"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1404,6 +1404,7 @@
         <image name="direction(white)" width="32" height="32"/>
         <image name="distance" width="30" height="30"/>
         <image name="dotWithScp" width="30" height="30"/>
+        <image name="go" width="200" height="200"/>
         <image name="info2" width="100" height="100"/>
         <image name="main_background" width="3840" height="2160"/>
         <image name="maker50" width="39" height="50"/>
