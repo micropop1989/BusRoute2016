@@ -209,7 +209,7 @@ class StationViewController: UIViewController {
         //centermarker.icon = GMSMarker.markerImage(with: UIColor.orange)
         
         var imageSet = [UIImage]()
-        for i in 1...7{
+        for i in 1...17{
         let img = UIImage(named: "search\(i)")
         let newWidth : CGFloat = 30.0
         let newHeight : CGFloat = 30.0

@@ -50,7 +50,7 @@ class DirectionViewController: UIViewController {
     
     var heightConstraint = NSLayoutConstraint()
     
-    let padding = UIEdgeInsets(top: 10, left: 10, bottom: 120, right: 10)
+    let padding = UIEdgeInsets(top: 30, left: 10, bottom: 100, right: 10)
     
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!

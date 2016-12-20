@@ -308,7 +308,7 @@ extension NaviDetailsViewController : UITableViewDataSource ,UITableViewDelegate
         let coord = (selectedOverlay.path?.coordinate(at: 0))!
         var point = naviMapView.projection.point(for: coord)
         point.x += naviDetailTableView.frame.width / 2.0
-        point.y -= 100
+        point.y -= 150
         let newCoord = naviMapView.projection.coordinate(for: point)
 //        naviMapView.animate(toLocation: newCoord)
         
